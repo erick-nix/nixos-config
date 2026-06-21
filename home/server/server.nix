@@ -1,0 +1,25 @@
+{
+  ...
+}:
+
+{
+  imports = [
+    ../common
+    ../common/modules/dconf.nix
+    ./modules/packages.nix
+  ];
+
+  home = {
+    username = "erick-nix";
+    homeDirectory = "/home/erick-nix";
+    stateVersion = "25.11";
+
+    file = {
+      ".config/background" = {
+        source = ./assets/wallpaper.webp;
+        force = true;
+      };
+      ".face".source = ./assets/avatar.png;
+    };
+  };
+}

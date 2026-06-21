@@ -1,0 +1,8 @@
+{ ... }:
+
+{
+  networking = {
+    # Hostname
+    hostName = "desktop";
+  };
+}
