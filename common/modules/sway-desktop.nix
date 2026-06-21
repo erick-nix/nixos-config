@@ -4,6 +4,13 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+
+    # Override default extras to avoid pulling in Foot.
+    extraPackages = with pkgs; [
+      swayidle
+      swaylock
+      wmenu
+    ];
   };
 
   home-manager.users.${username}.imports = [
@@ -20,6 +27,10 @@
         };
       };
     };
+
+    # Required for GNOME Calendar background services in non-GNOME sessions.
+    gnome.evolution-data-server.enable = true;
+    gnome.gnome-online-accounts.enable = true;
 
     # Enables Gnome Keyring to store secrets for applications.
     gnome.gnome-keyring.enable = true;

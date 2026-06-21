@@ -12,6 +12,7 @@
   # Set ZSH as default shell
   users.defaultUserShell = pkgs.zsh;
 
+  # Enable polkit
   security.polkit.enable = true;
 
   # Set the system default locale

@@ -51,9 +51,9 @@
 
           modules-right = [
             "custom/cpu_temp"
-            "cpu"
             "disk#root"
             "memory"
+            "cpu"
             "pulseaudio"
             "custom/brightness"
             "clock"
@@ -62,6 +62,7 @@
 
           "custom/nixos" = {
             format = "{}";
+            justify = "center";
             tooltip = false;
             interval = 3600;
             exec = "${pkgs.bash}/bin/bash -lc 'echo '";
@@ -158,11 +159,6 @@
           margin: 4px 2px;
         }
 
-        #custom-nixos {
-          color: #91acd1;
-          padding: 0 10px;
-        }
-
         #workspaces button.active {
           background: #272c42;
           color: #c6c8d1;
@@ -183,7 +179,7 @@
 
         #window {
           color: #c6c8d1;
-          padding: 0 10px;
+          padding: 0 6px;
           margin: 4px 0;
         }
 
@@ -202,7 +198,13 @@
         }
 
         #tray {
-          
+          margin: 0px 8px 0px 0px;
+        }
+
+        #custom-nixos {
+          color: #91acd1;
+          font-size: 26px;
+          padding: 0px 4px 0px 12px;
         }
       '';
     };

@@ -17,6 +17,7 @@ in
       ../../common/modules/ddcutil.nix
       ../../common/modules/obs.nix
       ../../common/modules/work.nix
+      ../../common/modules/server-sftp-mount.nix
       ./configuration.nix
     ];
   };

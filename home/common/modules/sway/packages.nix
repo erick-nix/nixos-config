@@ -6,5 +6,6 @@
     nautilus
     pavucontrol
     gnome-calculator
+    gnome-calendar
   ];
 }

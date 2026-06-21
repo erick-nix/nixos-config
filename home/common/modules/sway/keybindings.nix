@@ -34,7 +34,7 @@ in
       "Mod4+F10" = "exec ${ddcBrightness}/bin/ddc-brightness down 15";
 
       # Clipboard history
-      "Mod4+Shift+v" =
+      "Mod4+v" =
         "exec ${pkgs.bash}/bin/bash -lc '${pkgs.cliphist}/bin/cliphist list | ${pkgs.fuzzel}/bin/fuzzel --dmenu --with-nth 2 --prompt \"Clipboard: \" | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy'";
       "Mod4+Shift+BackSpace" = "exec ${pkgs.cliphist}/bin/cliphist wipe";
     };
