@@ -94,7 +94,7 @@
             format-muted = "VOL MUTE";
             justify = "center";
             scroll-step = 5;
-            on-click = "${pkgs.pwvucontrol}/bin/pwvucontrol"; # mixer por app
+            on-click = "${pkgs.pwvucontrol}/bin/pwvucontrol";
             on-click-right = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           };
 

@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  username,
+  hostname,
+  ...
+}:
 
 {
   programs.sway = {
@@ -14,7 +19,13 @@
   };
 
   home-manager.users.${username}.imports = [
-    ../../home/common/modules/sway
+    (
+      { ... }:
+      {
+        _module.args.hostname = hostname;
+        imports = [ ../../home/common/modules/sway ];
+      }
+    )
   ];
 
   services = {
@@ -34,5 +45,11 @@
 
     # Enables Gnome Keyring to store secrets for applications.
     gnome.gnome-keyring.enable = true;
+  };
+
+  # Screen sharing
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
   };
 }

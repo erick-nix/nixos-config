@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hostname, ... }:
 
 {
   programs.nvf.settings.vim = {
@@ -61,9 +61,9 @@
               nixpkgs.expr = "import <nixpkgs> { }";
               formatting.command = [ "nixfmt" ];
               options = {
-                nixos.expr = ''(builtins.getFlake "/etc/nixos").nixosConfigurations.desktop.options'';
+                nixos.expr = ''(builtins.getFlake "/etc/nixos").nixosConfigurations.${hostname}.options'';
                 "home-manager".expr =
-                  ''(builtins.getFlake "/etc/nixos").nixosConfigurations.desktop.options.home-manager.users.type.getSubOptions []'';
+                  ''(builtins.getFlake "/etc/nixos").nixosConfigurations.${hostname}.options.home-manager.users.type.getSubOptions []'';
               };
             };
           };

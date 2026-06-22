@@ -7,5 +7,10 @@
     pavucontrol
     gnome-calculator
     gnome-calendar
+
+    # Screenshots
+    grim
+    slurp
+    sway-contrib.grimshot
   ];
 }
