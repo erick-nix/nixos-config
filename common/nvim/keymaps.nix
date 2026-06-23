@@ -317,6 +317,22 @@
       silent = true;
     }
 
+    # Leader+PA : copy absolute path of current file to clipboard
+    {
+      key = "<leader>pa";
+      mode = "n";
+      action = "<cmd>let @+=expand('%:p')<CR>";
+      silent = true;
+    }
+
+    # Leader+PR : copy relative path of current file to clipboard
+    {
+      key = "<leader>pr";
+      mode = "n";
+      action = "<cmd>let @+=expand('%')<CR>";
+      silent = true;
+    }
+
     # Tabs
     {
       key = "<leader>tn";

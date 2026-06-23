@@ -39,6 +39,8 @@
       };
     };
 
+    blueman.enable = true;
+
     # Required for GNOME Calendar background services in non-GNOME sessions.
     gnome.evolution-data-server.enable = true;
     gnome.gnome-online-accounts.enable = true;

@@ -119,6 +119,7 @@
           };
           keymaps = {
             "<C-s>" = lib.mkLuaInline "false";
+            "cd" = "actions.cd";
           };
         };
       };
@@ -219,7 +220,12 @@
 
     statusline.lualine = {
       enable = true;
-
+      setupOpts = {
+        extensions = lib.mkForce [
+          "toggleterm"
+          "oil"
+        ];
+      };
       activeSection = {
         a = [ ''{ "mode" }'' ];
 

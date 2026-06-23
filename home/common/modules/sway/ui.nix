@@ -50,6 +50,7 @@
           ];
 
           modules-right = [
+            "network"
             "custom/cpu_temp"
             "disk#root"
             "memory"
@@ -68,8 +69,18 @@
             exec = "${pkgs.bash}/bin/bash -lc 'echo '";
           };
 
+          network = {
+            family = "ipv4";
+            format = "{ifname}";
+            "format-wifi" = "{essid} ({signalStrength}%)";
+            "format-ethernet" = "{ipaddr}/{cidr}";
+            "format-linked" = "{ipaddr}/{cidr}";
+            "format-disconnected" = "";
+            "max-length" = 50;
+          };
+
           "sway/workspaces" = {
-            disable-scroll = true;
+            disable-scroll = false;
             all-outputs = true;
             format = "{name}";
           };
@@ -120,7 +131,7 @@
           "disk#root" = {
             path = "/";
             interval = 30;
-            format = "DISK {free}";
+            format = "FREE {free}";
             justify = "center";
           };
 
@@ -181,6 +192,10 @@
           color: #c6c8d1;
           padding: 0 6px;
           margin: 4px 0;
+        }
+
+        #network {
+          color: #91acd1;
         }
 
         #custom-brightness,
