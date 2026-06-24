@@ -6,16 +6,23 @@
 }:
 
 {
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
+  programs = {
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
 
-    # Override default extras to avoid pulling in Foot.
-    extraPackages = with pkgs; [
-      swayidle
-      swaylock
-      wmenu
-    ];
+      # Override default extras to avoid pulling in Foot.
+      extraPackages = with pkgs; [
+        swayidle
+        swaylock
+        wmenu
+      ];
+    };
+
+    gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
   };
 
   home-manager.users.${username}.imports = [

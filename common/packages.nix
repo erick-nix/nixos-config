@@ -28,6 +28,7 @@
       stress
       nmap
       sops
+      wget
     ];
   };
 }

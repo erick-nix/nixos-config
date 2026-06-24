@@ -13,9 +13,18 @@
       enable = true;
       friendly-snippets.enable = true;
       setupOpts = {
+        keymap = {
+          preset = "enter";
+          "<CR>" = [
+            "select_and_accept"
+            "fallback"
+          ];
+        };
+
         snippets = {
           preset = "luasnip";
         };
+
         sources = {
           default = [
             "snippets"
@@ -23,28 +32,6 @@
             "path"
             "buffer"
           ];
-          providers = {
-            snippets = {
-              score_offset = 12;
-              should_show_items = lib.mkLuaInline ''
-                function()
-                  local ok, node = pcall(vim.treesitter.get_node)
-                  local ts_in_string = ok and node and vim.tbl_contains({
-                    "string",
-                    "string_fragment",
-                    "template_string",
-                  }, node:type())
-                  local col = math.max(1, vim.fn.col(".") - 1)
-                  local syn_name = vim.fn.synIDattr(vim.fn.synID(vim.fn.line("."), col, 1), "name")
-                  local syn_in_string = type(syn_name) == "string" and syn_name:match("String") ~= nil
-                  return not (ts_in_string or syn_in_string)
-                end
-              '';
-            };
-            buffer = {
-              score_offset = -12;
-            };
-          };
         };
       };
     };
@@ -88,21 +75,7 @@
       };
     };
 
-    visuals = {
-      cinnamon-nvim = {
-        enable = true;
-        setupOpts = {
-          keymaps = {
-            basic = true;
-            extra = true;
-          };
-        };
-      };
-    };
-
     utility = {
-      motion.flash-nvim.enable = true;
-
       grug-far-nvim = {
         enable = true;
         setupOpts = {
@@ -129,6 +102,12 @@
       enable = true;
       gitsigns = {
         enable = true;
+        mappings = {
+          nextHunk = "<A-Down>";
+          previewHunk = "<A-Up>";
+          resetHunk = "<leader>gr";
+        };
+
         setupOpts = {
           current_line_blame = true;
           current_line_blame_opts = {
@@ -172,6 +151,7 @@
         gitCommits = "<leader>gc";
         gitStatus = "<leader>gs";
         gitBufferCommits = "<leader>gx";
+        lspDocumentSymbols = "<leader>fs";
       };
 
       setupOpts = {
@@ -200,6 +180,7 @@
             "%.webp$"
           ];
         };
+
         pickers = {
           find_files = {
             hidden = true;

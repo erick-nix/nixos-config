@@ -17,35 +17,35 @@
       silent = true;
     }
 
-    # Ctrl+Shift+C : copy selected text
+    # Ctrl+Shift+V : paste from system clipboard
     {
-      key = "<C-S-c>";
-      mode = "v";
-      action = "\"+y";
+      key = "<C-S-v>";
+      mode = [
+        "n"
+        "i"
+        "v"
+      ];
+      action = "<C-r>+";
       silent = true;
     }
 
-    # Ctrl+C : disabled
+    # Ctrl+Shift+C : copy selected text
     {
-      key = "<C-c>";
-      mode = "v";
-      action = "<Nop>";
+      key = "<C-S-c>";
+      mode = [
+        "v"
+      ];
+      action = "\"+y";
       silent = true;
     }
 
     # Ctrl+X : cut selected text
     {
       key = "<C-x>";
-      mode = "v";
+      mode = [
+        "v"
+      ];
       action = "\"+d";
-      silent = true;
-    }
-
-    # Ctrl+V : paste in insert mode
-    {
-      key = "<C-v>";
-      mode = "i";
-      action = "<C-r>+";
       silent = true;
     }
 
@@ -78,22 +78,6 @@
       key = "<Esc>";
       mode = "n";
       action = "<cmd>nohlsearch<CR>";
-      silent = true;
-    }
-
-    # Ctrl+Left : before tab
-    {
-      key = "<C-Left>";
-      mode = "n";
-      action = "<cmd>tabprevious<CR>";
-      silent = true;
-    }
-
-    # Ctrl+Right : next tab
-    {
-      key = "<C-Right>";
-      mode = "n";
-      action = "<cmd>tabnext<CR>";
       silent = true;
     }
 
@@ -141,14 +125,6 @@
       silent = true;
     }
 
-    # Leader+V : open vertical split to the right
-    {
-      key = "<leader>v";
-      mode = "n";
-      action = "<cmd>rightbelow vsplit<CR>";
-      silent = true;
-    }
-
     # Ctrl+S : save file
     {
       key = "<C-s>";
@@ -179,37 +155,6 @@
         "t"
       ];
       action = "<C-w>";
-      silent = true;
-    }
-
-    # Alt+Left : move to left window
-    {
-      key = "<A-Left>";
-      mode = "n";
-      action = "<C-w>h";
-      silent = true;
-    }
-
-    # Alt+Right : move to right window
-    {
-      key = "<A-Right>";
-      mode = "n";
-      action = "<C-w>l";
-      silent = true;
-    }
-
-    # Alt+Up : move current line / selected block up
-    {
-      key = "<A-Up>";
-      mode = "n";
-      action = "<cmd>move .-2<CR>==";
-      silent = true;
-    }
-
-    {
-      key = "<A-Up>";
-      mode = "v";
-      action = "<cmd>move '<-2<CR>gv=gv";
       silent = true;
     }
 
@@ -268,27 +213,71 @@
       silent = true;
     }
 
-    # <leader>fs : open telescope lsp_document_symbols
     {
-      key = "<leader>fs";
+      key = "<leader>t";
       mode = "n";
-      action = "<cmd>Telescope lsp_document_symbols<CR>";
+      action = "<cmd>terminal<CR>";
       silent = true;
     }
 
-    # Ctrl+Down : next git hunk (gitsigns)
+    # Leader+V: terminal em split vertical
     {
-      key = "<C-Down>";
+      key = "<leader>v";
       mode = "n";
-      action = "<cmd>Gitsigns next_hunk<CR>";
+      action = "<cmd>vsplit<CR><cmd>terminal<CR>";
       silent = true;
     }
 
-    # Ctrl+Up : previous git hunk (gitsigns)
+    # Leader+H: terminal em split horizontal
+    {
+      key = "<leader>h";
+      mode = "n";
+      action = "<cmd>split<CR><cmd>terminal<CR>";
+      silent = true;
+    }
+
+    {
+      key = "<leader>m";
+      mode = "n";
+      action = "<C-w>_<C-w>|";
+      silent = true;
+    }
+    {
+      key = "<leader>n";
+      mode = "n";
+      action = "<C-w>=";
+      silent = true;
+    }
+
+    # Ctrl+Left : focus left split
+    {
+      key = "<C-Left>";
+      mode = "n";
+      action = "<C-w>h";
+      silent = true;
+    }
+
+    # Ctrl+Right : focus right split
+    {
+      key = "<C-Right>";
+      mode = "n";
+      action = "<C-w>l";
+      silent = true;
+    }
+
+    # Ctrl+Up : focus upper split
     {
       key = "<C-Up>";
       mode = "n";
-      action = "<cmd>Gitsigns prev_hunk<CR>";
+      action = "<C-w>k";
+      silent = true;
+    }
+
+    # Ctrl+Down : focus lower split
+    {
+      key = "<C-Down>";
+      mode = "n";
+      action = "<C-w>j";
       silent = true;
     }
 
@@ -309,14 +298,6 @@
       silent = true;
     }
 
-    # <leader>gr : reset hunk (gitsigns)
-    {
-      key = "<leader>gr";
-      mode = "n";
-      action = "<cmd>Gitsigns reset_hunk<CR>";
-      silent = true;
-    }
-
     # Leader+PA : copy absolute path of current file to clipboard
     {
       key = "<leader>pa";
@@ -330,32 +311,6 @@
       key = "<leader>pr";
       mode = "n";
       action = "<cmd>let @+=expand('%')<CR>";
-      silent = true;
-    }
-
-    # Tabs
-    {
-      key = "<leader>tn";
-      mode = "n";
-      action = "<cmd>tabnew<CR>";
-      silent = true;
-    }
-
-    {
-      key = "<leader>tq";
-      mode = "n";
-      action = "<cmd>tabclose<CR>";
-      silent = true;
-    }
-
-    # Ctrl+Z : disable suspend (do nothing)
-    {
-      key = "<C-z>";
-      mode = [
-        "n"
-        "i"
-      ];
-      action = "<Nop>";
       silent = true;
     }
   ];

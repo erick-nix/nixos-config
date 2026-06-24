@@ -14,6 +14,7 @@ in
     modules = [
       ../../common
       ../../common/modules/gnome-desktop.nix
+      ../../common/modules/systemd-cleanup.nix
       ../../common/modules/obs.nix
       ../../common/modules/work.nix
       ./configuration.nix

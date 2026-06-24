@@ -14,12 +14,13 @@ let
   };
 
   type = if hostname == "server" then "receiveonly" else "sendreceive";
-  path = if hostname == "server" then "/srv/syncthing" else "${homeDir}/Documents";
+  path = if hostname == "server" then "/srv/syncthing" else "${homeDir}/data";
   isServer = hostname == "server";
 
   otherDevices = lib.filterAttrs (name: _: name != hostname) devices;
 
   stignoreText = ''
+    thirdparty
     workfolder
     .snapshots
     u01
@@ -99,7 +100,7 @@ in
       ignorePerms = true;
       devices = lib.mapAttrs (name: id: { inherit id; }) otherDevices;
       folders = {
-        Documents = {
+        Data = {
           path = path;
           devices = lib.attrNames otherDevices;
           type = type;
@@ -109,6 +110,8 @@ in
   };
 
   home-manager.users.${username} = lib.mkIf (!isServer) {
-    home.file."Documents/.stignore".text = stignoreText;
+    home.file = {
+      "data/.stignore".text = stignoreText;
+    };
   };
 }

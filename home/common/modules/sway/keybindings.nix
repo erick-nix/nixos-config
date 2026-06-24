@@ -16,8 +16,7 @@ in
 
   wayland.windowManager.sway.config = {
     keybindings = lib.mkOptionDefault {
-      "Mod4+t" = "exec ghostty";
-      "Mod4+f" = "exec firefox";
+      "Mod4+Return" = "exec ghostty";
       "Mod4+b" = "exec ${scripts.btMenu}/bin/bt-menu";
       "Mod3+w" = "exec wooz --invert-scroll";
 
@@ -27,8 +26,8 @@ in
       "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
       # Brighness
-      "Mod4+F11" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness up 15";
-      "Mod4+F10" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness down 15";
+      "Mod4+F11" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
+      "Mod4+F10" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
 
       # Turn focused tab into floating bottom half window.
       "Mod4+Shift+Down" = "floating enable, resize set 100 ppt 50 ppt, move position 0 ppt 50 ppt";

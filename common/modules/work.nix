@@ -27,13 +27,11 @@ in
 
   programs.zsh = {
     shellAliases = {
-      # Work
-      workfolder = "cd ${homeDir}/Documents/programming/works/REDACTED/workfolder";
+      work = "cd ${homeDir}/data/work";
       chat-work = "docker start chat && docker exec -it chat python app.py";
       token-work = "docker start redacted-container && docker exec -it redacted-container python app.py";
-      product-work = "docker start redacted-container && cd ${homeDir}/Documents/programming/works/REDACTED/workfolder/redacted-product/frontend && npm run serve";
-      teka-work = "cd ${homeDir}/Documents/programming/works/REDACTED/workfolder/redacted-project && npm run start";
-      md-work = "cd ${homeDir}/Documents/programming/works/REDACTED/docs/md";
+      product-work = "docker start redacted-container && cd ${homeDir}/data/work/workfolder/redacted-product/frontend && npm run serve";
+      teka-work = "cd ${homeDir}/data/work/workfolder/redacted-project && npm run start";
     };
 
     interactiveShellInit = ''
