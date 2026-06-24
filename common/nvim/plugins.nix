@@ -104,7 +104,7 @@
         enable = true;
         mappings = {
           nextHunk = "<A-Down>";
-          previewHunk = "<A-Up>";
+          previousHunk = "<A-Up>";
           resetHunk = "<leader>gr";
         };
 

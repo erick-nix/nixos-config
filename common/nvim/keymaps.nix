@@ -220,35 +220,6 @@
       silent = true;
     }
 
-    # Leader+V: terminal em split vertical
-    {
-      key = "<leader>v";
-      mode = "n";
-      action = "<cmd>vsplit<CR><cmd>terminal<CR>";
-      silent = true;
-    }
-
-    # Leader+H: terminal em split horizontal
-    {
-      key = "<leader>h";
-      mode = "n";
-      action = "<cmd>split<CR><cmd>terminal<CR>";
-      silent = true;
-    }
-
-    {
-      key = "<leader>m";
-      mode = "n";
-      action = "<C-w>_<C-w>|";
-      silent = true;
-    }
-    {
-      key = "<leader>n";
-      mode = "n";
-      action = "<C-w>=";
-      silent = true;
-    }
-
     # Ctrl+Left : focus left split
     {
       key = "<C-Left>";

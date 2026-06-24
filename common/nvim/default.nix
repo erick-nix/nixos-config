@@ -61,7 +61,7 @@
               pattern = { "*" },
             })
 
-            local works_root = vim.fs.normalize("${homeDir}/Documents/programming/works") .. "/"
+            local works_root = vim.fs.normalize("${homeDir}/data/work") .. "/"
             local function update_disable_format_save(bufnr)
               local path = vim.api.nvim_buf_get_name(bufnr)
               if path == "" then

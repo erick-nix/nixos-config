@@ -1,8 +1,4 @@
-{
-  ...
-}:
-
-{
+{...}: {
   programs = {
     vscodium.enable = true;
     ghostty = {
@@ -16,14 +12,13 @@
         shell-integration-features = "no-cursor";
         clipboard-read = "allow";
         clipboard-write = "allow";
+        scrollback-limit = 100000;
 
         maximize = true;
         window-width = 118;
         window-height = 20;
         window-padding-x = 12;
         window-padding-y = 12;
-
-        scrollback-limit = 10000;
 
         keybind = [
           # Neovim smooth scroll

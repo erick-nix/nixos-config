@@ -1,4 +1,9 @@
-{ pkgs, hostname, ... }:
+{
+  pkgs,
+  hostname,
+  lib,
+  ...
+}:
 
 {
   programs.nvf.settings.vim = {
@@ -6,6 +11,7 @@
       enableFormat = true;
       enableTreesitter = true;
 
+      nix.enable = true;
       html.enable = true;
       css.enable = true;
       typescript.enable = true;
@@ -25,21 +31,9 @@
 
       python = {
         enable = true;
-        lsp = {
-          servers = [ "basedpyright" ];
-        };
 
         extraDiagnostics = {
           enable = false;
-        };
-      };
-
-      nix = {
-        enable = true;
-
-        format = {
-          enable = true;
-          type = [ "nixfmt" ];
         };
       };
     };
@@ -49,26 +43,6 @@
       formatOnSave = true;
 
       servers = {
-        nixd = {
-          enable = true;
-          cmd = [ "${pkgs.nixd}/bin/nixd" ];
-          root_markers = [
-            ".git"
-            "flake.nix"
-          ];
-          settings = {
-            nixd = {
-              nixpkgs.expr = "import <nixpkgs> { }";
-              formatting.command = [ "nixfmt" ];
-              options = {
-                nixos.expr = ''(builtins.getFlake "/etc/nixos").nixosConfigurations.${hostname}.options'';
-                "home-manager".expr =
-                  ''(builtins.getFlake "/etc/nixos").nixosConfigurations.${hostname}.options.home-manager.users.type.getSubOptions []'';
-              };
-            };
-          };
-        };
-
         "basedpyright" = {
           enable = true;
           settings = {
