@@ -7,6 +7,12 @@
 
 lib.mkIf (hostname == "laptop") {
   wayland.windowManager.sway.config = {
+    seat = {
+      "*" = {
+        xcursor_theme = "Adwaita 22";
+      };
+    };
+
     input = {
       "*" = {
         xkb_layout = lib.mkForce "br";
@@ -14,6 +20,7 @@ lib.mkIf (hostname == "laptop") {
       };
 
       "type:touchpad" = {
+        tap = "enabled";
         natural_scroll = "enabled";
         pointer_accel = "0.35";
       };

@@ -16,6 +16,7 @@
         clipboard-write = "allow";
         scrollback-limit = 100000;
 
+        gtk-toolbar-style = "flat";
         maximize = true;
         window-width = 118;
         window-height = 20;
@@ -38,10 +39,8 @@
 
           # ThinkPad pt-br layout workaround for slash/question in Ghostty
           # https://github.com/ghostty-org/ghostty/discussions/5772
-          "slash=text:/"
-          "shift+slash=text:?"
-          "ctrl+?=text:?"
-          "ctrl+shift+slash=text:?"
+          "ctrl+shift+backspace=unbind"
+          "shift+ctrl=text:?"
         ];
       };
     };
