@@ -10,12 +10,11 @@ in
 
 {
   home.packages = [
-    scripts.ddcBrightness
     scripts.btMenu
   ];
 
   wayland.windowManager.sway.config = {
-    keybindings = lib.mkOptionDefault {
+    keybindings = lib.mkOptionDefault ({
       "Mod4+Return" = "exec ghostty";
       "Mod4+b" = "exec ${scripts.btMenu}/bin/bt-menu";
       "Mod3+w" = "exec wooz --invert-scroll";
@@ -24,10 +23,6 @@ in
       "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
       "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
       "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-
-      # Brighness
-      "Mod4+F11" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
-      "Mod4+F10" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
 
       # Turn focused tab into floating bottom half window.
       "Mod4+Shift+Down" = "floating enable, resize set 100 ppt 50 ppt, move position 0 ppt 50 ppt";
@@ -40,7 +35,7 @@ in
       # Screenshots
       "Print" =
         "exec selection=$(slurp) && grim -g \"$selection\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
-    };
+    });
 
     # Set apps to open in windowed mode.
     window.commands = [

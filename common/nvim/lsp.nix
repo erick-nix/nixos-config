@@ -1,17 +1,9 @@
-{
-  pkgs,
-  hostname,
-  lib,
-  ...
-}:
-
-{
+{pkgs, ...}: {
   programs.nvf.settings.vim = {
     languages = {
       enableFormat = true;
       enableTreesitter = true;
 
-      nix.enable = true;
       html.enable = true;
       css.enable = true;
       typescript.enable = true;
@@ -35,6 +27,11 @@
         extraDiagnostics = {
           enable = false;
         };
+      };
+
+      nix = {
+        enable = true;
+        format.type = ["nixfmt"];
       };
     };
 

@@ -1,4 +1,6 @@
-{...}: {
+{ ... }:
+
+{
   programs = {
     vscodium.enable = true;
     ghostty = {
@@ -33,6 +35,13 @@
 
           # Close current pane
           "ctrl+shift+w=close_surface"
+
+          # ThinkPad pt-br layout workaround for slash/question in Ghostty
+          # https://github.com/ghostty-org/ghostty/discussions/5772
+          "slash=text:/"
+          "shift+slash=text:?"
+          "ctrl+?=text:?"
+          "ctrl+shift+slash=text:?"
         ];
       };
     };

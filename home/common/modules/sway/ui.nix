@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
   # Theme programs
@@ -56,7 +59,6 @@
             "memory"
             "cpu"
             "pulseaudio"
-            "custom/brightness"
             "clock"
             "tray"
           ];
@@ -79,6 +81,19 @@
             "max-length" = 50;
           };
 
+          battery = {
+            interval = 10;
+            states = {
+              warning = 30;
+              critical = 15;
+            };
+            format = "BAT {capacity}%";
+            "format-charging" = "BAT +{capacity}%";
+            "format-plugged" = "BAT AC";
+            "format-full" = "BAT FULL";
+            "tooltip-format" = "{timeTo}";
+          };
+
           "sway/workspaces" = {
             disable-scroll = false;
             all-outputs = true;
@@ -91,13 +106,6 @@
 
           "sway/window" = {
             max-length = 60;
-          };
-
-          "custom/brightness" = {
-            interval = 1;
-            format = "BRI {}%";
-            justify = "center";
-            exec = ''${pkgs.bash}/bin/bash -lc "cat ''${XDG_CACHE_HOME:-$HOME/.cache}/ddc-brightness/target 2>/dev/null || echo 50"'';
           };
 
           "pulseaudio" = {
@@ -199,7 +207,9 @@
         }
 
         #custom-brightness,
+        #backlight,
         #pulseaudio,
+        #battery,
         #custom-cpu_temp,
         #cpu,
         #memory,
@@ -220,6 +230,18 @@
           color: #91acd1;
           font-size: 26px;
           padding: 0px 4px 0px 12px;
+        }
+
+        #battery {
+          color: #b4be82;
+        }
+
+        #battery.warning {
+          color: #e2a478;
+        }
+
+        #battery.critical {
+          color: #e27878;
         }
       '';
     };
