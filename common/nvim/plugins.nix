@@ -76,6 +76,14 @@
     };
 
     utility = {
+      csvview = {
+        enable = true;
+      };
+
+      multicursors = {
+        enable = true;
+      };
+
       grug-far-nvim = {
         enable = true;
         setupOpts = {
@@ -120,17 +128,19 @@
       git-conflict.enable = true;
     };
 
-    terminal.toggleterm = {
-      enable = true;
-      setupOpts = {
-        direction = "float";
-        start_in_insert = true;
-        persist_mode = true;
-        close_on_exit = false;
-        shell = "sudo -u ${username} sh -c 'cd \"$(pwd)\" && exec $SHELL'";
+    terminal = {
+      toggleterm = {
+        enable = true;
+        setupOpts = {
+          direction = "float";
+          start_in_insert = true;
+          persist_mode = true;
+          close_on_exit = false;
+          shell = "sudo -u ${username} sh -c 'cd \"$(pwd)\" && exec $SHELL'";
 
-        float_opts = {
-          height = 24;
+          float_opts = {
+            height = 24;
+          };
         };
       };
     };
@@ -207,6 +217,7 @@
           "oil"
         ];
       };
+
       activeSection = {
         a = [ ''{ "mode" }'' ];
 

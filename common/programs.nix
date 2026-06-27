@@ -72,8 +72,7 @@
       shellAliases = {
         ll = "ls -l";
         la = "ls -la";
-        ac = "cd ${homeDir}/Documents/programming/personal/active_projects";
-        old = "cd ${homeDir}/Documents/programming/personal/old_projects";
+        n = "nvim .";
         nr = "cd /etc/nixos && sudo nvim .";
       };
 

@@ -10,6 +10,7 @@
     ./ui.nix
     ./keybindings.nix
     ./packages.nix
+    ./xdg.nix
     ./modules/desktop.nix
     ./modules/laptop.nix
   ];

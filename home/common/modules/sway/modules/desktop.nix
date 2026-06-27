@@ -41,8 +41,8 @@ lib.mkIf (hostname == "desktop") {
 
     keybindings = lib.mkOptionDefault {
       # Desktop external monitor brightness via ddcutil
-      "Mod4+F11" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
-      "Mod4+F10" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
+      "Mod4+period" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
+      "Mod4+comma" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
     };
   };
 
@@ -58,6 +58,10 @@ lib.mkIf (hostname == "desktop") {
       "clock"
       "tray"
     ];
+
+    network = {
+      "interface" = "enp9s0";
+    };
 
     "custom/brightness" = {
       interval = 1;

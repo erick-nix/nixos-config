@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     video-downloader
     pwvucontrol
@@ -11,7 +11,6 @@
     resources
     vlc
     localsend
-    google-chrome
     libertine
     cascadia-code
     adwaita-fonts

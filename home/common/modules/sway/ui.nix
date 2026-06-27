@@ -72,12 +72,10 @@
           };
 
           network = {
-            family = "ipv4";
-            format = "{ifname}";
             "format-wifi" = "{essid} ({signalStrength}%)";
-            "format-ethernet" = "{ipaddr}/{cidr}";
-            "format-linked" = "{ipaddr}/{cidr}";
-            "format-disconnected" = "";
+            "format-ethernet" = "{bandwidthDownBits} ↓";
+            "format-linked" = "{bandwidthDownBits} ↓";
+            "format-disconnected" = "OFF";
             "max-length" = 50;
           };
 
@@ -240,7 +238,7 @@
           color: #e2a478;
         }
 
-        #battery.critical {
+        #battery.critical, #network.disconnected{
           color: #e27878;
         }
       '';

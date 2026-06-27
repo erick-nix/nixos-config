@@ -65,6 +65,17 @@
       silent = true;
     }
 
+    # Leader+m : multicursors.nvim
+    {
+      key = "<leader>m";
+      mode = [
+        "n"
+        "v"
+      ];
+      action = "<cmd>MCstart<CR>";
+      silent = true;
+    }
+
     # Esc : exit terminal mode
     {
       key = "<Esc>";
@@ -176,7 +187,7 @@
 
     # Leader+L : show LSP hover
     {
-      key = "<leader>l";
+      key = "<leader>lk";
       mode = "n";
       action = "<cmd>lua vim.lsp.buf.hover()<CR>";
       silent = true;
@@ -213,10 +224,11 @@
       silent = true;
     }
 
+    # Leader+t: open terminal without lualine
     {
       key = "<leader>t";
       mode = "n";
-      action = "<cmd>terminal<CR>";
+      action = "<cmd>lua local ok,l=pcall(require,'lualine'); if ok then l.hide({ place = { 'statusline' }, unhide = false }) end; vim.cmd('terminal'); vim.api.nvim_create_autocmd('TermClose', { buffer = 0, once = true, callback = function() local ok2,l2=pcall(require,'lualine'); if ok2 then l2.hide({ place = { 'statusline' }, unhide = true }) end end })<CR>";
       silent = true;
     }
 
@@ -249,23 +261,6 @@
       key = "<C-Down>";
       mode = "n";
       action = "<C-w>j";
-      silent = true;
-    }
-
-    # Shift+Up/Down : smooth scroll (cinnamon)
-    {
-      key = "<S-Up>";
-      mode = "n";
-      action = "<C-u>";
-      noremap = false;
-      silent = true;
-    }
-
-    {
-      key = "<S-Down>";
-      mode = "n";
-      action = "<C-d>";
-      noremap = false;
       silent = true;
     }
 
