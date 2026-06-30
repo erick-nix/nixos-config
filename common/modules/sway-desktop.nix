@@ -18,11 +18,6 @@
         wmenu
       ];
     };
-
-    gamescope = {
-      enable = true;
-      capSysNice = false;
-    };
   };
 
   home-manager.users.${username}.imports = [
@@ -46,7 +41,11 @@
       };
     };
 
+    # Bluetooth
     blueman.enable = true;
+
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
 
     # Required for GNOME Calendar background services in non-GNOME sessions.
     gnome.evolution-data-server.enable = true;

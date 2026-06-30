@@ -1,4 +1,4 @@
-{ pkgs, homeDir, ... }:
+{ ... }:
 
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
@@ -47,14 +47,6 @@
     nautilus-open-any-terminal = {
       enable = true;
       terminal = "ghostty";
-    };
-
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-      extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
 
     direnv = {

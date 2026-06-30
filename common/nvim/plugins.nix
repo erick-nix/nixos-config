@@ -94,7 +94,11 @@
       oil-nvim = {
         enable = true;
         setupOpts = {
-          columns = [ "icon" ];
+          columns = [
+            "size"
+            "mtime"
+            "icon"
+          ];
           view_options = {
             show_hidden = true;
           };

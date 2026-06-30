@@ -29,6 +29,7 @@
       nmap
       sops
       wget
+      imv
     ];
   };
 }

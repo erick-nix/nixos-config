@@ -193,11 +193,19 @@
       silent = true;
     }
 
-    # gi : go to definition (VSCode ctrl+click style)
+    # gi : go to definition
     {
       key = "gi";
       mode = "n";
       action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+      silent = true;
+    }
+
+    # go back (voltar do ponto da definição)
+    {
+      key = "go";
+      mode = "n";
+      action = "<C-o>";
       silent = true;
     }
 

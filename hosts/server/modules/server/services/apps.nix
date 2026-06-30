@@ -38,6 +38,11 @@
       };
     };
 
+    flaresolverr = {
+      enable = true;
+      openFirewall = true;
+    };
+
     # Jellyfin
     jellyfin = {
       enable = true;
@@ -146,7 +151,6 @@
           "devicons".disabled = true;
           "lucide".disabled = true;
           "startpage images".disabled = true;
-          "bing".disabled = false;
         };
       };
     };

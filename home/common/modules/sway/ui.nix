@@ -166,7 +166,8 @@
         window#waybar {
           background: #161821;
           color: #c6c8d1;
-          border-top: 1px solid #3d425b;
+          border: none;
+          box-shadow: none;
         }
 
         #workspaces button {
@@ -221,7 +222,7 @@
         }
 
         #tray {
-          margin: 0px 8px 0px 0px;
+          margin: 0px 12px 0px 0px;
         }
 
         #custom-nixos {

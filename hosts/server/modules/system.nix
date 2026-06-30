@@ -1,6 +1,10 @@
 # Core system settings: bootloader, kernel, locale, user, nix options
 
-{ lib, username, ... }:
+{
+  lib,
+  username,
+  ...
+}:
 
 {
   powerManagement.cpuFreqGovernor = "performance";
@@ -19,13 +23,13 @@
     defaultLocale = lib.mkForce "pt_BR.UTF-8";
   };
 
-  # for use in nrremote
+  # For use in nrremote
   nix.settings.trusted-users = [
     "root"
     "erick-nix"
   ];
 
-  # allow git and nh to run without sudo, it is useful for the nrremote command.
+  # Allow git and nh to run without sudo, it is useful for the nrremote command.
   security.sudo.extraRules = [
     {
       users = [ "${username}" ];

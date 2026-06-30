@@ -17,6 +17,7 @@
     ./nvim
     ./modules/syncthing.nix
     ./modules/tailscale.nix
+    ./modules/gaming.nix
   ];
 
   home-manager.useGlobalPkgs = true;

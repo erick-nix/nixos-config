@@ -14,7 +14,7 @@
 
   # Remote SFTP share mounted via SSHFS.
   fileSystems."${homeDir}/Server" = {
-    device = "${username}@sftp.erick-nix.com:/";
+    device = "${username}@sftp.erick-nix.com:/srv";
     fsType = "fuse.sshfs";
     options = [
       "nofail"

@@ -23,6 +23,7 @@
       terminal = "ghostty";
       menu = "${pkgs.fuzzel}/bin/fuzzel";
       workspaceLayout = "tabbed";
+      focus.followMouse = "no";
 
       # Clipboard
       startup = lib.mkOptionDefault [

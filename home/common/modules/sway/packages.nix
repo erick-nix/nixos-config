@@ -2,15 +2,15 @@
 
 {
   home.packages = with pkgs; [
-    nautilus
+    thunar
     pavucontrol
     gnome-calculator
     gnome-calendar
+    gnome-clocks
 
     # Terminal
     wl-clipboard # Copy/Paste functionality.
     wooz # zoom
-    imv
 
     # Screenshots
     grim

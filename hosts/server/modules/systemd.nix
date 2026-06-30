@@ -2,6 +2,11 @@
 
 {
   systemd = {
+    # Set permissions for the srv folder
+    tmpfiles.rules = [
+      "d /srv 2775 root media - -"
+    ];
+
     services.idle-session-killer = {
       description = "Terminate idle user sessions after 30 minutes";
       serviceConfig = {

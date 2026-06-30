@@ -5,12 +5,6 @@
 
 {
   home.packages = with pkgs; [
-    (heroic.override {
-      extraPkgs = pkgs: [
-        pkgs.mangohud
-        pkgs.gamescope
-      ];
-    })
     (prismlauncher.override {
       additionalPrograms = [ ffmpeg ];
       jdks = [
@@ -18,6 +12,7 @@
       ];
     })
 
+    heroic
     ruffle
     ryubing
   ];

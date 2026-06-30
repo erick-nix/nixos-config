@@ -1,4 +1,4 @@
-{ username, ... }:
+{ ... }:
 
 {
   systemd = {
@@ -7,11 +7,6 @@
       hibernate.enable = false;
       hybrid-sleep.enable = false;
     };
-
-    # sudo systemd-tmpfiles --create
-    tmpfiles.rules = [
-      "d /srv/media 2775 ${username} media -"
-    ];
 
     services = {
       # Jellyfin disable IPV6

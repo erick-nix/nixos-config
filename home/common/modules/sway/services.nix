@@ -18,8 +18,8 @@
         day = 6500;
         night = 3800;
       };
-      sunrise = "05:40";
-      sunset = "17:40";
+      latitude = -19.9167;
+      longitude = -43.9345;
     };
   };
 }
