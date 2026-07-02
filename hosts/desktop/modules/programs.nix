@@ -1,9 +1,6 @@
 { ... }:
 
 {
-  programs = {
-    kdeconnect = {
-      enable = true;
-    };
-  };
+  # programs = {
+  # };
 }

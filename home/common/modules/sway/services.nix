@@ -2,7 +2,10 @@
 
 {
   services = {
-    blueman-applet.enable = true;
+    blueman-applet = {
+      enable = true;
+      systemdTargets = [ "sway-session.target" ];
+    };
 
     mako = {
       enable = true;

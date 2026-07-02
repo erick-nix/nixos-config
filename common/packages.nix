@@ -30,6 +30,7 @@
       sops
       wget
       imv
+      yt-dlp
     ];
   };
 }

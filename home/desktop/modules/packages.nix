@@ -5,8 +5,9 @@
 
 {
   home.packages = with pkgs; [
+    gimp
+    inkscape
     tor-browser
-    clang-tools
     proton-vpn
     discord
     qbittorrent

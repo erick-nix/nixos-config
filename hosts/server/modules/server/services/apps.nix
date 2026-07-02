@@ -31,16 +31,10 @@
       settings = {
         server = {
           domain = "git.${domain}";
-          # You need to specify this to remove the port from URLs in the web UI.
           ROOT_URL = "https://git.${domain}";
           HTTP_PORT = 8788;
         };
       };
-    };
-
-    flaresolverr = {
-      enable = true;
-      openFirewall = true;
     };
 
     # Jellyfin
@@ -92,6 +86,8 @@
       settings = {
         server = {
           port = 4567;
+          webUIChannel = "PREVIEW";
+
           extensionRepos = [
             "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
           ];

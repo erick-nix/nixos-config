@@ -6,7 +6,6 @@
     pwvucontrol
     switcheroo
     bazaar
-    gimp-with-plugins
     audacity
     libreoffice-qt
     papers
@@ -15,9 +14,7 @@
     resources
     vlc
     localsend
-    libertine
     cascadia-code
     adwaita-fonts
-    yt-dlp
   ];
 }

@@ -5,14 +5,17 @@
 }:
 
 {
+  wayland.systemd.target = "sway-session.target";
+
   imports = [
+    ./calendar.nix
     ./services.nix
     ./ui.nix
     ./keybindings.nix
     ./packages.nix
     ./xdg.nix
-    ./modules/desktop.nix
-    ./modules/laptop.nix
+    ./hosts/desktop.nix
+    ./hosts/laptop.nix
   ];
 
   wayland.windowManager.sway = {
@@ -27,6 +30,10 @@
 
       # Clipboard
       startup = lib.mkOptionDefault [
+        {
+          # Polkit authentication prompts for pkexec/GVFS actions in Sway sessions.
+          command = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
+        }
         {
           command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store";
         }

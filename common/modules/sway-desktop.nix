@@ -1,11 +1,23 @@
 {
+  lib,
   pkgs,
   username,
   hostname,
   ...
 }:
 
+let
+  baikalFile = ../../secrets/hosts/common/baikal.yaml;
+in
+
 {
+  sops.secrets."baikal/caldav_password" = {
+    sopsFile = baikalFile;
+    owner = "erick-nix";
+    group = "users";
+    mode = "0400";
+  };
+
   programs = {
     sway = {
       enable = true;
@@ -16,6 +28,13 @@
         swayidle
         swaylock
         wmenu
+      ];
+    };
+
+    thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        thunar-archive-plugin
       ];
     };
   };
@@ -31,12 +50,18 @@
   ];
 
   services = {
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
-          user = "greeter";
+    displayManager = {
+      defaultSession = "sway";
+
+      ly = {
+        enable = true;
+        x11Support = false;
+        settings = {
+          load = true;
+          save = true;
+          allow_empty_password = false;
+          bigclock = "en";
+          bg = lib.fromHexString "0x00161821";
         };
       };
     };
@@ -45,11 +70,8 @@
     blueman.enable = true;
 
     gvfs.enable = true; # Mount, trash, and other functionalities
+    udisks2.enable = true; # Backend for mounting disks from file managers
     tumbler.enable = true; # Thumbnail support for images
-
-    # Required for GNOME Calendar background services in non-GNOME sessions.
-    gnome.evolution-data-server.enable = true;
-    gnome.gnome-online-accounts.enable = true;
 
     # Enables Gnome Keyring to store secrets for applications.
     gnome.gnome-keyring.enable = true;
