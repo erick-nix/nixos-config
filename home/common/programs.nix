@@ -40,7 +40,8 @@
           # ThinkPad pt-br layout workaround for slash/question in Ghostty
           # https://github.com/ghostty-org/ghostty/discussions/5772
           "ctrl+shift+backspace=unbind"
-          "shift+ctrl=text:?"
+          "ctrl+slash=text:/"
+          "shift+ctrl+control_right=text:?"
         ];
       };
     };

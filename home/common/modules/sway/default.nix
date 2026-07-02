@@ -14,6 +14,7 @@
     ./keybindings.nix
     ./packages.nix
     ./xdg.nix
+    ./widgets.nix
     ./hosts/desktop.nix
     ./hosts/laptop.nix
   ];

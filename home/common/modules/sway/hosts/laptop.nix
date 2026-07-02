@@ -15,8 +15,9 @@ lib.mkIf (hostname == "laptop") {
 
     input = {
       "*" = {
+        xkb_model = lib.mkForce "thinkpad60";
         xkb_layout = lib.mkForce "br";
-        xkb_variant = lib.mkForce "thinkpad";
+        xkb_variant = lib.mkForce "abnt2";
       };
 
       "type:touchpad" = {
@@ -36,6 +37,7 @@ lib.mkIf (hostname == "laptop") {
       # Laptop panel brightness via Fn keys (F6/F5)
       "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
       "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
+      "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
     };
   };
 

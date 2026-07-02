@@ -21,6 +21,7 @@
         type = "discover";
         glob = "*";
       };
+
       vdirsyncer = {
         enable = true;
         auth = "digest";
@@ -31,18 +32,9 @@
 
   programs.khal = {
     enable = true;
-    settings.default.timedelta = "30d";
     locale = {
-      local_timezone = "America/Sao_Paulo";
-      default_timezone = "America/Sao_Paulo";
-      firstweekday = 0;
-      weeknumbers = "left";
       dateformat = "%d/%m/%Y";
-      timeformat = "%H:%M";
-      datetimeformat = "%d/%m/%Y %H:%M";
-      longdateformat = "%A %d %B %Y";
-      longdatetimeformat = "%A %d %B %Y %H:%M";
-      unicode_symbols = true;
+      longdateformat = "%d/%m/%Y";
     };
   };
 
