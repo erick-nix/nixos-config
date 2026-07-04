@@ -40,25 +40,4 @@ lib.mkIf (hostname == "laptop") {
       "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
     };
   };
-
-  programs.waybar.settings.mainBar = {
-    modules-right = lib.mkForce [
-      "network"
-      "custom/cpu_temp"
-      "disk#root"
-      "memory"
-      "cpu"
-      "pulseaudio"
-      "backlight"
-      "battery"
-      "clock"
-      "tray"
-    ];
-
-    backlight = {
-      format = "BRI {percent}%";
-      on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-      on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-    };
-  };
 }

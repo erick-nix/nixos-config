@@ -5,14 +5,54 @@
   ...
 }:
 
-let
-  scripts = import ../scripts.nix { inherit pkgs; };
-in
-
 lib.mkIf (hostname == "desktop") {
-  home.packages = [
-    scripts.ddcBrightness
-  ];
+  services.wluma = {
+    enable = false;
+    settings = {
+      als.time.thresholds = {
+        "0" = "night";
+        "8" = "day";
+        "18" = "night";
+      };
+
+      output.backlight = [
+        {
+          name = "DP-2";
+          path = "/sys/class/backlight/ddcci6";
+          capturer = "wayland";
+          predictor.manual.thresholds.day = {
+            "0" = 0;
+            "40" = 5;
+            "60" = 10;
+            "75" = 18;
+          };
+          predictor.manual.thresholds.night = {
+            "0" = 0;
+            "40" = 17;
+            "60" = 31;
+            "75" = 50;
+          };
+        }
+        {
+          name = "HDMI-A-1";
+          path = "/sys/class/backlight/ddcci8";
+          capturer = "wayland";
+          predictor.manual.thresholds.day = {
+            "0" = 0;
+            "40" = 5;
+            "60" = 10;
+            "75" = 18;
+          };
+          predictor.manual.thresholds.night = {
+            "0" = 0;
+            "40" = 17;
+            "60" = 31;
+            "75" = 50;
+          };
+        }
+      ];
+    };
+  };
 
   wayland.windowManager.sway.config = {
     workspaceOutputAssign = [
@@ -42,34 +82,11 @@ lib.mkIf (hostname == "desktop") {
     focus.newWindow = "none";
 
     keybindings = lib.mkOptionDefault {
-      # Desktop external monitor brightness via ddcutil
-      "Mod4+period" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
-      "Mod4+comma" = "exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
-    };
-  };
-
-  programs.waybar.settings.mainBar = {
-    modules-right = lib.mkForce [
-      "network"
-      "custom/cpu_temp"
-      "disk#root"
-      "memory"
-      "cpu"
-      "pulseaudio"
-      "custom/brightness"
-      "clock"
-      "tray"
-    ];
-
-    network = {
-      "interface" = "enp9s0";
-    };
-
-    "custom/brightness" = {
-      interval = 1;
-      format = "BRI {}%";
-      justify = "center";
-      exec = ''${pkgs.bash}/bin/bash -lc "cat ''${XDG_CACHE_HOME:-$HOME/.cache}/ddc-brightness/target 2>/dev/null || echo 50"'';
+      # Desktop external monitor brightness via ddcci backlight devices
+      "Mod4+period" =
+        "exec ${pkgs.bash}/bin/bash -lc 'for d in /sys/class/backlight/ddcci*; do [ -e \"$d\" ] || continue; ${pkgs.brightnessctl}/bin/brightnessctl -d \"$(basename \"$d\")\" set +8%; done'";
+      "Mod4+comma" =
+        "exec ${pkgs.bash}/bin/bash -lc 'for d in /sys/class/backlight/ddcci*; do [ -e \"$d\" ] || continue; ${pkgs.brightnessctl}/bin/brightnessctl -d \"$(basename \"$d\")\" set 8%-; done'";
     };
   };
 }

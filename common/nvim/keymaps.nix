@@ -149,7 +149,7 @@
 
     # Space+L+F: format file
     {
-      key = "<leader>lf";
+      key = "<leader>f";
       mode = [
         "n"
         "v"
@@ -187,7 +187,7 @@
 
     # Leader+L : show LSP hover
     {
-      key = "<leader>lk";
+      key = "<leader>l";
       mode = "n";
       action = "<cmd>lua vim.lsp.buf.hover()<CR>";
       silent = true;

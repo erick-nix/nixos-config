@@ -57,8 +57,7 @@ in
         enable = true;
         x11Support = false;
         settings = {
-          load = true;
-          save = true;
+          session_log = "";
           allow_empty_password = false;
           bigclock = "en";
           bg = lib.fromHexString "0x00161821";

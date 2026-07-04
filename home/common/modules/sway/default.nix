@@ -8,7 +8,6 @@
   wayland.systemd.target = "sway-session.target";
 
   imports = [
-    ./calendar.nix
     ./services.nix
     ./ui.nix
     ./keybindings.nix

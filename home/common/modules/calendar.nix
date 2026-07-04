@@ -30,17 +30,14 @@
     };
   };
 
-  programs.khal = {
-    enable = true;
-    locale = {
-      dateformat = "%d/%m/%Y";
-      longdateformat = "%d/%m/%Y";
+  programs = {
+    vdirsyncer.enable = true;
+    khal = {
+      enable = true;
+      locale = {
+        dateformat = "%d/%m/%Y";
+        longdateformat = "%d/%m/%Y";
+      };
     };
-  };
-
-  programs.vdirsyncer.enable = true;
-  services.vdirsyncer = {
-    enable = true;
-    frequency = "*:0/15";
   };
 }

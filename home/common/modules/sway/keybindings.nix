@@ -17,6 +17,8 @@ in
     keybindings = lib.mkOptionDefault ({
       "Mod4+Return" = "exec ghostty";
       "Mod4+b" = "exec ${scripts.btMenu}/bin/bt-menu";
+      "Mod4+e" = "exec thunar";
+      "Mod4+f" = "exec firefox";
       "Mod3+w" = "exec wooz --invert-scroll";
 
       # Volume
@@ -26,6 +28,8 @@ in
 
       # Turn focused tab into floating bottom half window.
       "Mod4+Shift+Down" = "floating enable, resize set 100 ppt 50 ppt, move position 0 ppt 50 ppt";
+      # Override default floating toggle to also set a standard floating size.
+      "Mod4+Shift+space" = lib.mkForce "floating toggle, resize set 1100 px 700 px, move position center";
 
       # Clipboard history
       "Mod4+v" =
@@ -36,15 +40,5 @@ in
       "Print" =
         "exec selection=$(slurp) && grim -g \"$selection\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
     });
-
-    # Set apps to open in windowed mode.
-    window.commands = [
-      {
-        criteria = {
-          app_id = "blueman-manager";
-        };
-        command = "floating enable, resize set 900 600, move position center";
-      }
-    ];
   };
 }

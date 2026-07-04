@@ -3,42 +3,6 @@
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
   programs = {
-    firefox = {
-      enable = true;
-      languagePacks = [
-        "en-US"
-        "pt-BR"
-      ];
-
-      policies = {
-        # Updates & Background Services
-        AppAutoUpdate = false;
-        BackgroundAppUpdate = false;
-
-        # Feature Disabling
-        DisableFirefoxStudies = true;
-        DisableFirefoxAccounts = true;
-        DisableForgetButton = true;
-        DisableMasterPasswordCreation = true;
-        DisableProfileImport = true;
-        DisableProfileRefresh = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
-        DisableFormHistory = true;
-        DisablePasswordReveal = true;
-
-        # Access Restrictions
-        BlockAboutConfig = false;
-        BlockAboutProfiles = true;
-        BlockAboutSupport = true;
-      };
-
-      preferences = {
-        # BUG: https://github.com/NixOS/nixpkgs/issues/272907
-        # "print.prefer_system_dialog" = true;
-      };
-    };
-
     appimage = {
       enable = true;
       binfmt = true;

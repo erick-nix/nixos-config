@@ -6,7 +6,8 @@
 }:
 
 let
-  monitor = if hostname == "desktop" then "DP-1" else "eDP-1";
+  monitor = if hostname == "desktop" then "DP-2" else "eDP-1";
+  anchor = if hostname == "desktop" then "bottom right" else "top left";
 
   khalWidgetScript = pkgs.writeShellScript "eww-khal-widget" ''
     cal_out="$(${pkgs.util-linux}/bin/cal)"
@@ -42,7 +43,7 @@ in
         :stacking "bg"
         :exclusive false
         :windowtype "dock"
-        :geometry (geometry :x "18px" :y "18px" :anchor "top left")
+        :geometry (geometry :x "18px" :y "18px" :anchor "${anchor}")
         (box :class "khal-card" :orientation "v"
           (label :class "khal-body" :xalign 0 :yalign 0 :wrap false
                  :markup { "<span line_height='1.4'>"

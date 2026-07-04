@@ -1,8 +1,54 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs = {
     vscodium.enable = true;
+
+    firefox = {
+      enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+
+      policies = {
+        # Updates & Background Services
+        AppAutoUpdate = false;
+        BackgroundAppUpdate = false;
+
+        # Feature Disabling
+        DisableFirefoxStudies = true;
+        DisableFirefoxAccounts = true;
+        DisableForgetButton = true;
+        DisableMasterPasswordCreation = true;
+        DisableProfileImport = true;
+        DisableProfileRefresh = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DisableFormHistory = true;
+        DisablePasswordReveal = true;
+
+        # Browser extensions
+        ExtensionSettings =
+          with builtins;
+          let
+            extension = shortId: uuid: {
+              name = uuid;
+              value = {
+                install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+                installation_mode = "normal_installed";
+              };
+            };
+          in
+          listToAttrs [
+            (extension "ublock-origin" "uBlock0@raymondhill.net")
+            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+            (extension "darkreader" "addon@darkreader.org")
+            (extension "augmented-steam" "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}")
+            (extension "sponsorblock" "sponsorBlocker@ajay.app")
+            (extension "videospeed" "{7be2ba16-0f1e-4d93-9ebc-5164397477a9}")
+            (extension "youtube-recommended-videos" "myallychou@gmail.com")
+          ];
+      };
+    };
+
     ghostty = {
       enable = true;
       settings = {

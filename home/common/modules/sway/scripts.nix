@@ -1,19 +1,6 @@
 { pkgs, ... }:
 
 {
-  ddcBrightness = pkgs.writeShellApplication {
-    name = "ddc-brightness";
-    runtimeInputs = with pkgs; [
-      coreutils
-      ddcutil
-      gawk
-      gnused
-      procps
-      util-linux
-    ];
-    text = builtins.readFile ../../../../scripts/ddc-brightness.sh;
-  };
-
   btMenu = pkgs.writeShellApplication {
     name = "bt-menu";
     runtimeInputs = with pkgs; [
