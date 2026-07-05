@@ -7,5 +7,6 @@
     ./programs.nix
     ./system.nix
     ./systemd.nix
+    ./server
   ];
 }

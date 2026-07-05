@@ -1,8 +1,21 @@
 { config, domain, ... }:
 
+let
+  glanceFile = ../../../../secrets/hosts/server/glance.yaml;
+in
+
 {
+  sops.secrets."glance/environment".sopsFile = glanceFile;
+
   services = {
-    # Glance
+    caddy = {
+      virtualHosts = {
+        "home.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:3000
+        '';
+      };
+    };
+
     glance = {
       enable = true;
       openFirewall = true;
@@ -200,6 +213,11 @@
                         title = "Crafty";
                         url = "https://crafty.${domain}";
                         icon = "mdi:minecraft";
+                      }
+                      {
+                        title = "Romm";
+                        url = "https://rom.${domain}";
+                        icon = "mdi:controller";
                       }
                       {
                         title = "Glances";

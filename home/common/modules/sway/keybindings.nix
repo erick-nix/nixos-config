@@ -18,7 +18,6 @@ in
       "Mod4+Return" = "exec ghostty";
       "Mod4+b" = "exec ${scripts.btMenu}/bin/bt-menu";
       "Mod4+e" = "exec thunar";
-      "Mod4+f" = "exec firefox";
       "Mod3+w" = "exec wooz --invert-scroll";
 
       # Volume

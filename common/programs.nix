@@ -1,4 +1,4 @@
-{ ... }:
+{ homeDir, ... }:
 
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
@@ -30,6 +30,8 @@
         la = "ls -la";
         n = "nvim .";
         nr = "cd /etc/nixos && sudo nvim .";
+        notes = "cd ${homeDir}/data/notes/me";
+        pm = "cd ${homeDir}/data/programming/active_projects";
       };
 
       interactiveShellInit = ''

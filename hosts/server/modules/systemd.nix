@@ -2,7 +2,14 @@
 
 {
   systemd = {
+    targets = {
+      suspend.enable = false;
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
+
     # Set permissions for the srv folder
+    # sudo systemd-tmpfiles --create
     tmpfiles.rules = [
       "d /srv 2775 root media - -"
     ];

@@ -7,7 +7,7 @@
     ./programs.nix
     ./services.nix
     ./system.nix
-    ./text-extractor.nix
+    ./backlight.nix.nix
     #./vfio.nix
   ];
 }

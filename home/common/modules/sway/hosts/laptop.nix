@@ -40,4 +40,35 @@ lib.mkIf (hostname == "laptop") {
       "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
     };
   };
+
+  # services.wluma = {
+  #   enable = false;
+  #   settings = {
+  #     als.time.thresholds = {
+  #       "0" = "night";
+  #       "8" = "day";
+  #       "18" = "night";
+  #     };
+  #
+  #     output.backlight = [
+  #       {
+  #         name = "DP-2";
+  #         path = "/sys/class/backlight/ddcci6";
+  #         capturer = "wayland";
+  #         predictor.manual.thresholds.day = {
+  #           "0" = 0;
+  #           "40" = 5;
+  #           "60" = 10;
+  #           "75" = 18;
+  #         };
+  #         predictor.manual.thresholds.night = {
+  #           "0" = 0;
+  #           "40" = 17;
+  #           "60" = 31;
+  #           "75" = 50;
+  #         };
+  #       }
+  #     ];
+  #   };
+  # };
 }

@@ -31,6 +31,7 @@
       wget
       imv
       yt-dlp
+      openssl
     ];
   };
 }

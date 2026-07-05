@@ -1,20 +1,11 @@
 # Core system settings: bootloader, kernel, locale, user, nix options
 
 {
-  config,
   ...
 }:
 
 {
   powerManagement.cpuFreqGovernor = "performance";
-
-  # Create new backlight devices, kernel > 6.8
-  # echo "ddcci 0x37" | sudo tee /sys/bus/i2c/devices/i2c-6/new_device
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-  boot.kernelModules = [
-    "ddcci"
-    "ddcci_backlight"
-  ];
 
   # Swap
   swapDevices = [

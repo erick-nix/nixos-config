@@ -1,4 +1,35 @@
+{ domain, ... }:
+
 {
+  networking = {
+    firewall = {
+      allowedTCPPorts = [
+        8443 # Crafty Control
+        25565 # Minecraft
+      ];
+
+      allowedUDPPorts = [
+        25565 # Minecraft
+      ];
+    };
+  };
+
+  services.caddy = {
+    virtualHosts = {
+      "bento.${domain}".extraConfig = ''
+        reverse_proxy 127.0.0.1:8888
+      '';
+
+      "crafty.${domain}".extraConfig = ''
+        reverse_proxy https://127.0.0.1:8443 {
+          transport http {
+              tls_insecure_skip_verify
+          }
+        }
+      '';
+    };
+  };
+
   virtualisation.oci-containers = {
     backend = "docker";
 
@@ -28,6 +59,7 @@
           "/srv/crafty/config:/crafty/app/config"
         ];
       };
+
     };
   };
 }
