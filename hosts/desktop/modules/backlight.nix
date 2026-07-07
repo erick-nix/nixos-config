@@ -1,6 +1,17 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 {
+  users.users.${username} = {
+    extraGroups = [
+      "video"
+    ];
+  };
+
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
     kernelModules = [

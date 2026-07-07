@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   hostname ? null,
   ...
 }:
@@ -31,13 +30,6 @@ lib.mkIf (hostname == "laptop") {
       "eDP-1" = {
         scale = "1.25";
       };
-    };
-
-    keybindings = lib.mkOptionDefault {
-      # Laptop panel brightness via Fn keys (F6/F5)
-      "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
-      "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
-      "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
     };
   };
 

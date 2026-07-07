@@ -35,9 +35,9 @@ lib.mkIf (hostname == "desktop") {
 
     keybindings = lib.mkOptionDefault {
       # Desktop external monitor brightness via ddcci backlight devices
-      "Mod4+period" =
+      "Mod1+x" =
         "exec ${pkgs.bash}/bin/bash -lc 'for d in /sys/class/backlight/ddcci*; do [ -e \"$d\" ] || continue; ${pkgs.brightnessctl}/bin/brightnessctl -d \"$(basename \"$d\")\" set +8%; done'";
-      "Mod4+comma" =
+      "Mod1+z" =
         "exec ${pkgs.bash}/bin/bash -lc 'for d in /sys/class/backlight/ddcci*; do [ -e \"$d\" ] || continue; ${pkgs.brightnessctl}/bin/brightnessctl -d \"$(basename \"$d\")\" set 8%-; done'";
     };
   };

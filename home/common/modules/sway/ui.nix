@@ -146,11 +146,16 @@
             interval = 60;
             format = "{:%a %d/%m %R}";
             justify = "center";
+            tooltip-format = "<tt>{calendar}</tt>";
+            calendar = {
+              mode = "month";
+              mode-mon-col = 3;
+              on-scroll = 1;
+            };
           };
 
           backlight = {
             format = "BRI {percent}%";
-            device = "ddcci8";
             on-scroll-up = "";
             on-scroll-down = "";
           };
