@@ -5,7 +5,15 @@
   ...
 }:
 
+let
+  scripts = import ../scripts.nix { inherit pkgs; };
+in
+
 lib.mkIf (hostname == "desktop") {
+  home.packages = [
+    scripts.ddcBrightness
+  ];
+
   wayland.windowManager.sway.config = {
     workspaceOutputAssign = [
       {
@@ -33,12 +41,38 @@ lib.mkIf (hostname == "desktop") {
 
     focus.newWindow = "none";
 
+    startup = lib.mkOptionDefault [
+      # KDE Connect
+      {
+        command = "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
+      }
+    ];
+
     keybindings = lib.mkOptionDefault {
       # Desktop external monitor brightness via ddcci backlight devices
-      "Mod1+x" =
-        "exec ${pkgs.bash}/bin/bash -lc 'for d in /sys/class/backlight/ddcci*; do [ -e \"$d\" ] || continue; ${pkgs.brightnessctl}/bin/brightnessctl -d \"$(basename \"$d\")\" set +8%; done'";
-      "Mod1+z" =
-        "exec ${pkgs.bash}/bin/bash -lc 'for d in /sys/class/backlight/ddcci*; do [ -e \"$d\" ] || continue; ${pkgs.brightnessctl}/bin/brightnessctl -d \"$(basename \"$d\")\" set 8%-; done'";
+      "Mod1+x" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
+      "Mod1+z" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
+    };
+  };
+
+  programs.waybar.settings.mainBar = {
+    modules-right = lib.mkForce [
+      "network"
+      "custom/cpu_temp"
+      "disk#root"
+      "memory"
+      "cpu"
+      "pulseaudio"
+      "custom/brightness"
+      "clock"
+      "tray"
+    ];
+
+    "custom/brightness" = {
+      interval = 1;
+      format = "BRI {}%";
+      justify = "center";
+      exec = ''${pkgs.bash}/bin/bash -lc "cat ''${XDG_CACHE_HOME:-$HOME/.cache}/ddc-brightness/target 2>/dev/null || echo 50"'';
     };
   };
 }

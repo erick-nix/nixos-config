@@ -7,7 +7,6 @@
     ./programs.nix
     ./services.nix
     ./system.nix
-    ./backlight.nix
     #./vfio.nix
   ];
 }

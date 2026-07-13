@@ -32,6 +32,14 @@
           reverse_proxy 127.0.0.1:8384
         '';
 
+        "translate.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:5000
+        '';
+
+        "qbittorrent.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8080
+        '';
+
         "cal.${domain}".extraConfig = ''
           root * ${config.services.baikal.package}/share/php/baikal/html
           encode zstd gzip
@@ -47,11 +55,15 @@
       };
     };
 
-    # Ollama
-    ollama = {
+    # LibreTranslate
+    libretranslate = {
       enable = true;
       host = "0.0.0.0";
-      openFirewall = true;
+      configureNginx = false;
+      updateModels = true;
+      extraArgs = {
+        load-only = "pt,en";
+      };
     };
 
     # baikal
@@ -100,7 +112,36 @@
       ];
     };
 
+    # qBittorrent
+    qbittorrent = {
+      enable = true;
+      openFirewall = true;
+      group = "media";
+      webuiPort = 8080;
+      serverConfig = {
+        LegalNotice.Accepted = true;
+        Preferences = {
+          Downloads = {
+            SavePath = "/srv/media/Downloads/";
+            TempPathEnabled = false;
+          };
+          Bittorrent = {
+            MaxRatioEnabled = true;
+            MaxRatio = 0.0;
+          };
+          WebUI = {
+            LocalHostAuth = false;
+            BypassLocalAuth = true;
+          };
+        };
+      };
+    };
+
     # Suwayomi Server
+    flaresolverr = {
+      enable = true;
+    };
+
     suwayomi-server = {
       enable = true;
       openFirewall = true;

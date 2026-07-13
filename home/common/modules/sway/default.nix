@@ -28,12 +28,13 @@
       workspaceLayout = "tabbed";
       focus.followMouse = "no";
 
-      # Clipboard
       startup = lib.mkOptionDefault [
+        # Polkit authentication prompts for pkexec/GVFS actions in Sway sessions.
         {
-          # Polkit authentication prompts for pkexec/GVFS actions in Sway sessions.
           command = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
         }
+
+        # Clipboard
         {
           command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store";
         }

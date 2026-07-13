@@ -1,6 +1,5 @@
 { ... }:
 
 {
-  # programs = {
-  # };
+  programs.kdeconnect.enable = true;
 }

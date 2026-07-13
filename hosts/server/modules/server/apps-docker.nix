@@ -59,7 +59,6 @@
           "/srv/crafty/config:/crafty/app/config"
         ];
       };
-
     };
   };
 }

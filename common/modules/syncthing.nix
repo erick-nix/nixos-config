@@ -11,13 +11,14 @@ let
     desktop = "EO2BGAP-M2OAVHP-KQW6LX5-6KGVU2A-7QKAEUA-T5W5D6X-GQUOKVD-JA32OQC";
     server = "PXDEENG-FVKSP3V-YCA3NCD-UQUULR4-MRX53Y4-7KFX7OA-SFO6XQV-RWX2AQ2";
     laptop = "ZWKZTMA-UFLXM2F-RTCO5YL-KFCDDLA-2TIMF5B-BTXSQ5K-FV4ESTT-E244LAT";
+    android = "5A65YHX-J2K76PC-6OYENBC-7TRSHZH-G63UPN6-SAODY76-ERYJFKY-GQQENAD";
   };
 
-  type = if hostname == "server" then "receiveonly" else "sendreceive";
   path = if hostname == "server" then "/srv/syncthing" else "${homeDir}/data";
   isServer = hostname == "server";
 
-  otherDevices = lib.filterAttrs (name: _: name != hostname) devices;
+  syncDevices = lib.filterAttrs (name: _: name != hostname) devices;
+  otherDevices = lib.filterAttrs (name: _: name != hostname && name != "android") devices;
 
   stignoreText = ''
     thirdparty
@@ -98,12 +99,19 @@ in
     overrideFolders = true;
     settings = {
       ignorePerms = true;
-      devices = lib.mapAttrs (name: id: { inherit id; }) otherDevices;
+      devices = lib.mapAttrs (name: id: { inherit id; }) syncDevices;
       folders = {
         Data = {
           path = path;
           devices = lib.attrNames otherDevices;
-          type = type;
+          type = "sendreceive";
+        };
+      }
+      // lib.optionalAttrs isServer {
+        Smartphone = {
+          path = "/srv/syncthing/shared";
+          devices = [ "android" ];
+          type = "sendreceive";
         };
       };
     };

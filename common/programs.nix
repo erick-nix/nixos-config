@@ -15,6 +15,7 @@
 
     direnv = {
       enable = true;
+      silent = true;
       nix-direnv.enable = true;
     };
 
@@ -30,8 +31,8 @@
         la = "ls -la";
         n = "nvim .";
         nr = "cd /etc/nixos && sudo nvim .";
-        notes = "cd ${homeDir}/data/notes/me";
-        pm = "cd ${homeDir}/data/programming/active_projects";
+        notes = "cd ${homeDir}/data/shared/notes";
+        pm = "cd ${homeDir}/data/programming/projects";
       };
 
       interactiveShellInit = ''

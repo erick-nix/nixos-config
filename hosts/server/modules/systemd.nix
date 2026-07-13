@@ -11,7 +11,8 @@
     # Set permissions for the srv folder
     # sudo systemd-tmpfiles --create
     tmpfiles.rules = [
-      "d /srv 2775 root media - -"
+      "d /srv/media 2775 root media - -"
+      "d /srv/media/Downloads 2775 root media - -"
     ];
 
     services.idle-session-killer = {

@@ -54,7 +54,7 @@
       settings = {
         language = "br";
         theme = "Iceberg Dark";
-        font-family = "Cascadia Code";
+        font-family = "Cascadia Mono";
         font-size = 12;
         adjust-cell-height = "60%";
         shell-integration-features = "no-cursor";

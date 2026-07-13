@@ -108,7 +108,7 @@
     # Change later
     # https://github.com/NixOS/nixpkgs/issues/536623
     config.permittedInsecurePackages = [
-      "pnpm-10.29.2"
+      "pnpm-9.15.9"
     ];
   };
 

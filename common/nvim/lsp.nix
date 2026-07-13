@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{ ... }:
+
+{
   programs.nvf.settings.vim = {
     languages = {
       enableFormat = true;
@@ -31,7 +33,7 @@
 
       nix = {
         enable = true;
-        format.type = ["nixfmt"];
+        format.type = [ "nixfmt" ];
       };
     };
 
@@ -72,8 +74,6 @@
 
     treesitter = {
       enable = true;
-      # change in the future
-      grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
   };
 }
