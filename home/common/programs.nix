@@ -25,6 +25,9 @@
         DisableFormHistory = true;
         DisablePasswordReveal = true;
 
+        # Downloads
+        PromptForDownloadLocation = true;
+
         # Browser extensions
         ExtensionSettings =
           with builtins;

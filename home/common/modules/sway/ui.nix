@@ -52,18 +52,6 @@
             "sway/window"
           ];
 
-          modules-right = [
-            "network"
-            "custom/cpu_temp"
-            "disk#root"
-            "memory"
-            "cpu"
-            "pulseaudio"
-            "backlight"
-            "clock"
-            "tray"
-          ];
-
           "custom/nixos" = {
             format = "{}";
             justify = "center";
@@ -78,19 +66,6 @@
             "format-linked" = "{bandwidthDownBits} ↓";
             "format-disconnected" = "OFF";
             "max-length" = 50;
-          };
-
-          battery = {
-            interval = 10;
-            states = {
-              warning = 30;
-              critical = 15;
-            };
-            format = "BAT {capacity}%";
-            "format-charging" = "BAT +{capacity}%";
-            "format-plugged" = "BAT AC";
-            "format-full" = "BAT FULL";
-            "tooltip-format" = "{timeTo}";
           };
 
           "sway/workspaces" = {

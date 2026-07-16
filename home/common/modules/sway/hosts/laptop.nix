@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   hostname ? null,
   ...
@@ -6,6 +7,19 @@
 
 lib.mkIf (hostname == "laptop") {
   wayland.windowManager.sway.config = {
+    workspaceOutputAssign = [
+      {
+        workspace = "1";
+        output = "eDP-1";
+      }
+    ];
+
+    output = {
+      "eDP-1" = {
+        scale = "1.25";
+      };
+    };
+
     seat = {
       "*" = {
         xcursor_theme = "Adwaita 22";
@@ -16,7 +30,6 @@ lib.mkIf (hostname == "laptop") {
       "*" = {
         xkb_model = lib.mkForce "thinkpad60";
         xkb_layout = lib.mkForce "br";
-        xkb_variant = lib.mkForce "abnt2";
       };
 
       "type:touchpad" = {
@@ -26,41 +39,40 @@ lib.mkIf (hostname == "laptop") {
       };
     };
 
-    output = {
-      "eDP-1" = {
-        scale = "1.25";
-      };
+    keybindings = lib.mkOptionDefault {
+      "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+      "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+      "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+      "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
     };
   };
 
-  # services.wluma = {
-  #   enable = false;
-  #   settings = {
-  #     als.time.thresholds = {
-  #       "0" = "night";
-  #       "8" = "day";
-  #       "18" = "night";
-  #     };
-  #
-  #     output.backlight = [
-  #       {
-  #         name = "DP-2";
-  #         path = "/sys/class/backlight/ddcci6";
-  #         capturer = "wayland";
-  #         predictor.manual.thresholds.day = {
-  #           "0" = 0;
-  #           "40" = 5;
-  #           "60" = 10;
-  #           "75" = 18;
-  #         };
-  #         predictor.manual.thresholds.night = {
-  #           "0" = 0;
-  #           "40" = 17;
-  #           "60" = 31;
-  #           "75" = 50;
-  #         };
-  #       }
-  #     ];
-  #   };
-  # };
+  programs.waybar.settings.mainBar = {
+    modules-right = lib.mkForce [
+      "network"
+      "custom/cpu_temp"
+      "disk#root"
+      "memory"
+      "cpu"
+      "pulseaudio"
+      "backlight"
+      "battery"
+      "clock"
+      "tray"
+    ];
+
+    battery = {
+      interval = 10;
+      states = {
+        warning = 30;
+        critical = 15;
+      };
+      format = "BAT {capacity}%";
+      "format-charging" = "BAT +{capacity}%";
+      "format-plugged" = "BAT AC";
+      "format-full" = "BAT FULL";
+      "tooltip-format" = "{timeTo}";
+    };
+  };
 }

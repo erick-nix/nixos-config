@@ -9,6 +9,7 @@
       html.enable = true;
       css.enable = true;
       typescript.enable = true;
+      angular.enable = true;
       tsx.enable = true;
       json.enable = true;
       php.enable = true;
@@ -68,12 +69,16 @@
 
       presets = {
         tailwindcss-language-server.enable = true;
-        angular-language-server.enable = true;
       };
     };
 
     treesitter = {
       enable = true;
+    };
+
+    formatter.conform-nvim = {
+      enable = true;
+      setupOpts.formatters_by_ft.htmlangular = [ "prettier" ];
     };
   };
 }
