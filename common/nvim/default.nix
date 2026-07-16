@@ -1,6 +1,7 @@
 {
   pkgs,
   homeDir,
+  pkgsUnstable,
   ...
 }:
 
@@ -14,7 +15,8 @@
   # packages used by nvim
   environment = {
     systemPackages = with pkgs; [
-      codex
+      pkgsUnstable.claude-code
+      pkgsUnstable.gemini-cli
       ripgrep
     ];
   };

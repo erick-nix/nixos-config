@@ -228,7 +228,7 @@
         "i"
         "t"
       ];
-      action = "<cmd>lua local cwd = vim.fn.getcwd(); local cmd = (cwd == '/etc/nixos') and 'sudo codex' or 'codex'; local Terminal = require('toggleterm.terminal').Terminal; if not _G.codex_term or _G.codex_term.cmd ~= cmd then _G.codex_term = Terminal:new({ cmd = cmd, count = 2, direction = 'float', hidden = true }); end; _G.codex_term:toggle()<CR>";
+      action = "<cmd>lua local cwd = vim.fn.getcwd(); local cmd = (cwd == '/etc/nixos') and 'sudo gemini' or 'gemini'; local Terminal = require('toggleterm.terminal').Terminal; if not _G.gemini_term or _G.gemini_term.cmd ~= cmd then _G.gemini_term = Terminal:new({ cmd = cmd, count = 2, direction = 'float', hidden = true }); end; _G.gemini_term:toggle()<CR>";
       silent = true;
     }
 

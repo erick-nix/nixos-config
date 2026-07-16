@@ -86,6 +86,18 @@ let
     (?d).DS_Store
     (?d)Thumbs.db
   '';
+
+  romsIgnoreText = ''
+    /ps2
+    /gamecube
+    /wii
+    /wiiu
+    /switch
+    /ps3
+    /xbox
+    /xbox360
+    /dreamcast
+  '';
 in
 
 {
@@ -113,6 +125,11 @@ in
           devices = [ "android" ];
           type = "sendreceive";
         };
+        ROMs = {
+          path = "/srv/romm/library/roms";
+          devices = [ "android" ];
+          type = "sendreceive";
+        };
       };
     };
   };
@@ -122,4 +139,8 @@ in
       "data/.stignore".text = stignoreText;
     };
   };
+
+  systemd.tmpfiles.rules = lib.optional isServer (
+    "f /srv/romm/library/roms/.stignore 0644 ${username} users - ${builtins.toFile "stignore" romsIgnoreText}"
+  );
 }

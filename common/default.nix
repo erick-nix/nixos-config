@@ -1,7 +1,16 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   _module.args.hostname = config.networking.hostName;
+  _module.args.pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = config.nixpkgs.config;
+  };
 
   imports = [
     inputs.sops-nix.nixosModules.sops
