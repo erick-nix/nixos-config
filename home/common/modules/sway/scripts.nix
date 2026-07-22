@@ -14,6 +14,23 @@
     text = builtins.readFile ../../../../scripts/ddc-brightness.sh;
   };
 
+  vpnStatus = pkgs.writeShellApplication {
+    name = "waybar-vpn-status";
+    runtimeInputs = with pkgs; [
+      jq
+      tailscale
+    ];
+    text = ''
+      exit_node=$(tailscale status --json | jq -r '.ExitNodeStatus.ID // empty')
+
+      if [ -n "$exit_node" ]; then
+        echo '{"text":"VPN: ON","class":"connected"}'
+      else
+        echo '{"text":"VPN: OFF","class":"disconnected"}'
+      fi
+    '';
+  };
+
   btMenu = pkgs.writeShellApplication {
     name = "bt-menu";
     runtimeInputs = with pkgs; [

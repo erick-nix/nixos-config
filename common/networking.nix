@@ -3,6 +3,8 @@
 {
   # Networking configuration: firewall rules, wireless setup, and NetworkManager settings
   networking = {
+    enableIPv6 = false;
+
     firewall = {
       # Enable the built in NixOS firewall
       enable = true;

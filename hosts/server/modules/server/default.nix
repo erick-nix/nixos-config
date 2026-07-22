@@ -10,5 +10,7 @@
     ./jellyfin.nix
     ./searx.nix
     ./romm.nix
+    ./invidious.nix
+    ./protonvpn.nix
   ];
 }

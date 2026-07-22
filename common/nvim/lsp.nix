@@ -15,7 +15,6 @@
       php.enable = true;
       vue.enable = true;
       bash.enable = true;
-      astro.enable = true;
       yaml.enable = true;
       markdown.enable = true;
       toml.enable = true;

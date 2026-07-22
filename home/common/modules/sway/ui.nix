@@ -3,6 +3,10 @@
   ...
 }:
 
+let
+  scripts = import ./scripts.nix { inherit pkgs; };
+in
+
 {
   # Theme programs
   programs = {
@@ -52,6 +56,8 @@
             "sway/window"
           ];
 
+          # modules-right is defined per-host in ./hosts/*.nix
+
           "custom/nixos" = {
             format = "{}";
             justify = "center";
@@ -66,6 +72,14 @@
             "format-linked" = "{bandwidthDownBits} ↓";
             "format-disconnected" = "OFF";
             "max-length" = 50;
+          };
+
+          "custom/vpn" = {
+            interval = 5;
+            "return-type" = "json";
+            justify = "center";
+            tooltip = false;
+            exec = "${scripts.vpnStatus}/bin/waybar-vpn-status";
           };
 
           "sway/workspaces" = {
@@ -194,6 +208,7 @@
         }
 
         #custom-brightness,
+        #custom-vpn,
         #backlight,
         #pulseaudio,
         #battery,
@@ -229,6 +244,14 @@
 
         #battery.critical, #network.disconnected{
           color: #e27878;
+        }
+
+        #custom-vpn.connected {
+          color: #a3be8c;
+        }
+
+        #custom-vpn.disconnected {
+          color: #80828b;
         }
       '';
     };

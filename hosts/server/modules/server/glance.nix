@@ -195,6 +195,11 @@ in
                         icon = "mdi:book-variant";
                       }
                       {
+                        title = "Invidious";
+                        url = "https://invidious.${domain}";
+                        icon = "si:invidious";
+                      }
+                      {
                         title = "Kanboard";
                         url = "https://kanboard.${domain}";
                         icon = "mdi:calendar-text";
@@ -220,9 +225,14 @@ in
                         icon = "mdi:controller";
                       }
                       {
-                        title = "Glances";
+                        title = "Translate";
+                        url = "https://translate.${domain}";
+                        icon = "si:libretranslate";
+                      }
+                      {
+                        title = "Status";
                         url = "https://status.${domain}";
-                        icon = "mdi:monitor-dashboard";
+                        icon = "mdi:pulse";
                       }
                     ];
                   }

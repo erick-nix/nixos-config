@@ -24,6 +24,10 @@ in
       "Mod4+z" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
       "Mod4+c" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
+      # Media Controls
+      "Mod4+backslash" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+      "Mod4+a" = "exec ${pkgs.playerctl}/bin/playerctl next";
+
       # Zoom
       "Mod1+w" = "exec wooz --invert-scroll";
       "Mod3+w" = "exec wooz --invert-scroll";

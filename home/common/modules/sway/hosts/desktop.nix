@@ -49,15 +49,15 @@ lib.mkIf (hostname == "desktop") {
     ];
 
     keybindings = lib.mkOptionDefault {
-      # Desktop external monitor brightness via ddcci backlight devices
       "Mod1+x" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
       "Mod1+z" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
     };
   };
 
   programs.waybar.settings.mainBar = {
-    modules-right = lib.mkForce [
+    modules-right = [
       "network"
+      "custom/vpn"
       "custom/cpu_temp"
       "disk#root"
       "memory"

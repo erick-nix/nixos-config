@@ -12,12 +12,11 @@
       # Nix
       nix-output-monitor
       nh
-      nix-index
       nixfmt
+      sops
 
       # Terminal
       s-tui
-      sc-im
       git
       ncdu
       iw
@@ -27,7 +26,6 @@
       btop
       stress
       nmap
-      sops
       wget
       imv
       yt-dlp

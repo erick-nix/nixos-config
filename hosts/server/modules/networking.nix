@@ -2,8 +2,6 @@
 
 {
   networking = {
-    enableIPv6 = false;
-
     # Hostname
     hostName = "server";
 

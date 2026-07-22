@@ -33,6 +33,7 @@
         nr = "cd /etc/nixos && sudo nvim .";
         notes = "cd ${homeDir}/data/shared/notes";
         pm = "cd ${homeDir}/data/programming/projects";
+        check-store = "nix-store --gc --print-dead | xargs du -shc 2>/dev/null | tail -n1";
       };
 
       interactiveShellInit = ''

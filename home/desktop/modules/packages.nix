@@ -10,6 +10,8 @@
     tor-browser
     proton-vpn
     discord
+    pear-desktop
+    chromium
     qbittorrent
   ];
 }

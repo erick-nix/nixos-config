@@ -9,6 +9,7 @@
     inkscape
     gnome-power-manager
     discord
+    pear-desktop
     qbittorrent
   ];
 }

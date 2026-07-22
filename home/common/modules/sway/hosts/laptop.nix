@@ -40,17 +40,15 @@ lib.mkIf (hostname == "laptop") {
     };
 
     keybindings = lib.mkOptionDefault {
-      "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-      "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-      "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-      "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
-      "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+      "Mod1+x" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+      "Mod1+z" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
     };
   };
 
   programs.waybar.settings.mainBar = {
-    modules-right = lib.mkForce [
+    modules-right = [
       "network"
+      "custom/vpn"
       "custom/cpu_temp"
       "disk#root"
       "memory"

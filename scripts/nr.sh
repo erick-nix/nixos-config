@@ -52,52 +52,6 @@ nrall() {
   echo -e "\033[32mNRALL: Done.\033[0m"
 }
 
-nrupdate() {
-  cd /etc/nixos || {
-    echo "Error: unable to access /etc/nixos"
-    return 1
-  }
-
-  echo -e "\033[36mNRUPDATE: Updating flake inputs...\033[0m"
-  sudo nix flake update
-
-  echo -e "\033[36mNRUPDATE: Testing new configuration...\033[0m"
-  nh os test . -H "$(hostname)"
-
-  echo -e "\033[33mNRUPDATE: Review the changes above\033[0m"
-  echo -e "\033[33mNRUPDATE: If everything works, run 'nrall' to commit and switch\033[0m"
-}
-
-nrdeploy() {
-  cd /etc/nixos || return 1
-
-  HOST=$(hostname)
-
-  echo -e "\033[36mNRDEPLOY: Fetching origin/main...\033[0m"
-  if ! sudo git fetch origin; then
-    echo -e "\033[31mNRDEPLOY: git fetch failed.\033[0m"
-    return 1
-  fi
-
-  LOCAL=$(sudo git rev-parse HEAD)
-  REMOTE=$(sudo git rev-parse origin/main)
-
-  if [ "$LOCAL" != "$REMOTE" ]; then
-    echo -e "\033[33mNRDEPLOY: Updating working tree to origin/main\033[0m"
-    sudo git reset --hard origin/main
-  else
-    echo -e "\033[32mNRDEPLOY: Already up to date.\033[0m"
-  fi
-
-  echo -e "\033[36mNRDEPLOY: Running nixos-rebuild for $HOST...\033[0m"
-  if ! nh os switch . -H "$HOST"; then
-    echo -e "\033[31mNRDEPLOY: Build or switch failed.\033[0m"
-    return 1
-  fi
-
-  echo -e "\033[32mNRDEPLOY: Deployment complete.\033[0m"
-}
-
 nrremote() {
   local remote="$1"
   local mode="switch"

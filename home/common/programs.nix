@@ -1,32 +1,64 @@
-{ config, ... }:
+{ ... }:
 
 {
   programs = {
     vscodium.enable = true;
 
-    firefox = {
+    librewolf = {
       enable = true;
-      configPath = "${config.xdg.configHome}/mozilla/firefox";
+
+      # Swap RFP (all-or-nothing) for FPP with all targets enabled, so specific
+      # sites can be carved out via overrides instead of disabling protection entirely.
+      # https://codeberg.org/librewolf/issues/issues/2121
+      # https://codeberg.org/librewolf/issues/issues/2598
+      profiles.default = {
+        id = 0;
+        isDefault = true;
+        settings = {
+          "privacy.resistFingerprinting" = false;
+          "privacy.fingerprintingProtection" = true;
+          "privacy.fingerprintingProtection.pbmode" = true;
+          "privacy.fingerprintingProtection.overrides" =
+            "+AllTargets,-WindowDevicePixelRatio,-CSSPrefersColorScheme";
+          "print.prefer_system_dialog" = true;
+        };
+      };
 
       policies = {
-        # Updates & Background Services
-        AppAutoUpdate = false;
-        BackgroundAppUpdate = false;
+        # Download
+        PromptForDownloadLocation = true;
+
+        # Don't force-upgrade http:// to https://
+        HttpsOnlyMode = "disallowed";
+
+        # Bookmarks
+        DisplayBookmarksToolbar = "never";
+
+        # Cookie AutoDelete extension handles cleanup instead
+        SanitizeOnShutdown = {
+          Cookies = false;
+        };
 
         # Feature Disabling
-        DisableFirefoxStudies = true;
-        DisableFirefoxAccounts = true;
         DisableForgetButton = true;
         DisableMasterPasswordCreation = true;
         DisableProfileImport = true;
         DisableProfileRefresh = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
         DisableFormHistory = true;
         DisablePasswordReveal = true;
 
-        # Downloads
-        PromptForDownloadLocation = true;
+        # Search engine
+        SearchEngines = {
+          Default = "Search";
+          Add = [
+            {
+              Name = "Search";
+              URLTemplate = "https://search.erick-nix.com/search?q={searchTerms}";
+              Method = "GET";
+              IconURL = "https://search.erick-nix.com/favicon.ico";
+            }
+          ];
+        };
 
         # Browser extensions
         ExtensionSettings =
@@ -41,13 +73,12 @@
             };
           in
           listToAttrs [
-            (extension "ublock-origin" "uBlock0@raymondhill.net")
             (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
             (extension "darkreader" "addon@darkreader.org")
             (extension "augmented-steam" "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}")
             (extension "sponsorblock" "sponsorBlocker@ajay.app")
             (extension "videospeed" "{7be2ba16-0f1e-4d93-9ebc-5164397477a9}")
-            (extension "youtube-recommended-videos" "myallychou@gmail.com")
+            (extension "cookie-autodelete" "CookieAutoDelete@kennydo.com")
           ];
       };
     };

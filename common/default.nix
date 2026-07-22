@@ -13,9 +13,10 @@
   };
 
   imports = [
-    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
     inputs.nvf.nixosModules.default
+    inputs.nix-index-database.nixosModules.default
 
     ./networking.nix
     ./packages.nix

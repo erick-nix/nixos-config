@@ -7,6 +7,7 @@
     ./packages.nix
     ./programs.nix
     ./modules/gtk.nix
+    ./modules/qt.nix
   ];
 
   home.sessionVariables = {

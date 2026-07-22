@@ -13,6 +13,7 @@
     upscayl
     resources
     vlc
+    handbrake
     localsend
     cascadia-code
     adwaita-fonts

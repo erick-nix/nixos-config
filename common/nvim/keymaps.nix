@@ -147,7 +147,7 @@
       silent = true;
     }
 
-    # Space+L+F: format file
+    # Space+F: format file
     {
       key = "<leader>f";
       mode = [
@@ -228,15 +228,7 @@
         "i"
         "t"
       ];
-      action = "<cmd>lua local cwd = vim.fn.getcwd(); local cmd = (cwd == '/etc/nixos') and 'sudo gemini' or 'gemini'; local Terminal = require('toggleterm.terminal').Terminal; if not _G.gemini_term or _G.gemini_term.cmd ~= cmd then _G.gemini_term = Terminal:new({ cmd = cmd, count = 2, direction = 'float', hidden = true }); end; _G.gemini_term:toggle()<CR>";
-      silent = true;
-    }
-
-    # Leader+t: open terminal without lualine
-    {
-      key = "<leader>t";
-      mode = "n";
-      action = "<cmd>lua local ok,l=pcall(require,'lualine'); if ok then l.hide({ place = { 'statusline' }, unhide = false }) end; vim.cmd('terminal'); vim.api.nvim_create_autocmd('TermClose', { buffer = 0, once = true, callback = function() local ok2,l2=pcall(require,'lualine'); if ok2 then l2.hide({ place = { 'statusline' }, unhide = true }) end end })<CR>";
+      action = "<cmd>lua local cwd = vim.fn.getcwd(); local cmd = (cwd == '/etc/nixos') and 'sudo claude' or 'claude'; local Terminal = require('toggleterm.terminal').Terminal; if not _G.claude_term or _G.claude_term.cmd ~= cmd then _G.claude_term = Terminal:new({ cmd = cmd, count = 2, direction = 'float', hidden = true }); end; _G.claude_term:toggle()<CR>";
       silent = true;
     }
 
