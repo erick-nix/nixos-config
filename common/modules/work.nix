@@ -9,6 +9,20 @@
 let
   openvpnWorkFile = ../../secrets/hosts/common/openvpn-work.yaml;
   updateSystemdResolved = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
+
+  openvpnWorkUp = pkgs.writeShellScript "openvpn-work-up" ''
+    ${updateSystemdResolved} "$@"
+    if [ -n "$trusted_ip" ]; then
+      ${pkgs.iproute2}/bin/ip rule add to "$trusted_ip" lookup main pref 190 2>/dev/null || true
+    fi
+  '';
+
+  openvpnWorkDown = pkgs.writeShellScript "openvpn-work-down" ''
+    ${updateSystemdResolved} "$@"
+    if [ -n "$trusted_ip" ]; then
+      ${pkgs.iproute2}/bin/ip rule del to "$trusted_ip" lookup main pref 190 2>/dev/null || true
+    fi
+  '';
 in
 
 {
@@ -25,8 +39,8 @@ in
 
         script-security 2
         setenv PATH /run/current-system/sw/bin
-        up ${updateSystemdResolved}
-        down ${updateSystemdResolved}
+        up ${openvpnWorkUp}
+        down ${openvpnWorkDown}
         down-pre
       '';
     };

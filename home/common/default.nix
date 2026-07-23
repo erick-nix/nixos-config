@@ -6,6 +6,7 @@
   imports = [
     ./packages.nix
     ./programs.nix
+    ./desktopEntries.nix
     ./modules/gtk.nix
     ./modules/qt.nix
   ];

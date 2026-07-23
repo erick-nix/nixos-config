@@ -16,7 +16,6 @@
   environment = {
     systemPackages = with pkgs; [
       pkgsUnstable.claude-code
-      pkgsUnstable.gemini-cli
       ripgrep
     ];
   };

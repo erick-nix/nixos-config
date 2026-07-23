@@ -24,6 +24,15 @@
         };
       };
 
+      # Separate profile launched only via the "LibreWolf (noVPN)" .desktop entry
+      profiles.novpn = {
+        id = 1;
+        isDefault = false;
+        settings = {
+          "privacy.resistFingerprinting" = false;
+        };
+      };
+
       policies = {
         # Download
         PromptForDownloadLocation = true;
