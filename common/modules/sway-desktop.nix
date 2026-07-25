@@ -65,6 +65,11 @@ in
       };
     };
 
+    logind.settings.Login = lib.mkIf (hostname == "laptop") {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+    };
+
     # Bluetooth
     blueman.enable = true;
 
@@ -75,6 +80,8 @@ in
     # Enables Gnome Keyring to store secrets for applications.
     gnome.gnome-keyring.enable = true;
   };
+
+  security.pam.services.swaylock = { };
 
   # Screen sharing
   xdg.portal = {

@@ -56,12 +56,11 @@ lib.mkIf (hostname == "desktop") {
 
   programs.waybar.settings.mainBar = {
     modules-right = [
-      "network"
       "custom/vpn"
-      "custom/cpu_temp"
       "disk#root"
       "memory"
       "cpu"
+      "custom/cpu_temp"
       "pulseaudio"
       "custom/brightness"
       "clock"

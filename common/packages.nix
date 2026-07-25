@@ -17,7 +17,6 @@
 
       # Terminal
       s-tui
-      git
       ncdu
       iw
       vim

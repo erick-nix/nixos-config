@@ -7,6 +7,14 @@
       systemdTargets = [ "sway-session.target" ];
     };
 
+    swayidle = {
+      enable = true;
+      systemdTargets = [ "sway-session.target" ];
+      events = {
+        before-sleep = "swaylock -f";
+      };
+    };
+
     mako = {
       enable = true;
       settings = {

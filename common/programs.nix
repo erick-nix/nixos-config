@@ -3,6 +3,13 @@
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
   programs = {
+    git = {
+      enable = true;
+      config = {
+        rerere.enabled = true;
+      };
+    };
+
     appimage = {
       enable = true;
       binfmt = true;

@@ -58,31 +58,14 @@ in
       token-work = "docker start redacted-container && docker exec -it redacted-container python app.py";
       product-work = "docker start redacted-container && cd ${homeDir}/data/work/workfolder/redacted-product/frontend && npm run serve";
       teka-work = "cd ${homeDir}/data/work/workfolder/redacted-project && npm run start";
-      vpn-work = "sudo tailscale set --exit-node= && sudo systemctl start openvpn-work.service";
-      vpn-proton = "sudo systemctl stop openvpn-work.service && sudo tailscale set --exit-node=server --exit-node-allow-lan-access";
     };
 
     interactiveShellInit = ''
-      start-work() {
-        echo "Opening work environment..."
-
-        echo "Disabling Tailscale exit-node..."
-        sudo tailscale set --exit-node=
-
-        echo "Starting OpenVPN..."
-        sudo systemctl start openvpn-work.service
-
-        echo "Environment opened."
-      }
-
       stop-work() {
         echo "Closing work environment..."
 
         echo "Stopping OpenVPN..."
         sudo systemctl stop openvpn-work.service
-
-        echo "Re-enabling Tailscale exit-node..."
-        sudo tailscale set --exit-node=server --exit-node-allow-lan-access
 
         echo "Stopping Docker containers..."
         docker stop chat >/dev/null 2>&1

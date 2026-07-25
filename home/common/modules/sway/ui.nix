@@ -66,14 +66,6 @@ in
             exec = "${pkgs.bash}/bin/bash -lc 'echo '";
           };
 
-          network = {
-            "format-wifi" = "{essid} ({signalStrength}%)";
-            "format-ethernet" = "{bandwidthDownBits} ↓";
-            "format-linked" = "{bandwidthDownBits} ↓";
-            "format-disconnected" = "OFF";
-            "max-length" = 50;
-          };
-
           "custom/vpn" = {
             interval = 5;
             "return-type" = "json";
@@ -203,10 +195,6 @@ in
           margin: 4px 0;
         }
 
-        #network {
-          color: #91acd1;
-        }
-
         #custom-brightness,
         #custom-vpn,
         #backlight,
@@ -242,7 +230,7 @@ in
           color: #e2a478;
         }
 
-        #battery.critical, #network.disconnected{
+        #battery.critical{
           color: #e27878;
         }
 
