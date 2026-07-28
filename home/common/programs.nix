@@ -1,8 +1,51 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs = {
     vscodium.enable = true;
+
+    ghostty = {
+      enable = true;
+      settings = {
+        language = "br";
+        theme = "Iceberg Dark";
+        font-family = "Cascadia Mono";
+        font-size = 12;
+        adjust-cell-height = "60%";
+        shell-integration-features = "no-cursor";
+        clipboard-read = "allow";
+        clipboard-write = "allow";
+        scrollback-limit = 100000;
+
+        gtk-toolbar-style = "flat";
+        maximize = true;
+        window-width = 118;
+        window-height = 20;
+        window-padding-x = 12;
+        window-padding-y = 12;
+
+        keybind = [
+          # Neovim smooth scroll
+          "shift+up=csi:1;2A"
+          "shift+down=csi:1;2B"
+
+          # Navigate between panes
+          "ctrl+shift+left=goto_split:left"
+          "ctrl+shift+right=goto_split:right"
+          "ctrl+shift+up=goto_split:up"
+          "ctrl+shift+down=goto_split:down"
+
+          # Close current pane
+          "ctrl+shift+w=close_surface"
+
+          # ThinkPad pt-br layout workaround for slash/question in Ghostty
+          # https://github.com/ghostty-org/ghostty/discussions/5772
+          "ctrl+shift+backspace=unbind"
+          "ctrl+slash=text:/"
+          "shift+ctrl+control_right=text:?"
+        ];
+      };
+    };
 
     librewolf = {
       enable = true;
@@ -21,6 +64,67 @@
           "privacy.fingerprintingProtection.overrides" =
             "+AllTargets,-WindowDevicePixelRatio,-CSSPrefersColorScheme";
           "print.prefer_system_dialog" = true;
+        };
+
+        search = {
+          force = true;
+          engines = {
+            "Nix Packages" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/packages";
+                  params = [
+                    {
+                      name = "channel";
+                      value = "unstable";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@np" ];
+            };
+
+            "Nix Options" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/options";
+                  params = [
+                    {
+                      name = "channel";
+                      value = "unstable";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@no" ];
+            };
+
+            "Nix Issues" = {
+              urls = [
+                {
+                  template = "https://github.com/NixOS/nixpkgs/issues";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@ni" ];
+            };
+          };
         };
       };
 
@@ -69,6 +173,9 @@
           ];
         };
 
+        # Use with pinnedExtension
+        # ExtensionUpdate = false;
+
         # Browser extensions
         ExtensionSettings =
           with builtins;
@@ -80,57 +187,43 @@
                 installation_mode = "normal_installed";
               };
             };
+            # pinnedExtension = uuid: xpiUrl: {
+            #   name = uuid;
+            #   value = {
+            #     install_url = xpiUrl;
+            #     installation_mode = "force_installed";
+            #     updates_disabled = true;
+            #   };
+            # };
           in
           listToAttrs [
-            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+            # Ex: (pinnedExtension "{446900e4-71c2-419f-a6a7-df9c091e268b}" "https://addons.mozilla.org/firefox/downloads/file/4875950/bitwarden_password_manager-2026.6.1.xpi")
             (extension "darkreader" "addon@darkreader.org")
             (extension "augmented-steam" "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}")
             (extension "sponsorblock" "sponsorBlocker@ajay.app")
             (extension "videospeed" "{7be2ba16-0f1e-4d93-9ebc-5164397477a9}")
             (extension "cookie-autodelete" "CookieAutoDelete@kennydo.com")
           ];
-      };
-    };
 
-    ghostty = {
-      enable = true;
-      settings = {
-        language = "br";
-        theme = "Iceberg Dark";
-        font-family = "Cascadia Mono";
-        font-size = 12;
-        adjust-cell-height = "60%";
-        shell-integration-features = "no-cursor";
-        clipboard-read = "allow";
-        clipboard-write = "allow";
-        scrollback-limit = 100000;
-
-        gtk-toolbar-style = "flat";
-        maximize = true;
-        window-width = 118;
-        window-height = 20;
-        window-padding-x = 12;
-        window-padding-y = 12;
-
-        keybind = [
-          # Neovim smooth scroll
-          "shift+up=csi:1;2A"
-          "shift+down=csi:1;2B"
-
-          # Navigate between panes
-          "ctrl+shift+left=goto_split:left"
-          "ctrl+shift+right=goto_split:right"
-          "ctrl+shift+up=goto_split:up"
-          "ctrl+shift+down=goto_split:down"
-
-          # Close current pane
-          "ctrl+shift+w=close_surface"
-
-          # ThinkPad pt-br layout workaround for slash/question in Ghostty
-          # https://github.com/ghostty-org/ghostty/discussions/5772
-          "ctrl+shift+backspace=unbind"
-          "ctrl+slash=text:/"
-          "shift+ctrl+control_right=text:?"
+        "3rdparty".Extensions."uBlock0@raymondhill.net".toOverwrite.filterLists = [
+          "user-filters"
+          "ublock-filters"
+          "ublock-badware"
+          "ublock-privacy"
+          "ublock-unbreak"
+          "ublock-quick-fixes"
+          "easylist"
+          "easyprivacy"
+          "urlhaus-1"
+          "plowe-0"
+          "spa-1"
+          "adguard-social"
+          "fanboy-social"
+          "fanboy-thirdparty_social"
+          "fanboy-cookiemonster"
+          "ublock-cookies-easylist"
+          "adguard-cookies"
+          "ublock-cookies-adguard"
         ];
       };
     };

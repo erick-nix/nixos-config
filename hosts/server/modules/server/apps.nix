@@ -1,10 +1,14 @@
 {
   domain,
   config,
+  lib,
+  pkgs,
   ...
 }:
 
 {
+  # Built and configured, but not auto-started at boot (see systemd.services
+  # override below) — start it on demand with `systemctl start minecraft-server`.
   services = {
     caddy = {
       virtualHosts = {
@@ -53,6 +57,14 @@
           file_server
         '';
       };
+    };
+
+    # Bento PDF
+    bentopdf = {
+      enable = true;
+      package = pkgs.bentopdf.override { simpleMode = true; };
+      domain = "bento.${domain}";
+      caddy.enable = true;
     };
 
     # LibreTranslate

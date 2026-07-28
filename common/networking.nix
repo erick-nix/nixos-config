@@ -6,23 +6,9 @@
     enableIPv6 = false;
 
     firewall = {
-      # Enable the built in NixOS firewall
-      enable = true;
-
       # for VPNs
       trustedInterfaces = [ "tailscale0" ];
       checkReversePath = "loose";
-
-      # Allow specific TCP ports:
-      # 53317 = LocalSend
-      # 41641 = Tailscale (necessary)
-      allowedTCPPorts = [
-        53317
-      ];
-      allowedUDPPorts = [
-        53317
-        41641
-      ];
     };
 
     networkmanager = {

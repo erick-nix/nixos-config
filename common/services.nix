@@ -2,7 +2,6 @@
 
 {
   pkgs,
-  lib,
   ...
 }:
 
@@ -43,9 +42,6 @@
       pulse.enable = true;
       alsa.enable = true;
 
-      # Change later
-      # https://github.com/NixOS/nixpkgs/pull/534770
-      alsa.support32Bit = lib.mkForce false;
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
           "default.clock.rate" = 48000;

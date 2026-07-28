@@ -15,15 +15,15 @@
       binfmt = true;
     };
 
-    nautilus-open-any-terminal = {
-      enable = true;
-      terminal = "ghostty";
-    };
-
     direnv = {
       enable = true;
       silent = true;
       nix-direnv.enable = true;
+    };
+
+    localsend = {
+      enable = true;
+      openFirewall = true;
     };
 
     zsh = {

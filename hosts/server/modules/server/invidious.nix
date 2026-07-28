@@ -1,4 +1,7 @@
-{ domain, ... }:
+{
+  domain,
+  ...
+}:
 
 {
   services = {
@@ -49,6 +52,7 @@
           "companioncache:/var/tmp/youtubei.js:rw"
         ];
         environment.SERVER_SECRET_KEY = "Sm4B0Rt4GKwiqnMF";
+        extraOptions = [ "--pull=always" ];
       };
     };
   };

@@ -13,6 +13,7 @@ in
 {
   services.tailscale = {
     enable = true;
+    openFirewall = true;
 
     useRoutingFeatures = if isServer then "both" else "client";
 

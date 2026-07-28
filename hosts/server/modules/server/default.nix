@@ -4,7 +4,6 @@
   imports = [
     ./ingress.nix
     ./apps.nix
-    ./apps-docker.nix
     ./glance.nix
     ./vaultwarden.nix
     ./jellyfin.nix
@@ -12,5 +11,6 @@
     ./romm.nix
     ./invidious.nix
     ./protonvpn.nix
+    ./minecraft-server.nix
   ];
 }

@@ -1,15 +1,15 @@
 { ... }:
 
 {
-  systemd.user.services.varredura-web = {
+  systemd.user.services.olhudo = {
     Unit = {
-      Description = "Varredura Web tray";
+      Description = "olhudo";
       After = [ "graphical-session.target" ];
       PartOf = [ "graphical-session.target" ];
     };
 
     Service = {
-      ExecStart = "/home/erick-nix/.nix-profile/bin/verredura-web --tray-only";
+      ExecStart = "/home/erick-nix/.nix-profile/bin/olhudo --tray-only";
       Restart = "on-failure";
     };
 

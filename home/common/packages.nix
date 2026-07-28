@@ -5,7 +5,6 @@
     video-downloader
     pwvucontrol
     switcheroo
-    bazaar
     audacity
     libreoffice-qt
     papers
@@ -14,7 +13,6 @@
     resources
     vlc
     handbrake
-    localsend
     cascadia-code
     adwaita-fonts
   ];

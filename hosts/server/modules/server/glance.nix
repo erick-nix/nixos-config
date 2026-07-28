@@ -215,11 +215,6 @@ in
                         icon = "si:bento";
                       }
                       {
-                        title = "Crafty";
-                        url = "https://crafty.${domain}";
-                        icon = "mdi:minecraft";
-                      }
-                      {
                         title = "Romm";
                         url = "https://rom.${domain}";
                         icon = "mdi:controller";

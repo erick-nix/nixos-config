@@ -279,5 +279,13 @@
       action = "<cmd>let @+=expand('%')<CR>";
       silent = true;
     }
+
+    # Shift+Enter (terminal mode) : send line break
+    {
+      key = "<S-CR>";
+      mode = "t";
+      action = "<Esc><CR>";
+      silent = true;
+    }
   ];
 }

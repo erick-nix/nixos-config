@@ -18,6 +18,7 @@ in
       "Mod4+Return" = "exec ghostty";
       "Mod4+b" = "exec ${scripts.btMenu}/bin/bt-menu";
       "Mod4+e" = "exec thunar";
+      "Mod4+l" = "exec librewolf";
 
       # Volume
       "Mod4+x" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";

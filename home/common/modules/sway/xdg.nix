@@ -6,11 +6,11 @@
       enable = true;
 
       defaultApplications = {
-        "application/pdf" = [ "firefox.desktop" ];
-        "text/html" = [ "firefox.desktop" ];
-        "application/xhtml+xml" = [ "firefox.desktop" ];
-        "x-scheme-handler/http" = [ "firefox.desktop" ];
-        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "application/pdf" = [ "librewolf.desktop" ];
+        "text/html" = [ "librewolf.desktop" ];
+        "application/xhtml+xml" = [ "librewolf.desktop" ];
+        "x-scheme-handler/http" = [ "librewolf.desktop" ];
+        "x-scheme-handler/https" = [ "librewolf.desktop" ];
 
         "image/png" = [ "imv.desktop" ];
         "image/jpeg" = [ "imv.desktop" ];
@@ -29,6 +29,15 @@
         "text/yaml" = [ "nvim-ghostty.desktop" ];
         "application/yaml" = [ "nvim-ghostty.desktop" ];
         "application/x-yaml" = [ "nvim-ghostty.desktop" ];
+
+        "application/zip" = [ "xarchiver.desktop" ];
+        "application/x-7z-compressed" = [ "xarchiver.desktop" ];
+        "application/x-rar" = [ "xarchiver.desktop" ];
+        "application/x-tar" = [ "xarchiver.desktop" ];
+        "application/gzip" = [ "xarchiver.desktop" ];
+        "application/x-bzip2" = [ "xarchiver.desktop" ];
+        "application/x-xz" = [ "xarchiver.desktop" ];
+        "application/x-compressed-tar" = [ "xarchiver.desktop" ];
       };
     };
 

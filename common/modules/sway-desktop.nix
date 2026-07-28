@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   username,
@@ -8,6 +9,9 @@
 
 let
   baikalFile = ../../secrets/hosts/common/baikal.yaml;
+
+  hmSessionVars = config.home-manager.users.${username}.home.sessionVariables;
+  hmSearchVars = config.home-manager.users.${username}.home.sessionSearchVariables;
 in
 
 {
@@ -52,15 +56,15 @@ in
   services = {
     displayManager = {
       defaultSession = "sway";
+    };
 
-      ly = {
-        enable = true;
-        x11Support = false;
-        settings = {
-          session_log = "";
-          allow_empty_password = false;
-          bigclock = "en";
-          bg = lib.fromHexString "0x00161821";
+    greetd = {
+      enable = true;
+      useTextGreeter = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+          user = "greeter";
         };
       };
     };
@@ -87,5 +91,13 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+  };
+
+  # Session variables (e.g. Qt theming) never reach sway unless re-exported here.
+  environment.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = hmSessionVars.QT_QPA_PLATFORMTHEME;
+    QT_STYLE_OVERRIDE = hmSessionVars.QT_STYLE_OVERRIDE;
+    QT_PLUGIN_PATH = lib.concatStringsSep ":" hmSearchVars.QT_PLUGIN_PATH;
+    QML2_IMPORT_PATH = lib.concatStringsSep ":" hmSearchVars.QML2_IMPORT_PATH;
   };
 }

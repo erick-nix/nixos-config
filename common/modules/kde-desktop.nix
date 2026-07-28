@@ -15,10 +15,6 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      # empty
-    ];
-
     plasma6.excludePackages = with pkgs; [
       kdePackages.elisa # Music player
       kdePackages.kdepim-runtime # Akonadi agents

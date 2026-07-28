@@ -23,7 +23,6 @@
       video-downloader
       switcheroo
       bazaar
-      localsend
       google-chrome
       papers
       refine

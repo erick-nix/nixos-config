@@ -5,12 +5,15 @@
   ...
 }:
 
-{
-  _module.args.hostname = config.networking.hostName;
-  _module.args.pkgsUnstable = import inputs.nixpkgs-unstable {
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
+in
+{
+  _module.args.hostname = config.networking.hostName;
+  _module.args.pkgsUnstable = pkgsUnstable;
 
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -32,6 +35,6 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.extraSpecialArgs = { inherit inputs pkgsUnstable; };
   home-manager.backupFileExtension = "hm-backup";
 }

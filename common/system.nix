@@ -103,12 +103,6 @@
 
     # Disable deprecated package aliases to ensure only current package names are used
     config.allowAliases = false;
-
-    # Change later
-    # https://github.com/NixOS/nixpkgs/issues/536623
-    config.permittedInsecurePackages = [
-      "pnpm-9.15.9"
-    ];
   };
 
   # Docker

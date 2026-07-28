@@ -1,6 +1,13 @@
 { pkgs, lib, ... }:
 
 {
+  programs = {
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "ghostty";
+    };
+  };
+
   services = {
     desktopManager = {
       gnome.enable = true;

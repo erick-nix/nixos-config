@@ -5,7 +5,6 @@
     gnome-calculator
     gnome-clocks
     converseen
-    file-roller
 
     # Terminal
     wl-clipboard # Copy/Paste functionality.
