@@ -2,12 +2,12 @@
 {
   config,
   pkgs,
-  homeDir,
+  username,
   ...
 }:
 
 let
-  openvpnWorkFile = ../../secrets/hosts/common/openvpn-work.yaml;
+  workFile = ../../secrets/hosts/common/work.yaml;
   updateSystemdResolved = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
 
   openvpnWorkUp = pkgs.writeShellScript "openvpn-work-up" ''
@@ -26,8 +26,13 @@ let
 in
 
 {
-  sops.secrets."openvpn/config".sopsFile = openvpnWorkFile;
-  sops.secrets."openvpn/auth".sopsFile = openvpnWorkFile;
+  sops.secrets."openvpn/config".sopsFile = workFile;
+  sops.secrets."openvpn/auth".sopsFile = workFile;
+  sops.secrets."work/shellrc" = {
+    sopsFile = workFile;
+    owner = username;
+    mode = "0400";
+  };
 
   services.openvpn.servers = {
     work = {
@@ -52,30 +57,10 @@ in
   };
 
   programs.zsh = {
-    shellAliases = {
-      work = "cd ${homeDir}/data/work";
-      chat-work = "docker start chat && docker exec -it chat python app.py";
-      token-work = "docker start redacted-container && docker exec -it redacted-container python app.py";
-      product-work = "docker start redacted-container && cd ${homeDir}/data/work/workfolder/redacted-product/frontend && npm run serve";
-      teka-work = "cd ${homeDir}/data/work/workfolder/redacted-project && npm run start";
-    };
-
     interactiveShellInit = ''
-      stop-work() {
-        echo "Closing work environment..."
-
-        echo "Stopping OpenVPN..."
-        sudo systemctl stop openvpn-work.service
-
-        echo "Stopping Docker containers..."
-        docker stop chat >/dev/null 2>&1
-        docker stop redacted-container >/dev/null 2>&1
-        docker stop redacted-container >/dev/null 2>&1
-        docker stop redacted-container >/dev/null 2>&1
-        docker stop redacted-container >/dev/null 2>&1
-
-        echo "Environment closed."
-      }
+      [ -f "${config.sops.secrets."work/shellrc".path}" ] && source "${
+        config.sops.secrets."work/shellrc".path
+      }"
     '';
   };
 }
