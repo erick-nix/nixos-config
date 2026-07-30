@@ -20,6 +20,7 @@
       settings = {
         default-timeout = 5000;
         ignore-timeout = true;
+        anchor = "bottom-right";
       };
     };
 

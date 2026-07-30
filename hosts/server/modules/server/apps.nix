@@ -1,7 +1,6 @@
 {
   domain,
   config,
-  lib,
   pkgs,
   ...
 }:

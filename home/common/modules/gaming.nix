@@ -9,6 +9,7 @@
       additionalPrograms = [ ffmpeg ];
       jdks = [
         zulu
+        zulu25
       ];
     })
 

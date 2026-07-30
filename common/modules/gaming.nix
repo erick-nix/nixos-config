@@ -31,7 +31,7 @@
     partOf = [ "sway-session.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/steam steam://open/bigpicture";
+      ExecStart = "/run/current-system/sw/bin/gamescope -e -f -W 1920 -H 1080 -w 1920 -h 1080 -- /run/current-system/sw/bin/steam";
     };
   };
 

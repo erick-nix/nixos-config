@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   systemd.user.services.olhudo = {
@@ -14,7 +14,8 @@
     };
 
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      # WantedBy = [ "graphical-session.target" ];
+      WantedBy = lib.mkForce [ ];
     };
   };
 }

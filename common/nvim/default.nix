@@ -18,6 +18,10 @@
       pkgsUnstable.claude-code
       ripgrep
     ];
+
+    variables = {
+      CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN = 1;
+    };
   };
 
   programs = {
