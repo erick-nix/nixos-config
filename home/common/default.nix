@@ -7,6 +7,7 @@
     ./packages.nix
     ./programs.nix
     ./desktopEntries.nix
+    ./modules/librewolf.nix
     ./modules/gtk.nix
     ./modules/qt.nix
   ];

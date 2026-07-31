@@ -95,6 +95,7 @@ in
 
   # Session variables (e.g. Qt theming) never reach sway unless re-exported here.
   environment.sessionVariables = {
+    EDITOR = hmSessionVars.EDITOR;
     QT_QPA_PLATFORMTHEME = hmSessionVars.QT_QPA_PLATFORMTHEME;
     QT_STYLE_OVERRIDE = hmSessionVars.QT_STYLE_OVERRIDE;
     QT_PLUGIN_PATH = lib.concatStringsSep ":" hmSearchVars.QT_PLUGIN_PATH;

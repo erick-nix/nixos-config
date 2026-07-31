@@ -228,7 +228,7 @@
         "i"
         "t"
       ];
-      action = "<cmd>lua local cwd = vim.fn.getcwd(); local cmd = (cwd == '/etc/nixos') and 'sudo claude' or 'claude'; local Terminal = require('toggleterm.terminal').Terminal; if not _G.claude_term or _G.claude_term.cmd ~= cmd then _G.claude_term = Terminal:new({ cmd = cmd, count = 2, direction = 'float', hidden = true }); end; _G.claude_term:toggle()<CR>";
+      action = "<cmd>lua local cwd = vim.fn.getcwd(); local cmd = (cwd == '/etc/nixos') and 'sudo -E claude' or 'claude'; local Terminal = require('toggleterm.terminal').Terminal; if not _G.claude_term or _G.claude_term.cmd ~= cmd then _G.claude_term = Terminal:new({ cmd = cmd, count = 2, direction = 'float', hidden = true }); end; _G.claude_term:toggle()<CR>";
       silent = true;
     }
 

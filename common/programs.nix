@@ -38,6 +38,7 @@
         la = "ls -la";
         n = "nvim .";
         nr = "cd /etc/nixos && sudo nvim .";
+        y = "yazi";
         notes = "cd ${homeDir}/data/shared/notes";
         pm = "cd ${homeDir}/data/programming/projects";
         check-store = "nix-store --gc --print-dead | xargs du -shc 2>/dev/null | tail -n1";
