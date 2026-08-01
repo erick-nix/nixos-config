@@ -7,7 +7,6 @@
     ../common
     ../common/modules/dconf.nix
     ../common/modules/gaming.nix
-    ../common/modules/calendar.nix
     ./modules
   ];
 

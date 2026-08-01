@@ -92,18 +92,18 @@
       silent = true;
     }
 
-    # Shift+Left/Right : jump by word in insert mode and start selection
+    # Shift+Left/Right : jump by word in insert mode
     {
       key = "<S-Left>";
       mode = "i";
-      action = "<Esc>ghb";
+      action = "<C-o>b";
       silent = true;
     }
 
     {
       key = "<S-Right>";
       mode = "i";
-      action = "<Esc>ghe";
+      action = "<C-o>e";
       silent = true;
     }
 

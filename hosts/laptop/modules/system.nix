@@ -12,6 +12,6 @@
 
   system = {
     # DO NOT change this after install — keeps compatibility with old data
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
 }

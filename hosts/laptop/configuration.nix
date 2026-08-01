@@ -20,7 +20,7 @@
 
   # Home Manager configuration
   home-manager = {
-    users.root.home.stateVersion = "25.05";
+    users.root.home.stateVersion = "26.05";
     users.${username} = import ../../home/laptop/laptop.nix;
   };
 }

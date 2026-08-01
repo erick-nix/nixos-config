@@ -5,9 +5,11 @@
 
 {
   home.packages = with pkgs; [
+    # battery
+    tlp
+
     gimp
     inkscape
-    gnome-power-manager
     discord
     pear-desktop
     qbittorrent

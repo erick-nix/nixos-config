@@ -10,6 +10,39 @@ in
 {
   # Theme programs
   programs = {
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        color = "161821";
+
+        indicator = true;
+        indicator-radius = 120;
+        indicator-thickness = 10;
+        indicator-idle-visible = true;
+
+        clock = true;
+        timestr = "%R";
+        datestr = "%a %d/%m/%Y";
+
+        inside-color = "1e2132";
+        ring-color = "3d425b";
+        ring-clear-color = "e2a478";
+        ring-ver-color = "91acd1";
+        ring-wrong-color = "e27878";
+        line-uses-ring = true;
+
+        text-color = "c6c8d1";
+        text-clear-color = "c6c8d1";
+        text-ver-color = "c6c8d1";
+        text-wrong-color = "c6c8d1";
+
+        key-hl-color = "84a0c6";
+        bs-hl-color = "e2a478";
+        separator-color = "00000000";
+      };
+    };
+
     fuzzel = {
       enable = true;
       settings = {

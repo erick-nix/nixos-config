@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services = {
@@ -11,7 +11,7 @@
       enable = true;
       systemdTargets = [ "sway-session.target" ];
       events = {
-        before-sleep = "swaylock -f";
+        before-sleep = "${pkgs.swaylock-effects}/bin/swaylock -f";
       };
     };
 

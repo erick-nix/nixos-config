@@ -3,6 +3,8 @@
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
   programs = {
+    dconf.enable = true;
+
     git = {
       enable = true;
       config = {
@@ -46,10 +48,11 @@
 
       interactiveShellInit = ''
         source ${../scripts/nr.sh}
+        bindkey -e
 
-        # Ctrl + arrows
-        bindkey -M emacs '^[[1;5D' backward-word
-        bindkey -M emacs '^[[1;5C' forward-word
+        # Shift + arrows
+        bindkey -M emacs '^[[1;2D' backward-word
+        bindkey -M emacs '^[[1;2C' forward-word
 
         # Backspace
         bindkey -M emacs '^H' backward-kill-word

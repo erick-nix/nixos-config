@@ -8,20 +8,11 @@
 }:
 
 let
-  baikalFile = ../../secrets/hosts/common/baikal.yaml;
-
   hmSessionVars = config.home-manager.users.${username}.home.sessionVariables;
   hmSearchVars = config.home-manager.users.${username}.home.sessionSearchVariables;
 in
 
 {
-  sops.secrets."baikal/caldav_password" = {
-    sopsFile = baikalFile;
-    owner = "erick-nix";
-    group = "users";
-    mode = "0400";
-  };
-
   programs = {
     sway = {
       enable = true;
@@ -30,7 +21,7 @@ in
       # Override default extras to avoid pulling in Foot.
       extraPackages = with pkgs; [
         swayidle
-        swaylock
+        swaylock-effects
         wmenu
       ];
     };

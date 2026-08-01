@@ -38,7 +38,7 @@ This configuration currently manages three machines:
 | Host    | Role               | NixOS `stateVersion` |
 | ------- | ------------------ | -------------------- |
 | desktop | Workstation        | `25.05`              |
-| laptop  | Mobile workstation | `25.05`              |
+| laptop  | Mobile workstation | `26.05`              |
 | server  | Homelab / services | `25.11`              |
 
 ### AI Usage

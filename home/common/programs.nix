@@ -17,6 +17,9 @@
         clipboard-write = "allow";
         scrollback-limit = 100000;
 
+        # Check if Ghostty added vi mode
+        # https://github.com/ghostty-org/ghostty/discussions/3488
+
         gtk-toolbar-style = "flat";
         maximize = true;
         window-width = 118;

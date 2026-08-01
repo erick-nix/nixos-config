@@ -19,6 +19,7 @@
           "privacy.fingerprintingProtection.overrides" =
             "+AllTargets,-WindowDevicePixelRatio,-CSSPrefersColorScheme";
           "print.prefer_system_dialog" = true;
+          "ui.key.menuAccessKeyFocuses" = false;
         };
 
         search = {
@@ -88,6 +89,7 @@
         isDefault = false;
         settings = {
           "privacy.resistFingerprinting" = false;
+          "ui.key.menuAccessKeyFocuses" = false;
         };
       };
 
@@ -152,10 +154,10 @@
           in
           listToAttrs [
             # Ex: (pinnedExtension "{446900e4-71c2-419f-a6a7-df9c091e268b}" "https://addons.mozilla.org/firefox/downloads/file/4875950/bitwarden_password_manager-2026.6.1.xpi")
+            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
             (extension "darkreader" "addon@darkreader.org")
             (extension "augmented-steam" "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}")
             (extension "sponsorblock" "sponsorBlocker@ajay.app")
-            (extension "videospeed" "{7be2ba16-0f1e-4d93-9ebc-5164397477a9}")
             (extension "cookie-autodelete" "CookieAutoDelete@kennydo.com")
           ];
 
