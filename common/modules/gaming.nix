@@ -1,10 +1,25 @@
 {
+  lib,
   pkgs,
   username,
+  hostname,
   ...
 }:
 
 {
+  home-manager.users.${username}.imports =
+    lib.optionals (hostname == "laptop" || hostname == "desktop") [
+      ../../home/common/modules/gaming.nix
+    ]
+    ++ lib.optionals (hostname == "desktop") [
+      ../../home/desktop/modules/emulators.nix
+    ];
+
+  environment.systemPackages = with pkgs; [
+    # Simple tool for input event debugging
+    evtest
+  ];
+
   programs = {
     gamescope = {
       enable = true; # gamescope %command%
@@ -39,7 +54,7 @@
     enable = true;
     user = "root";
     extraConfig = ''
-      BTN_MODE 1 /run/current-system/sw/bin/systemctl --user --machine=${username}@.host start steam-bigpicture.service
+      BTN_GAMEPAD+BTN_START 1 /run/current-system/sw/bin/systemctl --user --machine=${username}@.host start steam-bigpicture.service
     '';
   };
 }

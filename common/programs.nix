@@ -54,6 +54,10 @@
         bindkey -M emacs '^[[1;2D' backward-word
         bindkey -M emacs '^[[1;2C' forward-word
 
+        # Ctrl + arrows
+        bindkey -M emacs '^[[1;5D' backward-word
+        bindkey -M emacs '^[[1;5C' forward-word
+
         # Backspace
         bindkey -M emacs '^H' backward-kill-word
       '';

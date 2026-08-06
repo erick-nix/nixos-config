@@ -99,12 +99,12 @@ in
             exec = "${pkgs.bash}/bin/bash -lc 'echo '";
           };
 
-          "custom/vpn" = {
+          "custom/network" = {
             interval = 5;
             "return-type" = "json";
             justify = "center";
             tooltip = false;
-            exec = "${scripts.vpnStatus}/bin/waybar-vpn-status";
+            exec = "${scripts.networkStatus}/bin/waybar-network-status";
           };
 
           "sway/workspaces" = {
@@ -201,13 +201,13 @@ in
           background: #1e2132;
           color: #6b7089;
           padding: 0 8px;
+          border-radius: 4px;
           margin: 4px 2px;
         }
 
-        #workspaces button.active {
+        #workspaces button.focused {
           background: #272c42;
           color: #c6c8d1;
-          box-shadow: inset 0 -2px #6f88b7;
         }
 
         #workspaces button.urgent {
@@ -229,7 +229,7 @@ in
         }
 
         #custom-brightness,
-        #custom-vpn,
+        #custom-network,
         #backlight,
         #pulseaudio,
         #battery,
@@ -250,9 +250,12 @@ in
         }
 
         #custom-nixos {
-          color: #91acd1;
           font-size: 26px;
-          padding: 0px 4px 0px 12px;
+          padding: 0px 3px 0px 14px;
+        }
+
+        #custom-nixos, #custom-network.vpn-off, #custom-network.vpn-on {
+          color: #91acd1;
         }
 
         #battery {
@@ -267,11 +270,7 @@ in
           color: #e27878;
         }
 
-        #custom-vpn.connected {
-          color: #a3be8c;
-        }
-
-        #custom-vpn.disconnected {
+        #custom-network.offline {
           color: #80828b;
         }
       '';

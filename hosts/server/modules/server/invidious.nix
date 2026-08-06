@@ -26,6 +26,7 @@
         ];
 
         default_user_preferences = {
+          save_player_pos = true;
           feed_menu = [
             "Popular"
             "Subscriptions"

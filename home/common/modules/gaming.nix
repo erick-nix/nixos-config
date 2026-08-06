@@ -1,9 +1,11 @@
 {
   pkgs,
+  lib,
+  hostname,
   ...
 }:
 
-{
+lib.mkIf (hostname == "laptop" || hostname == "desktop") {
   home.packages = with pkgs; [
     (prismlauncher.override {
       additionalPrograms = [ ffmpeg ];
@@ -14,7 +16,5 @@
     })
 
     heroic
-    ruffle
-    ryubing
   ];
 }

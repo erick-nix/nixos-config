@@ -6,7 +6,6 @@
   imports = [
     ../common
     ../common/modules/dconf.nix
-    ../common/modules/gaming.nix
     ./modules
   ];
 

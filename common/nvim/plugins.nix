@@ -12,6 +12,12 @@
     autocomplete.blink-cmp = {
       enable = true;
       friendly-snippets.enable = true;
+      mappings = {
+        next = null;
+        previous = null;
+        confirm = null;
+      };
+
       setupOpts = {
         keymap = {
           preset = "enter";
@@ -19,6 +25,19 @@
             "select_and_accept"
             "fallback"
           ];
+          "<Tab>" = [
+            "select_next"
+            "snippet_forward"
+            "fallback"
+          ];
+        };
+
+        completion = {
+          list = {
+            selection = {
+              preselect = false;
+            };
+          };
         };
 
         snippets = {
@@ -26,7 +45,7 @@
         };
 
         sources = {
-          default = [
+          default = lib.mkForce [
             "snippets"
             "lsp"
             "path"
