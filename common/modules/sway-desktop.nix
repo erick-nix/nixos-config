@@ -47,15 +47,13 @@ in
   services = {
     displayManager = {
       defaultSession = "sway";
-    };
 
-    greetd = {
-      enable = true;
-      useTextGreeter = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
-          user = "greeter";
+      ly = {
+        enable = true;
+        x11Support = false;
+        settings = {
+          session_log = "";
+          allow_empty_password = false;
         };
       };
     };

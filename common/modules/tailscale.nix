@@ -37,6 +37,8 @@ in
     ];
   };
 
+  systemd.services.tailscaled.serviceConfig.TimeoutStopSec = "2s";
+
   systemd.services.tailscale-preserve-main-routes = lib.mkIf (!isServer) {
     description = "Keep more-specific main-table routes ahead of the Tailscale exit-node default route, and let the novpn.slice cgroup bypass the exit-node entirely";
     after = [ "tailscaled.service" ];

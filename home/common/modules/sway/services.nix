@@ -2,6 +2,13 @@
 
 {
   services = {
+    poweralertd = {
+      enable = true;
+      extraArgs = [
+        "-s"
+      ];
+    };
+
     blueman-applet = {
       enable = true;
       systemdTargets = [ "sway-session.target" ];

@@ -4,19 +4,11 @@
   ...
 }:
 
-let
-  scripts = import ./scripts.nix { inherit pkgs; };
-in
-
 {
-  home.packages = [
-    scripts.btMenu
-  ];
-
   wayland.windowManager.sway.config = {
     keybindings = lib.mkOptionDefault ({
       "Mod4+Return" = "exec ghostty";
-      "Mod4+b" = "exec ${scripts.btMenu}/bin/bt-menu";
+      "Mod4+b" = "exec blueman-manager";
       "Mod4+l" = "exec librewolf";
 
       # Volume

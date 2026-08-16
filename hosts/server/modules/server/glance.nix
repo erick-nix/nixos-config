@@ -180,6 +180,11 @@ in
                         icon = "si:syncthing";
                       }
                       {
+                        title = "Traccar";
+                        url = "https://traccar.${domain}";
+                        icon = "si:traccar";
+                      }
+                      {
                         title = "Immich";
                         url = "https://immich.${domain}";
                         icon = "si:immich";
