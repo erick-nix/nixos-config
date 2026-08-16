@@ -6,7 +6,7 @@
     pwvucontrol
     switcheroo
     audacity
-    libreoffice-qt
+    onlyoffice-desktopeditors
     papers
     refine
     upscayl

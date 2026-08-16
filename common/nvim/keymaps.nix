@@ -281,10 +281,13 @@
     }
 
     # Shift+Enter (terminal mode) : send line break
+    # Sent as a single atomic chansend write (Esc+CR in one syscall) instead of
+    # nvim's normal typeahead, which can split the two keys into separate
+    # writes and make Claude Code treat the CR as a plain Enter (submit).
     {
       key = "<S-CR>";
       mode = "t";
-      action = "<Esc><CR>";
+      action = "<cmd>lua vim.fn.chansend(vim.b.terminal_job_id, string.char(27, 13))<CR>";
       silent = true;
     }
   ];

@@ -47,6 +47,8 @@
       };
 
       interactiveShellInit = ''
+        setopt HIST_IGNORE_SPACE
+
         source ${../scripts/nr.sh}
         bindkey -e
 

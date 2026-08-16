@@ -9,6 +9,7 @@
       openFirewall = true;
       declarative = true;
       serverProperties = {
+        online-mode = false;
         max-players = 5;
         motd = "NixOS Minecraft server!";
       };

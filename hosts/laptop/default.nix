@@ -19,6 +19,7 @@ in
       ../../common/modules/obs.nix
       ../../common/modules/work.nix
       ./configuration.nix
+      ../../common/modules/server-sftp-mount.nix
     ];
   };
 }

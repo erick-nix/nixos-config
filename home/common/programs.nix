@@ -17,7 +17,7 @@
         clipboard-write = "allow";
         scrollback-limit = 100000;
 
-        # Check if Ghostty added vi mode
+        # Check if Ghostty added copy mode
         # https://github.com/ghostty-org/ghostty/discussions/3488
 
         gtk-toolbar-style = "flat";
@@ -33,10 +33,13 @@
           "shift+down=csi:1;2B"
 
           # Navigate between panes
-          "ctrl+shift+left=goto_split:left"
-          "ctrl+shift+right=goto_split:right"
-          "ctrl+shift+up=goto_split:up"
-          "ctrl+shift+down=goto_split:down"
+          # Cycle through panes by creation order (works reliably with
+          # nested splits, unlike directional goto_split, which is buggy
+          # with nested/stacked splits: https://github.com/ghostty-org/ghostty/discussions/12296)
+          "ctrl+shift+left=goto_split:previous"
+          "ctrl+shift+right=goto_split:next"
+          "ctrl+shift+up=goto_split:previous"
+          "ctrl+shift+down=goto_split:next"
 
           # Close current pane
           "ctrl+shift+w=close_surface"

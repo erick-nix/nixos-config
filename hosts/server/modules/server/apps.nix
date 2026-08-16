@@ -43,6 +43,10 @@
           reverse_proxy 127.0.0.1:8080
         '';
 
+        "traccar.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8082
+        '';
+
         "cal.${domain}".extraConfig = ''
           root * ${config.services.baikal.package}/share/php/baikal/html
           encode zstd gzip
@@ -56,6 +60,11 @@
           file_server
         '';
       };
+    };
+
+    # Traccar
+    traccar = {
+      enable = true;
     };
 
     # Bento PDF

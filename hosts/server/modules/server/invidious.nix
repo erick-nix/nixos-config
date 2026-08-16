@@ -39,6 +39,12 @@
     };
   };
 
+  systemd.services."docker-invidious-companion" = {
+    startLimitIntervalSec = 20 * 60;
+    startLimitBurst = 4;
+    serviceConfig.RestartSec = "5min";
+  };
+
   virtualisation.oci-containers = {
     backend = "docker";
 
