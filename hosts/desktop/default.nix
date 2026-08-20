@@ -16,7 +16,6 @@ in
       ../../common/modules/sway-desktop.nix
       ../../common/modules/calendar.nix
       ../../common/modules/ddcutil.nix
-      ../../common/modules/systemd-cleanup.nix
       ../../common/modules/obs.nix
       ../../common/modules/work.nix
       ../../common/modules/server-sftp-mount.nix

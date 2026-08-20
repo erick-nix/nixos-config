@@ -34,16 +34,6 @@ in
     };
   };
 
-  home-manager.users.${username}.imports = [
-    (
-      { ... }:
-      {
-        _module.args.hostname = hostname;
-        imports = [ ../../home/common/modules/sway ];
-      }
-    )
-  ];
-
   services = {
     displayManager = {
       defaultSession = "sway";
@@ -58,23 +48,33 @@ in
       };
     };
 
-    logind.settings.Login = lib.mkIf (hostname == "laptop") {
-      HandleLidSwitch = "suspend";
-      HandleLidSwitchExternalPower = "suspend";
+    # Low battery notifications (used for poweralertd)
+    upower = {
+      enable = true;
+      percentageLow = 20;
     };
 
     # Bluetooth
     blueman.enable = true;
 
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    udisks2.enable = true; # Backend for mounting disks from file managers
-    tumbler.enable = true; # Thumbnail support for images
+    # Mount, trash, and other functionalities
+    gvfs.enable = true;
+
+    # Backend for mounting disks from file managers
+    udisks2.enable = true;
+
+    # Thumbnail support for images
+    tumbler.enable = true;
 
     # Enables Gnome Keyring to store secrets for applications.
     gnome.gnome-keyring.enable = true;
-  };
 
-  security.pam.services.swaylock = { };
+    # Suspend on laptop lid close
+    logind.settings.Login = lib.mkIf (hostname == "laptop") {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+    };
+  };
 
   # Screen sharing
   xdg.portal = {
@@ -90,4 +90,15 @@ in
     QT_PLUGIN_PATH = lib.concatStringsSep ":" hmSearchVars.QT_PLUGIN_PATH;
     QML2_IMPORT_PATH = lib.concatStringsSep ":" hmSearchVars.QML2_IMPORT_PATH;
   };
+
+  # Import sway module from home-manager
+  home-manager.users.${username}.imports = [
+    (
+      { ... }:
+      {
+        _module.args.hostname = hostname;
+        imports = [ ../../home/common/modules/sway ];
+      }
+    )
+  ];
 }

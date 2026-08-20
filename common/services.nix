@@ -28,12 +28,6 @@
     # To update the BIOS and other things
     fwupd.enable = true;
 
-    # Low battery notifications
-    upower = {
-      enable = true;
-      percentageLow = 20;
-    };
-
     flatpak = {
       enable = true;
     };

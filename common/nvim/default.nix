@@ -21,6 +21,7 @@
 
     variables = {
       CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN = 1;
+      CLAUDE_CODE_DISABLE_WORKSPACE_TRUST = 1;
     };
   };
 

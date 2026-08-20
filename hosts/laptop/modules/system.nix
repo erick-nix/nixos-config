@@ -20,6 +20,10 @@
     font = "Tamsyn10x20r";
   };
 
+  swapDevices = [
+    { device = "/swap/swapfile"; }
+  ];
+
   system = {
     # DO NOT change this after install — keeps compatibility with old data
     stateVersion = "26.05";

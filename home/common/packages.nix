@@ -15,5 +15,22 @@
     handbrake
     cascadia-code
     adwaita-fonts
+
+    # Nix
+    nh
+    nix-output-monitor
+
+    # Terminal
+    s-tui
+    ncdu
+    vim
+    fastfetch
+    tree
+    btop
+    nmap
+    wget
+    imv
+    openssl
+    ouch-rar
   ];
 }
