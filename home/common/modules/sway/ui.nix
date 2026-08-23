@@ -280,16 +280,6 @@ in
   # Theme Sway
   wayland.windowManager.sway = {
     config = {
-      # Set apps to open in windowed mode.
-      window.commands = [
-        {
-          criteria = {
-            app_id = "blueman-manager";
-          };
-          command = "floating enable, resize set 900 600, move position center";
-        }
-      ];
-
       fonts = {
         names = [
           "Cascadia Code"

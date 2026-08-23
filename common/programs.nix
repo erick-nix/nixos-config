@@ -17,6 +17,7 @@
         la = "ls -la";
         n = "nvim .";
         nr = "cd /etc/nixos && sudo nvim .";
+        b = "bluetui";
         y = "yazi";
         notes = "cd ${homeDir}/data/shared/notes";
         pm = "cd ${homeDir}/data/programming/projects";

@@ -1,4 +1,5 @@
 {
+  homeDir,
   lib,
   pkgs,
   ...
@@ -25,7 +26,6 @@
       terminal = "ghostty";
       menu = "${pkgs.fuzzel}/bin/fuzzel";
       workspaceLayout = "tabbed";
-      focus.followMouse = "no";
 
       startup = lib.mkOptionDefault [
         # Polkit authentication prompts for pkexec/GVFS actions in Sway sessions.

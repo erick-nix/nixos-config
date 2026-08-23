@@ -33,9 +33,6 @@
   # Fonts
   console = {
     earlySetup = true;
-    packages = with pkgs; [
-      tamsyn
-    ];
     keyMap = "pt-latin9";
   };
 

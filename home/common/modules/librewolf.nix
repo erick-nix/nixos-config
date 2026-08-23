@@ -5,19 +5,11 @@
     librewolf = {
       enable = true;
 
-      # Swap RFP (all-or-nothing) for FPP with all targets enabled, so specific
-      # sites can be carved out via overrides instead of disabling protection entirely.
-      # https://codeberg.org/librewolf/issues/issues/2121
-      # https://codeberg.org/librewolf/issues/issues/2598
       profiles.default = {
         id = 0;
         isDefault = true;
         settings = {
-          "privacy.resistFingerprinting" = false;
-          "privacy.fingerprintingProtection" = true;
-          "privacy.fingerprintingProtection.pbmode" = true;
-          "privacy.fingerprintingProtection.overrides" =
-            "+AllTargets,-WindowDevicePixelRatio,-CSSPrefersColorScheme";
+          "privacy.resistFingerprinting" = true;
           "print.prefer_system_dialog" = true;
           "ui.key.menuAccessKeyFocuses" = false;
         };

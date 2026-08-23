@@ -8,7 +8,6 @@
   wayland.windowManager.sway.config = {
     keybindings = lib.mkOptionDefault ({
       "Mod4+Return" = "exec ghostty";
-      "Mod4+b" = "exec blueman-manager";
       "Mod4+l" = "exec librewolf";
 
       # Volume

@@ -27,6 +27,7 @@
     fastfetch
     tree
     btop
+    bluetui
     nmap
     wget
     imv

@@ -54,9 +54,6 @@ in
       percentageLow = 20;
     };
 
-    # Bluetooth
-    blueman.enable = true;
-
     # Mount, trash, and other functionalities
     gvfs.enable = true;
 

@@ -9,16 +9,6 @@
 {
   powerManagement.cpuFreqGovernor = "performance";
 
-  boot = {
-    # Load amdgpu in initrd so it takes over the framebuffer before vconsole-setup runs, otherwise it resets the console font to default
-    # https://github.com/NixOS/nixpkgs/issues/219239
-    initrd.kernelModules = [ "amdgpu" ];
-  };
-
-  console = {
-    font = "Tamsyn8x16r";
-  };
-
   swapDevices = [
     { device = "/swap/swapfile"; }
   ];

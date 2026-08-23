@@ -9,11 +9,6 @@
       ];
     };
 
-    blueman-applet = {
-      enable = true;
-      systemdTargets = [ "sway-session.target" ];
-    };
-
     swayidle = {
       enable = true;
       systemdTargets = [ "sway-session.target" ];

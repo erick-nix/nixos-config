@@ -15,6 +15,8 @@ lib.mkIf (hostname == "desktop") {
   ];
 
   wayland.windowManager.sway.config = {
+    output."*".background = "${../../../../desktop/assets/wallpaper.webp} fill";
+
     workspaceOutputAssign = [
       {
         workspace = "1";
