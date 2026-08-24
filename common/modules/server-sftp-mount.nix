@@ -13,7 +13,7 @@
   programs.fuse.userAllowOther = true;
 
   # Remote SFTP share mounted via SSHFS.
-  fileSystems."${homeDir}/Server" = {
+  fileSystems."/mnt/server" = {
     device = "${username}@sftp.erick-nix.com:/srv";
     fsType = "fuse.sshfs";
     options = [
@@ -21,6 +21,7 @@
       "noauto"
       "_netdev"
       "x-systemd.automount"
+      "x-systemd.mount-timeout=5s"
       "x-systemd.idle-timeout=300"
       "allow_other"
       "default_permissions"
@@ -28,6 +29,7 @@
       "gid=100"
       "umask=022"
       "reconnect"
+      "ConnectTimeout=3"
       "ServerAliveInterval=15"
       "ServerAliveCountMax=3"
       "IdentityFile=${homeDir}/.ssh/id_ed25519"
