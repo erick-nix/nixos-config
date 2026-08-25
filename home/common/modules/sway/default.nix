@@ -1,5 +1,4 @@
 {
-  homeDir,
   lib,
   pkgs,
   ...
@@ -20,6 +19,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    systemd.variables = [ "--all" ];
 
     config = {
       modifier = "Mod4";

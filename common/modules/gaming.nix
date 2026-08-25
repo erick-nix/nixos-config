@@ -46,7 +46,15 @@
     partOf = [ "sway-session.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/gamescope -e -f -W 1920 -H 1080 -w 1920 -h 1080 -- /run/current-system/sw/bin/steam";
+      ExecStart = pkgs.writeShellScript "steam-bigpicture-start" ''
+        if ${pkgs.procps}/bin/pgrep -x steam >/dev/null; then
+          ${pkgs.procps}/bin/pkill -x steam
+          while ${pkgs.procps}/bin/pgrep -x steam >/dev/null; do
+            sleep 0.5
+          done
+        fi
+        exec /run/current-system/sw/bin/gamescope -e -f -W 1920 -H 1080 -w 1920 -h 1080 -- /run/current-system/sw/bin/steam
+      '';
     };
   };
 

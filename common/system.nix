@@ -73,6 +73,8 @@
 
     # Supported filesystems
     supportedFilesystems = [ "btrfs" ];
+
+    tmp.cleanOnBoot = true;
   };
 
   # Nix configuration: enable flakes, nix-command, and automatic garbage collection

@@ -134,13 +134,13 @@ in
     };
   };
 
-  home-manager.users.${username} = lib.mkIf (!isServer) {
-    home.file = {
-      "data/.stignore".text = stignoreText;
-    };
-  };
-
-  systemd.tmpfiles.rules = lib.optional isServer (
-    "f /srv/romm/library/roms/.stignore 0644 ${username} users - ${builtins.toFile "stignore" romsIgnoreText}"
-  );
+  systemd.tmpfiles.rules =
+    lib.optionals (!isServer) [
+      "r ${path}/.stignore"
+      "C ${path}/.stignore 0644 ${username} users - ${builtins.toFile "stignore" stignoreText}"
+    ]
+    ++ lib.optionals isServer [
+      "r /srv/romm/library/roms/.stignore"
+      "C /srv/romm/library/roms/.stignore 0644 ${username} users - ${builtins.toFile "stignore" romsIgnoreText}"
+    ];
 }

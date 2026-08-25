@@ -21,6 +21,7 @@
     LC_MONETARY = "pt_BR.UTF-8";
 
     EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
     NIXOS_OZONE_WL = 1;
   };
 
