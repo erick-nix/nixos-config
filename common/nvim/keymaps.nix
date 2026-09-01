@@ -128,6 +128,29 @@
       silent = true;
     }
 
+    # Shift+Up/Down : scroll half page
+    {
+      key = "<S-Up>";
+      mode = [
+        "n"
+        "v"
+        "s"
+      ];
+      action = "<C-u>";
+      silent = true;
+    }
+
+    {
+      key = "<S-Down>";
+      mode = [
+        "n"
+        "v"
+        "s"
+      ];
+      action = "<C-d>";
+      silent = true;
+    }
+
     # Leader+E : open/close file explorer
     {
       key = "<leader>e";

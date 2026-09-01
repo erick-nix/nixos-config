@@ -28,10 +28,6 @@
         window-padding-y = 12;
 
         keybind = [
-          # Neovim smooth scroll
-          "shift+up=csi:1;2A"
-          "shift+down=csi:1;2B"
-
           # Navigate between panes
           # Cycle through panes by creation order (works reliably with
           # nested splits, unlike directional goto_split, which is buggy
