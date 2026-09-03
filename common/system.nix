@@ -80,6 +80,11 @@
   # Nix configuration: enable flakes, nix-command, and automatic garbage collection
   nix = {
     settings = {
+      trusted-users = [
+        "root"
+        "erick-nix"
+      ];
+
       experimental-features = [
         "nix-command"
         "flakes"

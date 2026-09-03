@@ -19,7 +19,7 @@
         nr = "cd /etc/nixos && sudo nvim .";
         b = "bluetui";
         y = "yazi";
-        notes = "cd ${homeDir}/data/shared/notes";
+        notes = "cd ${homeDir}/data/notes";
         pm = "cd ${homeDir}/data/programming/projects";
         check-store = "nix-store --gc --print-dead | xargs du -shc 2>/dev/null | tail -n1";
       };

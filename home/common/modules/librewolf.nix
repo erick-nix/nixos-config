@@ -116,19 +116,6 @@
         DisableFormHistory = true;
         DisablePasswordReveal = true;
 
-        # Search engine
-        SearchEngines = {
-          Default = "Search";
-          Add = [
-            {
-              Name = "Search";
-              URLTemplate = "https://search.erick-nix.com/search?q={searchTerms}";
-              Method = "GET";
-              IconURL = "https://search.erick-nix.com/favicon.ico";
-            }
-          ];
-        };
-
         # Use with pinnedExtension
         # ExtensionUpdate = false;
 

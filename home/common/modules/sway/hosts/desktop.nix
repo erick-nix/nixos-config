@@ -14,45 +14,55 @@ lib.mkIf (hostname == "desktop") {
     scripts.ddcBrightness
   ];
 
-  wayland.windowManager.sway.config = {
-    output."*".background = "${../../../../desktop/assets/wallpaper.webp} fill";
+  wayland.windowManager.sway = {
+    # For Nvidia
+    extraOptions = [ "--unsupported-gpu" ];
 
-    workspaceOutputAssign = [
-      {
-        workspace = "1";
-        output = "HDMI-A-1";
-      }
-      {
-        workspace = "10";
-        output = "DP-2";
-      }
-    ];
+    config = {
+      output."*".background = "${../../../../desktop/assets/wallpaper.webp} fill";
 
-    output = {
-      "DP-2" = {
-        mode = "1920x1080@74.973Hz";
-        position = "0 0";
-        transform = "270";
+      workspaceOutputAssign = [
+        {
+          workspace = "1";
+          output = "HDMI-A-1";
+        }
+        {
+          workspace = "10";
+          output = "DP-1";
+        }
+      ];
+
+      output = {
+        "HDMI-A-1" = {
+          mode = "1920x1080@74.973Hz";
+          position = "1080 840";
+        };
+
+        "DP-1" = {
+          mode = "1920x1080@74.973Hz";
+          position = "0 0";
+          transform = "270";
+        };
       };
 
-      "HDMI-A-1" = {
-        mode = "1920x1080@74.973Hz";
-        position = "1080 840";
+      focus.newWindow = "none";
+
+      startup = lib.mkOptionDefault [
+        # KDE Connect
+        {
+          command = "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
+        }
+        # Force HDMI-A-1 as primary monitor.
+        {
+          command = "${pkgs.xrandr}/bin/xrandr --output HDMI-A-1 --primary";
+          always = true;
+        }
+      ];
+
+      keybindings = lib.mkOptionDefault {
+        "Mod1+x" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
+        "Mod1+z" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
       };
-    };
-
-    focus.newWindow = "none";
-
-    startup = lib.mkOptionDefault [
-      # KDE Connect
-      {
-        command = "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
-      }
-    ];
-
-    keybindings = lib.mkOptionDefault {
-      "Mod1+x" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
-      "Mod1+z" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
     };
   };
 

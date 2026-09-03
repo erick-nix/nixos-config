@@ -33,5 +33,6 @@
     imv
     openssl
     ouch-rar
+    usbutils
   ];
 }

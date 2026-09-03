@@ -12,8 +12,14 @@
     { device = "/swap/swapfile"; }
   ];
 
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
-    amdgpu.overdrive.enable = true;
+    nvidia = {
+      open = true;
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      branch = "latest";
+    };
 
     # Used for scanning with the printer
     sane = {

@@ -16,10 +16,21 @@ get_buses() {
   fi
 
   if [ -s "$bus_file" ]; then
-    cat "$bus_file"
-    return 0
+    local cached bus stale=0
+    cached="$(cat "$bus_file")"
+    for bus in $cached; do
+      [ -e "/dev/i2c-$bus" ] || stale=1
+    done
+    if [ "$stale" -eq 0 ]; then
+      printf '%s\n' "$cached"
+      return 0
+    fi
   fi
 
+  detect_buses
+}
+
+detect_buses() {
   local buses
   buses="$(ddcutil detect --brief 2>/dev/null |
     sed -n 's|.*I2C bus: */dev/i2c-\([0-9]\+\).*|\1|p' |

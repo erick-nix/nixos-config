@@ -7,10 +7,10 @@
     ./glance.nix
     ./vaultwarden.nix
     ./jellyfin.nix
-    ./searx.nix
     ./romm.nix
     ./invidious.nix
     ./protonvpn.nix
+    ./go2rtc.nix
     ./minecraft-server.nix
   ];
 }

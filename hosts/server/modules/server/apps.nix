@@ -145,10 +145,6 @@
             SavePath = "/srv/media/Downloads/";
             TempPathEnabled = false;
           };
-          Bittorrent = {
-            MaxRatioEnabled = true;
-            MaxRatio = 0.0;
-          };
           WebUI = {
             LocalHostAuth = false;
             BypassLocalAuth = true;
