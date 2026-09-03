@@ -197,6 +197,10 @@ in
           box-shadow: none;
         }
 
+        window#waybar > box {
+          padding: 0 12px;
+        }
+
         #workspaces button {
           background: #1e2132;
           color: #6b7089;
@@ -245,13 +249,9 @@ in
           border-left: 1px solid #3d425b;
         }
 
-        #tray {
-          margin: 0px 12px 0px 0px;
-        }
-
         #custom-nixos {
           font-size: 26px;
-          padding: 0px 3px 0px 14px;
+          padding: 0px 3px;
         }
 
         #custom-nixos, #custom-network.vpn-off, #custom-network.vpn-on {
