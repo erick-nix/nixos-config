@@ -10,7 +10,7 @@
     ./romm.nix
     ./invidious.nix
     ./protonvpn.nix
-    ./go2rtc.nix
+    ./cameras.nix
     ./minecraft-server.nix
   ];
 }

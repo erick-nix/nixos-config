@@ -20,8 +20,7 @@
       "Mod4+a" = "exec ${pkgs.playerctl}/bin/playerctl next";
 
       # Zoom
-      "Mod1+w" = "exec wooz --invert-scroll";
-      "Mod3+w" = "exec wooz --invert-scroll";
+      "Mod4+o" = "exec wooz --invert-scroll";
 
       # Turn focused tab into floating bottom half window.
       "Mod4+Shift+Down" = "floating enable, resize set 100 ppt 50 ppt, move position 0 ppt 50 ppt";

@@ -34,5 +34,6 @@
     openssl
     ouch-rar
     usbutils
+    exiftool
   ];
 }

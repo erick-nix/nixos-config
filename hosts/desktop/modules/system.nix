@@ -1,6 +1,7 @@
 # Core system settings: bootloader, kernel, locale, user, nix options
 
 {
+  pkgsUnstable,
   ...
 }:
 
@@ -18,7 +19,7 @@
       open = true;
       modesetting.enable = true;
       powerManagement.enable = false;
-      branch = "latest";
+      package = pkgsUnstable.linuxPackages_latest.nvidiaPackages.latest;
     };
 
     # Used for scanning with the printer
@@ -41,6 +42,14 @@
     };
   };
 
+  nix.settings = {
+    # CUDA
+    substituters = [ "https://cache.nixos-cuda.org" ];
+    trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
+  };
+
+  boot.kernelPackages = pkgsUnstable.linuxPackages_latest;
+
   system = {
     autoUpgrade = {
       enable = true;
@@ -49,8 +58,8 @@
 
       flake = "/etc/nixos";
       flags = [
-        "--update-input"
-        "nixpkgs"
+        "--recreate-lock-file"
+        "--commit-lock-file"
       ];
     };
 

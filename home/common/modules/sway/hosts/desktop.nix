@@ -14,6 +14,15 @@ lib.mkIf (hostname == "desktop") {
     scripts.ddcBrightness
   ];
 
+  # Notifications on the second monitor
+  services = {
+    mako = {
+      settings = {
+        output = "DP-1";
+      };
+    };
+  };
+
   wayland.windowManager.sway = {
     # For Nvidia
     extraOptions = [ "--unsupported-gpu" ];

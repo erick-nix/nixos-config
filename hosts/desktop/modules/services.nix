@@ -1,15 +1,9 @@
 {
-  pkgs,
   ...
 }:
 
 {
   services = {
-    # Put /dev/sda into standby after 15 minutes of inactivity (hdparm -S 180)
-    udev.extraRules = ''
-      ACTION=="add|change", KERNEL=="sda", ENV{DEVTYPE}=="disk", RUN+="${pkgs.hdparm}/bin/hdparm -S 180 /dev/sda"
-    '';
-
     # Sunshine
     sunshine = {
       enable = true;

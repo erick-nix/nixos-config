@@ -15,19 +15,18 @@
       ../../home/desktop/modules/emulators.nix
     ];
 
-  environment.systemPackages = with pkgs; [
-    # Simple tool for input event debugging
-    evtest
-  ];
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 262144;
+  };
 
   programs = {
     gamescope = {
-      enable = true; # gamescope %command%
+      enable = true;
       capSysNice = false;
     };
 
     gamemode = {
-      enable = true; # gamemoderun %command%
+      enable = true;
       settings = { };
     };
 

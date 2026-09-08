@@ -2,11 +2,16 @@
   pkgs,
   lib,
   hostname,
+  pkgsUnstable,
   ...
 }:
 
 lib.mkIf (hostname == "laptop" || hostname == "desktop") {
   home.packages = with pkgs; [
+    pkgsUnstable.sgdboop
+    # Simple tool for input event debugging
+    evtest
+
     (prismlauncher.override {
       additionalPrograms = [ ffmpeg ];
       jdks = [
@@ -23,25 +28,5 @@ lib.mkIf (hostname == "laptop" || hostname == "desktop") {
           mangohud
         ];
     })
-  ];
-
-  # Sway
-  wayland.windowManager.sway.config.window.commands = [
-    {
-      criteria.app_id = "^steam_app_.*$";
-      command = "fullscreen enable";
-    }
-    {
-      criteria.class = "^steam_app_.*$";
-      command = "fullscreen enable";
-    }
-    {
-      criteria.app_id = "^steam_app_.*$";
-      command = "allow_tearing yes";
-    }
-    {
-      criteria.class = "^steam_app_.*$";
-      command = "allow_tearing yes";
-    }
   ];
 }

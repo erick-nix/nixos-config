@@ -36,7 +36,7 @@
         '';
 
         "translate.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:5000
+          reverse_proxy 127.0.0.1:5010
         '';
 
         "qbittorrent.${domain}".extraConfig = ''
@@ -44,7 +44,7 @@
         '';
 
         "traccar.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8082
+          reverse_proxy 127.0.0.1:8083
         '';
 
         "cal.${domain}".extraConfig = ''
@@ -65,6 +65,10 @@
     # Traccar
     traccar = {
       enable = true;
+      settings = {
+        tk103.port = "";
+        web.port = "8083";
+      };
     };
 
     # Bento PDF
@@ -79,6 +83,7 @@
     libretranslate = {
       enable = true;
       host = "0.0.0.0";
+      port = 5010;
       configureNginx = false;
       updateModels = true;
       extraArgs = {

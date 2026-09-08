@@ -239,33 +239,31 @@
           "toggleterm"
           "oil"
         ];
-      };
 
-      activeSection = {
-        a = [ ''{ "mode" }'' ];
+        sections = lib.mkForce {
+          lualine_a = [ { "@1" = "mode"; } ];
 
-        b = [
-          ''{ "branch" }''
-          ''{ "diff" }''
-        ];
+          lualine_b = [
+            { "@1" = "branch"; }
+            { "@1" = "diff"; }
+          ];
 
-        c = [
-          ''
+          lualine_c = [
             {
-              "filename",
-              path = 1,
+              "@1" = "filename";
+              path = 1;
             }
-          ''
-        ];
+          ];
 
-        x = [
-          ''{ "encoding" }''
-          ''{ "fileformat" }''
-          ''{ "filetype" }''
-        ];
+          lualine_x = [
+            { "@1" = "encoding"; }
+            { "@1" = "fileformat"; }
+            { "@1" = "filetype"; }
+          ];
 
-        y = [ ''{ "progress" }'' ];
-        z = [ ''{ "location" }'' ];
+          lualine_y = [ { "@1" = "progress"; } ];
+          lualine_z = [ { "@1" = "location"; } ];
+        };
       };
     };
 
