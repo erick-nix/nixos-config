@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save", silent = true })
+vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>silent w<CR>", { desc = "Save", silent = true })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("v", "<C-S-c>", "y", { desc = "Copy" })
 vim.keymap.set("v", "<C-x>", "d", { desc = "Cut selected text" })
@@ -30,5 +30,6 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Gi
 vim.keymap.set("n", "<A-Down>", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hunk" })
 vim.keymap.set("n", "<A-Up>", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Preview hunk" })
 vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Show blame line" })
 vim.keymap.set({ "n", "i", "t" }, "<A-j>", "<cmd>1ToggleTerm direction=float dir=%:p:h<CR>",
   { desc = "Toggle float terminal" })

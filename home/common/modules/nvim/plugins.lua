@@ -1,10 +1,16 @@
 require("colorizer").setup()
 
-require("gitsigns").setup()
+require("nvim-autopairs").setup()
 
 require('Comment').setup()
 
-require("oil").setup()
+require("gitsigns").setup()
+
+require("oil").setup({
+  keymaps = {
+    ["<C-s>"] = {},
+  },
+})
 
 require("toggleterm").setup({
   start_in_insert = true,
@@ -23,7 +29,6 @@ require('blink.cmp').setup({
   },
 })
 
-vim.opt.cmdheight = 0
 require("lualine").setup({
   options = {
     theme = "iceberg",
@@ -37,6 +42,14 @@ require("lualine").setup({
 })
 
 require('telescope').setup {
+  defaults = {
+    layout_config = {
+      horizontal = {
+        preview_width = 0.5,
+      },
+    },
+  },
+
   pickers = {
     find_files = {
       hidden = true,
@@ -48,6 +61,7 @@ require('telescope').setup {
         "!.git/*",
       },
     },
+
     git_status = {
       path_display = { "tail" },
     },

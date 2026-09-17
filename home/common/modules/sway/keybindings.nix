@@ -6,7 +6,7 @@
 
 {
   wayland.windowManager.sway.config = {
-    keybindings = lib.mkOptionDefault ({
+    keybindings = lib.mkOptionDefault {
       "Mod4+Return" = "exec ghostty";
       "Mod4+l" = "exec librewolf";
 
@@ -36,6 +36,6 @@
       # Screenshots
       "Print" =
         "exec selection=$(slurp) && grim -g \"$selection\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy";
-    });
+    };
   };
 }

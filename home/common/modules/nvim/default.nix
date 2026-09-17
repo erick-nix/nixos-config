@@ -39,13 +39,14 @@
       gitsigns-nvim
       comment-nvim
       toggleterm-nvim
+      nvim-autopairs
     ];
 
     initLua = ''
       ${builtins.readFile ./options.lua}
-      ${builtins.readFile ./keybindings.lua}
-      ${builtins.readFile ./lsp.lua}
       ${builtins.readFile ./plugins.lua}
+      ${builtins.readFile ./lsp.lua}
+      ${builtins.readFile ./keybindings.lua}
     '';
   };
 }

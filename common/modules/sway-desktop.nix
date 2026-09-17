@@ -22,7 +22,6 @@ in
       extraPackages = with pkgs; [
         swayidle
         swaylock-effects
-        wmenu
       ];
     };
 
