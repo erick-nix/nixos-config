@@ -16,7 +16,7 @@
         ll = "ls -l";
         la = "ls -la";
         n = "nvim .";
-        nr = "cd /etc/nixos && sudo nvim .";
+        nr = "cd /etc/nixos && sudo env HOME=$HOME XDG_STATE_HOME=/root/.local/state XDG_CACHE_HOME=/root/.cache DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR nvim .";
         b = "bluetui";
         y = "yazi";
         notes = "cd ${homeDir}/data/notes";

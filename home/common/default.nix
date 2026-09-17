@@ -10,6 +10,7 @@
     ./modules/librewolf.nix
     ./modules/gtk.nix
     ./modules/qt.nix
+    ./modules/nvim
   ];
 
   home.sessionVariables = {

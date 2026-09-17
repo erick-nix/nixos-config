@@ -10,18 +10,15 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nvf.url = "github:NotAShelf/nvf";
     nix-index-database.url = "github:nix-community/nix-index-database";
 
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    nvf.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-
       systems = [ "x86_64-linux" ];
 
       imports = [

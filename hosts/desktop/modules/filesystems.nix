@@ -2,7 +2,7 @@
 
 {
   # Hard drive mount
-  fileSystems."/mnt/sda1" = {
+  fileSystems."/mnt/HD" = {
     device = "/dev/disk/by-uuid/088bd649-35af-498f-8b96-97e27c14a031";
     fsType = "ext4";
     options = [

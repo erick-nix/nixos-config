@@ -18,7 +18,6 @@ in
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
-    inputs.nvf.nixosModules.default
     inputs.nix-index-database.nixosModules.default
 
     ./networking.nix
@@ -27,7 +26,6 @@ in
     ./services.nix
     ./system.nix
     ./systemd.nix
-    ./nvim
     ./modules/syncthing.nix
     ./modules/tailscale.nix
     ./modules/gaming.nix

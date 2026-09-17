@@ -35,5 +35,7 @@
     ouch-rar
     usbutils
     exiftool
+    smartmontools
+    e2fsprogs
   ];
 }
