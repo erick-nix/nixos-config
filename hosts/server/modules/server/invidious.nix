@@ -8,7 +8,7 @@
     caddy = {
       virtualHosts = {
         "invidious.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:3001
+          reverse_proxy 127.0.0.1:8031
         '';
       };
     };
@@ -16,7 +16,7 @@
     # Invidious
     invidious = {
       enable = true;
-      port = 3001;
+      port = 8031;
       domain = "invidious.${domain}";
       settings = {
         registration_enabled = false;

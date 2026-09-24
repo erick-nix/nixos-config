@@ -15,6 +15,7 @@
     handbrake
     cascadia-code
     adwaita-fonts
+    nerd-fonts.arimo
 
     # Nix
     nh

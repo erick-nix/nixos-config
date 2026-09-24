@@ -20,15 +20,6 @@
     plugins = with pkgs.vimPlugins; [
       iceberg-vim
 
-      (nvim-treesitter.withPlugins (p: [
-        p.nix
-        p.lua
-        p.bash
-        p.python
-        p.markdown
-        p.markdown_inline
-      ]))
-
       nvim-lspconfig
       nvim-colorizer-lua
       nvim-web-devicons
@@ -40,6 +31,19 @@
       comment-nvim
       toggleterm-nvim
       nvim-autopairs
+
+      (nvim-treesitter.withPlugins (p: [
+        p.html
+        p.css
+        p.typescript
+        p.vue
+        p.nix
+        p.lua
+        p.bash
+        p.python
+        p.markdown
+        p.markdown_inline
+      ]))
     ];
 
     initLua = ''

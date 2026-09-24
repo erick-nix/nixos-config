@@ -2,49 +2,44 @@
   domain,
   config,
   pkgs,
+  pkgsUnstable,
   ...
 }:
 
 {
-  # Built and configured, but not auto-started at boot (see systemd.services
-  # override below) — start it on demand with `systemctl start minecraft-server`.
   services = {
     caddy = {
       virtualHosts = {
-        "kanboard.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8081
+        "immich.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8001
         '';
 
         "git.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8788
+          reverse_proxy 127.0.0.1:8002
         '';
 
         "status.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8095
+          reverse_proxy 127.0.0.1:8003
+        '';
+
+        "translate.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8004
+        '';
+
+        "kanboard.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8005
         '';
 
         "suwayomi.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:4567
+          reverse_proxy 127.0.0.1:8006
         '';
 
-        "immich.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:2283
+        "traccar.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8007
         '';
 
         "syncthing.${domain}".extraConfig = ''
           reverse_proxy 127.0.0.1:8384
-        '';
-
-        "translate.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:5010
-        '';
-
-        "qbittorrent.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8080
-        '';
-
-        "traccar.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8083
         '';
 
         "cal.${domain}".extraConfig = ''
@@ -62,32 +57,99 @@
       };
     };
 
-    # Traccar
-    traccar = {
+    # Immich
+    immich = {
+      enable = true;
+      port = 8001;
+      host = "0.0.0.0";
+      openFirewall = true;
+      package = pkgsUnstable.immich;
+      accelerationDevices = [ "/dev/dri/renderD128" ];
+    };
+
+    # Forgejo
+    forgejo = {
       enable = true;
       settings = {
-        tk103.port = "";
-        web.port = "8083";
+        server = {
+          domain = "git.${domain}";
+          ROOT_URL = "https://git.${domain}";
+          HTTP_PORT = 8002;
+        };
       };
     };
 
-    # Bento PDF
-    bentopdf = {
-      enable = true;
-      package = pkgs.bentopdf.override { simpleMode = true; };
-      domain = "bento.${domain}";
-      caddy.enable = true;
+    # Bbeszel (Status)
+    beszel = {
+      hub = {
+        enable = true;
+        host = "0.0.0.0";
+        port = 8003;
+      };
+
+      agent = {
+        enable = true;
+        openFirewall = true;
+        smartmon.enable = true;
+
+        environment = {
+          KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMpB936yfvldXUE/nZpaujy3Z1lIL1aHRUZjrHykW2VV";
+        };
+      };
     };
 
     # LibreTranslate
     libretranslate = {
       enable = true;
       host = "0.0.0.0";
-      port = 5010;
+      port = 8004;
       configureNginx = false;
       updateModels = true;
       extraArgs = {
         load-only = "pt,en";
+      };
+    };
+
+    # Kanboard
+    kanboard = {
+      enable = true;
+
+      nginx.listen = [
+        {
+          addr = "127.0.0.1";
+          port = 8005;
+        }
+      ];
+    };
+
+    # Suwayomi Server
+    flaresolverr = {
+      enable = true;
+    };
+
+    suwayomi-server = {
+      enable = true;
+      openFirewall = true;
+      settings = {
+        server = {
+          port = 8006;
+          webUIChannel = "PREVIEW";
+
+          extensionRepos = [
+            "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+          ];
+        };
+      };
+    };
+
+    # Traccar
+    traccar = {
+      enable = true;
+      settings = {
+        web.port = "8007";
+
+        # Only android (5055)
+        protocols.enable = "osmand";
       };
     };
 
@@ -103,98 +165,12 @@
       "listen.mode" = "0660";
     };
 
-    # Forgejo
-    forgejo = {
+    # Bento PDF
+    bentopdf = {
       enable = true;
-      settings = {
-        server = {
-          domain = "git.${domain}";
-          ROOT_URL = "https://git.${domain}";
-          HTTP_PORT = 8788;
-        };
-      };
-    };
-
-    # Immich
-    immich = {
-      enable = true;
-      port = 2283;
-      host = "0.0.0.0";
-      openFirewall = true;
-      # AMD
-      accelerationDevices = [ "/dev/dri/renderD128" ];
-    };
-
-    # Kanboard
-    kanboard = {
-      enable = true;
-
-      nginx.listen = [
-        {
-          addr = "127.0.0.1";
-          port = 8081;
-        }
-      ];
-    };
-
-    # qBittorrent
-    qbittorrent = {
-      enable = true;
-      openFirewall = true;
-      group = "media";
-      webuiPort = 8080;
-      serverConfig = {
-        LegalNotice.Accepted = true;
-        Preferences = {
-          Downloads = {
-            SavePath = "/srv/media/Downloads/";
-            TempPathEnabled = false;
-          };
-          WebUI = {
-            LocalHostAuth = false;
-            BypassLocalAuth = true;
-          };
-        };
-      };
-    };
-
-    # Suwayomi Server
-    flaresolverr = {
-      enable = true;
-    };
-
-    suwayomi-server = {
-      enable = true;
-      openFirewall = true;
-      settings = {
-        server = {
-          port = 4567;
-          webUIChannel = "PREVIEW";
-
-          extensionRepos = [
-            "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
-          ];
-        };
-      };
-    };
-
-    # Bbeszel (Status)
-    beszel = {
-      hub = {
-        enable = true;
-        host = "0.0.0.0";
-        port = 8095;
-      };
-
-      agent = {
-        enable = true;
-        openFirewall = true;
-        smartmon.enable = true;
-
-        environment = {
-          KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMpB936yfvldXUE/nZpaujy3Z1lIL1aHRUZjrHykW2VV";
-        };
-      };
+      package = pkgs.bentopdf.override { simpleMode = true; };
+      domain = "bento.${domain}";
+      caddy.enable = true;
     };
   };
 }

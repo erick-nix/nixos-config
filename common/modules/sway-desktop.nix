@@ -75,7 +75,20 @@ in
   # Screen sharing
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          chooser_type = "none";
+          output_name =
+            {
+              desktop = "HDMI-A-1";
+              laptop = "eDP-1";
+            }
+            .${hostname};
+        };
+      };
+    };
   };
 
   # Load home-manager's session variables into sway.

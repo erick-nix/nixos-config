@@ -19,7 +19,7 @@
         nr = "cd /etc/nixos && sudo env HOME=$HOME XDG_STATE_HOME=/root/.local/state XDG_CACHE_HOME=/root/.cache DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR nvim .";
         b = "bluetui";
         y = "yazi";
-        notes = "cd ${homeDir}/data/notes";
+        notes = "cd ${homeDir}/data/notes && nvim .";
         pm = "cd ${homeDir}/data/programming/projects";
         check-store = "nix-store --gc --print-dead | xargs du -shc 2>/dev/null | tail -n1";
       };

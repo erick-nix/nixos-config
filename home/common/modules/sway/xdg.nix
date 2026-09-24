@@ -21,6 +21,19 @@
         "image/avif" = [ "imv.desktop" ];
         "image/svg+xml" = [ "imv.desktop" ];
 
+        "video/mp4" = [ "vlc.desktop" ];
+        "video/webm" = [ "vlc.desktop" ];
+        "video/x-matroska" = [ "vlc.desktop" ];
+        "video/x-msvideo" = [ "vlc.desktop" ];
+        "video/quicktime" = [ "vlc.desktop" ];
+        "video/mpeg" = [ "vlc.desktop" ];
+        "video/ogg" = [ "vlc.desktop" ];
+        "video/x-flv" = [ "vlc.desktop" ];
+        "video/3gpp" = [ "vlc.desktop" ];
+        "video/x-ms-wmv" = [ "vlc.desktop" ];
+        "video/mp2t" = [ "vlc.desktop" ];
+        "video/x-m4v" = [ "vlc.desktop" ];
+
         "text/plain" = [ "nvim-ghostty.desktop" ];
         "text/markdown" = [ "nvim-ghostty.desktop" ];
         "application/json" = [ "nvim-ghostty.desktop" ];
@@ -29,15 +42,6 @@
         "text/yaml" = [ "nvim-ghostty.desktop" ];
         "application/yaml" = [ "nvim-ghostty.desktop" ];
         "application/x-yaml" = [ "nvim-ghostty.desktop" ];
-
-        "application/zip" = [ "xarchiver.desktop" ];
-        "application/x-7z-compressed" = [ "xarchiver.desktop" ];
-        "application/x-rar" = [ "xarchiver.desktop" ];
-        "application/x-tar" = [ "xarchiver.desktop" ];
-        "application/gzip" = [ "xarchiver.desktop" ];
-        "application/x-bzip2" = [ "xarchiver.desktop" ];
-        "application/x-xz" = [ "xarchiver.desktop" ];
-        "application/x-compressed-tar" = [ "xarchiver.desktop" ];
       };
     };
 

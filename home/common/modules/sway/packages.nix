@@ -4,9 +4,9 @@
   home.packages = with pkgs; [
     gnome-calculator
     gnome-clocks
-    converseen
 
     # Terminal
+    trash-cli
     wl-clipboard # Copy/Paste functionality.
     wooz # zoom
 

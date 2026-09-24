@@ -42,7 +42,7 @@ in
   services.caddy = {
     virtualHosts = {
       "rom.${domain}".extraConfig = ''
-        reverse_proxy 127.0.0.1:4243
+        reverse_proxy 127.0.0.1:8036
       '';
     };
   };
@@ -96,7 +96,7 @@ in
         ];
 
         ports = [
-          "4243:8080"
+          "8036:8080"
         ];
 
         extraOptions = [

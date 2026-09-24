@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>silent w<CR>", { desc = "Save", silent = true })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("v", "<C-S-c>", "y", { desc = "Copy" })
-vim.keymap.set("v", "<C-x>", "d", { desc = "Cut selected text" })
+vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent and reselect" })
 vim.keymap.set("v", "<", "<gv", { desc = "Outdent and reselect" })
 vim.keymap.set("n", "<S-Down>", "<C-d>", { desc = "Scroll down half page" })

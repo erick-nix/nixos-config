@@ -20,10 +20,10 @@ in
     caddy = {
       virtualHosts = {
         "cam.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:1984
+          reverse_proxy 127.0.0.1:8021
         '';
         "frigate.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8971
+          reverse_proxy 127.0.0.1:8022
         '';
       };
     };
@@ -31,8 +31,9 @@ in
     go2rtc = {
       enable = true;
       settings = {
+        api.listen = ":8021";
         streams.front_door = [
-          "rtsp://\${RTSP_USER}:\${RTSP_PASSWORD}@192.168.1.177:554/onvif1"
+          "rtsp://\${RTSP_USER}:\${RTSP_PASSWORD}@192.168.1.2:554/onvif1"
         ];
       };
     };
@@ -43,10 +44,8 @@ in
       vaapiDriver = "radeonsi";
 
       settings = {
-        ffmpeg.hwaccel_args = "preset-vaapi";
-
         go2rtc.streams.front_door = [
-          "rtsp://{RTSP_USER}:{RTSP_PASSWORD}@192.168.1.177:554/onvif1"
+          "rtsp://{RTSP_USER}:{RTSP_PASSWORD}@192.168.1.2:554/onvif1"
         ];
 
         cameras.front_door = {
@@ -63,8 +62,8 @@ in
 
           record = {
             enabled = true;
-            retain.days = 7;
-            alerts.retain.days = 30;
+            retain.days = 5;
+            alerts.retain.days = 14;
           };
 
           objects.filters.person.threshold = 0.8;
@@ -75,7 +74,7 @@ in
     nginx.virtualHosts."frigate.${domain}".listen = [
       {
         addr = "127.0.0.1";
-        port = 8971;
+        port = 8022;
       }
     ];
   };

@@ -17,14 +17,6 @@
     defaultLocale = lib.mkForce "pt_BR.UTF-8";
   };
 
-  # For use in nrremote
-  nix.settings.trusted-users = [
-    "root"
-    "erick-nix"
-  ];
-
-  hardware.graphics.enable = true;
-
   # Allow git and nh to run without sudo, it is useful for the nrremote command.
   security.sudo.extraRules = [
     {

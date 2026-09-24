@@ -9,6 +9,8 @@
 lib.mkIf (hostname == "laptop" || hostname == "desktop") {
   home.packages = with pkgs; [
     pkgsUnstable.sgdboop
+    mangohud
+    vkbasalt
     # Simple tool for input event debugging
     evtest
 

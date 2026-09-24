@@ -11,7 +11,7 @@ in
     caddy = {
       virtualHosts = {
         "home.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:3000
+          reverse_proxy 127.0.0.1:8026
         '';
       };
     };
@@ -21,7 +21,7 @@ in
       openFirewall = true;
       environmentFile = config.sops.secrets."glance/environment".path;
 
-      settings.server.port = 3000;
+      settings.server.port = 8026;
       settings.server.host = "0.0.0.0";
 
       settings.theme = {
@@ -51,29 +51,6 @@ in
                 size = "small";
                 widgets = [
                   {
-                    type = "html";
-                    source = ''
-                      <div style="display: flex; justify-content: center; margin-bottom: 10px; color: rgb(76, 157, 255);">
-                        <pre style="font-family: monospace; line-height: 1.1; font-size: 7px;">
-                              _   ___    _
-                              +o\  \  \  / \
-                              \oo\  \  \/  /
-                            ,oo+oo+oo\   ,/ +\
-                          /oooooooooo\  \ /os;     Y88b Y88 ,e,            e88 88e    dP"8
-                              /``/    \  ,oo/       Y88b Y8  "   Y8b Y8Y  d888 888b  C8b Y
-                          ,─~─'  /      \,oooooo,   b Y88b Y 888   Y8b Y  C8888 8888D  Y8b
-                          \__   ;s      /oo/sss\`   8b Y88b  888  e Y8b    Y888 888P  b Y8D
-                            /  /so\____/ss/____     88b Y88b 888 d8b Y8b    "88 88"   8edP
-                          `, / \oo\   ```     /
-                            \/ /sooo\─~.  .─~─`
-                              /so/\oo\  \  \
-                              \o/  \s+\  \_/
-                                    ```
-                        </pre>
-                      </div>
-                    '';
-                  }
-                  {
                     type = "calendar";
                     first-day-of-week = "monday";
                     hide-header = true;
@@ -84,7 +61,7 @@ in
                     title = "Immich stats";
                     cache = "1d";
 
-                    url = "http://127.0.0.1:2283/api/server/statistics";
+                    url = "https://immich.${domain}/api/server/statistics";
 
                     headers = {
                       x-api-key = "ijzOu0kbvn2wJDnwVB4VtqHkUkj9uPLWHHlcLcQrFto";
@@ -108,16 +85,15 @@ in
                       </div>
                     '';
                   }
-
                   {
                     type = "custom-api";
                     hide-header = true;
                     title = "Jellyfin/Emby Stats";
 
-                    base-url = "http://127.0.0.1:8096";
+                    base-url = "https://jellyfin.${domain}";
 
                     options = {
-                      url = "http://127.0.0.1:8096";
+                      url = "https://jellyfin.${domain}";
                       key = "37229b99c8f346e7b4255d7d4ac56206";
                     };
 
@@ -159,10 +135,18 @@ in
                   }
                 ];
               }
-
               {
                 size = "full";
                 widgets = [
+                  {
+                    type = "server-stats";
+                    hide-header = true;
+                    servers = [
+                      {
+                        type = "local";
+                      }
+                    ];
+                  }
                   {
                     type = "monitor";
                     hide-header = true;
@@ -195,6 +179,11 @@ in
                         icon = "si:jellyfin";
                       }
                       {
+                        title = "FreshRSS";
+                        url = "https://rss.${domain}";
+                        icon = "si:freshrss";
+                      }
+                      {
                         title = "Suwayomi";
                         url = "https://suwayomi.${domain}";
                         icon = "mdi:book-variant";
@@ -210,7 +199,12 @@ in
                         icon = "mdi:calendar-text";
                       }
                       {
-                        title = "forgejo";
+                        title = "Frigate";
+                        url = "https://frigate.${domain}";
+                        icon = "si:frigate";
+                      }
+                      {
+                        title = "Forgejo";
                         url = "https://git.${domain}";
                         icon = "si:forgejo";
                       }
@@ -233,57 +227,6 @@ in
                         title = "Status";
                         url = "https://status.${domain}";
                         icon = "mdi:pulse";
-                      }
-                    ];
-                  }
-                  {
-                    type = "lobsters";
-                    hide-header = true;
-                    sort-by = "hot";
-                    tags = [
-                      "nix"
-                      "security"
-                      "linux"
-                      "web"
-                      "culture"
-                      "email"
-                      "performance"
-                      "c"
-                      "rust"
-                      "philosophy"
-                      "education"
-                    ];
-                  }
-                ];
-              }
-
-              {
-                size = "small";
-                widgets = [
-                  {
-                    type = "server-stats";
-                    hide-header = true;
-                    servers = [
-                      {
-                        type = "local";
-                      }
-                    ];
-                  }
-
-                  {
-                    type = "rss";
-                    hide-header = true;
-                    title = "News";
-                    style = "vertical-list";
-
-                    feeds = [
-                      {
-                        url = "https://diolinux.com.br/feed";
-                        title = "Diolinux";
-                      }
-                      {
-                        url = "https://api.theregister.com/api/v1/article?query=tag:software&orderBy=published&site_id=2&remapper=rss&limit=25";
-                        title = "The Register";
                       }
                     ];
                   }
