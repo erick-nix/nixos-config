@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   username,
@@ -7,42 +6,14 @@
   ...
 }:
 
-let
-  hmSessionVars = config.home-manager.users.${username}.home.sessionVariables;
-  hmSearchVars = config.home-manager.users.${username}.home.sessionSearchVariables;
-in
-
 {
-  programs = {
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-
-      # Override default extras to avoid pulling in Foot.
-      extraPackages = with pkgs; [
-        swayidle
-        swaylock-effects
-      ];
-    };
-
-    thunar = {
-      enable = true;
-      plugins = with pkgs; [
-        thunar-archive-plugin
-      ];
-    };
-  };
-
   services = {
-    displayManager = {
-      defaultSession = "sway";
-
-      ly = {
-        enable = true;
-        x11Support = false;
-        settings = {
-          session_log = "";
-          allow_empty_password = false;
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+          user = "greeter";
         };
       };
     };
@@ -89,12 +60,6 @@ in
         };
       };
     };
-  };
-
-  # Load home-manager's session variables into sway.
-  environment.sessionVariables = hmSessionVars // {
-    QT_PLUGIN_PATH = lib.concatStringsSep ":" hmSearchVars.QT_PLUGIN_PATH;
-    QML2_IMPORT_PATH = lib.concatStringsSep ":" hmSearchVars.QML2_IMPORT_PATH;
   };
 
   # Import sway module from home-manager

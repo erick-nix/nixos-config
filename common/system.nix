@@ -30,10 +30,11 @@
     };
   };
 
-  # Fonts
   console = {
     earlySetup = true;
-    keyMap = "pt-latin9";
+
+    # Use same config for linux console
+    useXkbConfig = true;
   };
 
   fonts = {

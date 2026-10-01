@@ -1,8 +1,40 @@
-{ ... }:
+{ homeDir, ... }:
 
 {
   programs = {
     vscodium.enable = true;
+
+    direnv = {
+      enable = true;
+      silent = true;
+      nix-direnv.enable = true;
+    };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      history.size = 10000;
+      history.ignoreAllDups = true;
+
+      shellAliases = {
+        ll = "ls -l";
+        la = "ls -la";
+        n = "nvim .";
+        nr = "cd /etc/nixos && sudo env HOME=$HOME XDG_STATE_HOME=/root/.local/state XDG_CACHE_HOME=/root/.cache DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR nvim .";
+        b = "bluetui";
+        y = "yazi";
+        notes = "cd ${homeDir}/data/notes && nvim .";
+        pm = "cd ${homeDir}/data/programming/projects";
+        check-store = "nix-store --gc --print-dead | xargs du -shc 2>/dev/null | tail -n1";
+      };
+
+      initContent = ''
+        source ${../../scripts/nr.sh}
+        setopt HIST_IGNORE_SPACE
+      '';
+    };
 
     ghostty = {
       enable = true;

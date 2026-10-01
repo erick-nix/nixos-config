@@ -1,4 +1,4 @@
-{ homeDir, ... }:
+{ ... }:
 
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
@@ -7,27 +7,9 @@
 
     zsh = {
       enable = true;
-      enableCompletion = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-      histSize = 10000;
-
-      shellAliases = {
-        ll = "ls -l";
-        la = "ls -la";
-        n = "nvim .";
-        nr = "cd /etc/nixos && sudo env HOME=$HOME XDG_STATE_HOME=/root/.local/state XDG_CACHE_HOME=/root/.cache DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR nvim .";
-        b = "bluetui";
-        y = "yazi";
-        notes = "cd ${homeDir}/data/notes && nvim .";
-        pm = "cd ${homeDir}/data/programming/projects";
-        check-store = "nix-store --gc --print-dead | xargs du -shc 2>/dev/null | tail -n1";
-      };
+      enableCompletion = false;
 
       interactiveShellInit = ''
-        source ${../scripts/nr.sh}
-
-        setopt HIST_IGNORE_SPACE
         bindkey -e
 
         # Shift + arrows
@@ -57,12 +39,6 @@
     appimage = {
       enable = true;
       binfmt = true;
-    };
-
-    direnv = {
-      enable = true;
-      silent = true;
-      nix-direnv.enable = true;
     };
 
     localsend = {

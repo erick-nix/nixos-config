@@ -2,12 +2,13 @@
 
 {
   home.packages = with pkgs; [
+    thunar
     gnome-calculator
     gnome-clocks
 
     # Terminal
     trash-cli
-    wl-clipboard # Copy/Paste functionality.
+    wl-clipboard
     wooz # zoom
 
     # Screenshots

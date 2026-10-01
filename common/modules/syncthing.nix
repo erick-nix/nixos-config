@@ -23,6 +23,7 @@ let
   stignoreText = ''
     thirdparty
     workfolder
+    projects
     .snapshots
     u01
 

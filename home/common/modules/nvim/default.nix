@@ -11,10 +11,18 @@
       luaPackages.tree-sitter-cli
 
       # LSP
+      # https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
       nixd
       lua-language-server
+
+      # Python
       ruff
       pyright
+
+      # HTML
+      prettier
+      vscode-langservers-extracted
+      tailwindcss-language-server
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -31,12 +39,15 @@
       comment-nvim
       toggleterm-nvim
       nvim-autopairs
+      friendly-snippets
+      conform-nvim
 
       (nvim-treesitter.withPlugins (p: [
         p.html
         p.css
         p.typescript
         p.vue
+        p.astro
         p.nix
         p.lua
         p.bash

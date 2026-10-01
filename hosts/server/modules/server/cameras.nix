@@ -20,7 +20,7 @@ in
     caddy = {
       virtualHosts = {
         "cam.${domain}".extraConfig = ''
-          reverse_proxy 127.0.0.1:8021
+          reverse_proxy 127.0.0.1:1984
         '';
         "frigate.${domain}".extraConfig = ''
           reverse_proxy 127.0.0.1:8022
@@ -31,7 +31,7 @@ in
     go2rtc = {
       enable = true;
       settings = {
-        api.listen = ":8021";
+        api.listen = ":1984";
         streams.front_door = [
           "rtsp://\${RTSP_USER}:\${RTSP_PASSWORD}@192.168.1.2:554/onvif1"
         ];
@@ -41,7 +41,6 @@ in
     frigate = {
       enable = true;
       hostname = "frigate.${domain}";
-      vaapiDriver = "radeonsi";
 
       settings = {
         go2rtc.streams.front_door = [

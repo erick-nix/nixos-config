@@ -1,7 +1,4 @@
-vim.lsp.enable('nixd')
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('ruff')
-vim.lsp.enable('pyright')
+vim.lsp.enable({ 'nixd', 'lua_ls', 'ruff', 'pyright', 'html', 'cssls', 'tailwindcss' })
 
 vim.lsp.config('lua_ls', {
   settings = {
@@ -13,33 +10,16 @@ vim.lsp.config('lua_ls', {
   },
 })
 
-local ignored_dir = vim.fn.expand("~/data/work")
+vim.lsp.config('html', {
+  filetypes = { 'html', 'astro' },
+})
 
-local function is_ignored(bufnr)
-  local filepath = vim.api.nvim_buf_get_name(bufnr)
-  return filepath:sub(1, #ignored_dir) == ignored_dir
+-- Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+for _, server in ipairs({ 'html', 'cssls' }) do
+  vim.lsp.config(server, {
+    capabilities = capabilities,
+  })
 end
-
--- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    -- Disable in ignored folder
-    if is_ignored(args.buf) then
-      return
-    end
-    vim.lsp.buf.format { async = false, bufnr = args.buf }
-  end
-})
-
--- Disable pyright in ignored folder
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    local filepath = vim.api.nvim_buf_get_name(args.buf)
-
-    if client and client.name == "pyright" and filepath:sub(1, #ignored_dir) == ignored_dir then
-      vim.lsp.buf_detach_client(args.buf, client.id)
-    end
-  end
-})

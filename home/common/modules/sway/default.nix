@@ -19,8 +19,11 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    systemd.variables = [ "--all" ];
     extraOptions = [ "--unsupported-gpu" ];
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+    };
 
     config = {
       modifier = "Mod4";

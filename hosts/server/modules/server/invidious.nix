@@ -19,6 +19,7 @@
       port = 8031;
       domain = "invidious.${domain}";
       settings = {
+        popular_enabled = false;
         registration_enabled = false;
 
         invidious_companion = [
@@ -28,9 +29,7 @@
         default_user_preferences = {
           save_player_pos = true;
           feed_menu = [
-            "Popular"
             "Subscriptions"
-            "Playlists"
           ];
         };
 

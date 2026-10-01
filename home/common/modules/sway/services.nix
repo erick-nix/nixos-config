@@ -11,7 +11,6 @@
 
     swayidle = {
       enable = true;
-      systemdTargets = [ "sway-session.target" ];
       events = {
         before-sleep = "${pkgs.swaylock-effects}/bin/swaylock -f";
       };
