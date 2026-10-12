@@ -3,11 +3,9 @@
 {
   # Programs configuration: shells, browser, file manager integration, and Steam setup
   programs = {
-    dconf.enable = true;
-
     zsh = {
       enable = true;
-      enableCompletion = false;
+      syntaxHighlighting.enable = true;
 
       interactiveShellInit = ''
         bindkey -e
@@ -27,13 +25,6 @@
       promptInit = ''
         PS1="%{$(tput setaf 250)$(tput setaf 250)%}%n%{$(tput sgr0)$(tput setaf 250)%}@%{$(tput setaf 243)%}%m %{$(tput bold)$(tput setaf 33)%}%1~ %{$(tput sgr0)%}$ "
       '';
-    };
-
-    git = {
-      enable = true;
-      config = {
-        rerere.enabled = true;
-      };
     };
 
     appimage = {

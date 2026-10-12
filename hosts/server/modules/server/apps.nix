@@ -30,7 +30,7 @@
           reverse_proxy 127.0.0.1:8005
         '';
 
-        "suwayomi.${domain}".extraConfig = ''
+        "rss.${domain}".extraConfig = ''
           reverse_proxy 127.0.0.1:8006
         '';
 
@@ -85,6 +85,10 @@
         enable = true;
         host = "0.0.0.0";
         port = 8003;
+
+        environment = {
+          DISABLE_PASSWORD_AUTH = "true";
+        };
       };
 
       agent = {
@@ -122,24 +126,10 @@
       ];
     };
 
-    # Suwayomi Server
-    flaresolverr = {
+    # yarr
+    yarr = {
       enable = true;
-    };
-
-    suwayomi-server = {
-      enable = true;
-      openFirewall = true;
-      settings = {
-        server = {
-          port = 8006;
-          webUIChannel = "PREVIEW";
-
-          extensionRepos = [
-            "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
-          ];
-        };
-      };
+      port = 8006;
     };
 
     # Traccar

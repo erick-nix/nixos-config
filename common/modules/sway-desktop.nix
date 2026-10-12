@@ -43,23 +43,18 @@
     };
   };
 
-  # Screen sharing
   xdg.portal = {
     enable = true;
-    wlr = {
-      enable = true;
-      settings = {
-        screencast = {
-          chooser_type = "none";
-          output_name =
-            {
-              desktop = "HDMI-A-1";
-              laptop = "eDP-1";
-            }
-            .${hostname};
-        };
-      };
-    };
+    config.common.default = "gtk";
+    wlr.enable = true;
+
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  systemd.user.services.xdg-desktop-portal-wlr = {
+    path = [
+      pkgs.fuzzel
+    ];
   };
 
   # Import sway module from home-manager

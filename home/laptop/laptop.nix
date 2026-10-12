@@ -5,7 +5,6 @@
 {
   imports = [
     ../common
-    ../common/modules/dconf.nix
     ./modules/packages.nix
   ];
 

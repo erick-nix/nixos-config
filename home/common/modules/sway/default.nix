@@ -9,7 +9,7 @@
 
   imports = [
     ./services.nix
-    ./ui.nix
+    ./programs.nix
     ./keybindings.nix
     ./packages.nix
     ./xdg.nix
@@ -52,6 +52,19 @@
           xkb_variant = "abnt2";
         };
       };
+
+      window.commands = [
+        {
+          command = "floating enable, fullscreen enable";
+          criteria = {
+            class = "^steam_app_.*";
+          };
+        }
+        {
+          command = "floating enable, fullscreen enable";
+          criteria.app_id = "^steam_app_.*";
+        }
+      ];
     };
   };
 }

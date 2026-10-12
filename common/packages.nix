@@ -6,8 +6,6 @@
     systemPackages = with pkgs; [
       hdparm
       gparted
-      kdiskmark
-      qdiskinfo
       lm_sensors
 
       # Nix

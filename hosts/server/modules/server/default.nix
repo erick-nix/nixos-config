@@ -4,7 +4,6 @@
   imports = [
     ./ingress.nix
     ./apps.nix
-    ./freshrss.nix
     ./glance.nix
     ./vaultwarden.nix
     ./jellyfin.nix

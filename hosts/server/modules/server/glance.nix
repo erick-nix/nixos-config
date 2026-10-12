@@ -179,14 +179,9 @@ in
                         icon = "si:jellyfin";
                       }
                       {
-                        title = "FreshRSS";
+                        title = "yarr";
                         url = "https://rss.${domain}";
-                        icon = "si:freshrss";
-                      }
-                      {
-                        title = "Suwayomi";
-                        url = "https://suwayomi.${domain}";
-                        icon = "mdi:book-variant";
+                        icon = "sh:yarr";
                       }
                       {
                         title = "Invidious";

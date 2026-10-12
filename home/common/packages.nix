@@ -2,6 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    kdiskmark
+    qdiskinfo
+    simple-scan
     video-downloader
     pwvucontrol
     switcheroo
@@ -38,5 +41,6 @@
     exiftool
     smartmontools
     e2fsprogs
+    strace
   ];
 }

@@ -19,7 +19,7 @@
     mako = {
       enable = true;
       settings = {
-        default-timeout = 5000;
+        default-timeout = 8000;
         ignore-timeout = true;
         anchor = "bottom-right";
       };

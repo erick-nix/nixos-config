@@ -8,8 +8,28 @@ let
 in
 
 {
-  # Theme programs
   programs = {
+    yazi = {
+      enable = true;
+      shellWrapperName = "y";
+      theme = {
+        indicator.padding = {
+          open = "█";
+          close = "█";
+        };
+      };
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = "!";
+            for = "unix";
+            run = ''shell "$SHELL" --block'';
+            desc = "Open $SHELL here";
+          }
+        ];
+      };
+    };
+
     swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;

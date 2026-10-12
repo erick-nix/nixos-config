@@ -1,6 +1,18 @@
 { pkgs, lib, ... }:
 
 {
+  xdg.mimeApps = {
+    enable = true;
+
+    defaultApplications = {
+      "application/pdf" = [ "librewolf.desktop" ];
+      "text/html" = [ "librewolf.desktop" ];
+      "application/xhtml+xml" = [ "librewolf.desktop" ];
+      "x-scheme-handler/http" = [ "librewolf.desktop" ];
+      "x-scheme-handler/https" = [ "librewolf.desktop" ];
+    };
+  };
+
   programs = {
     librewolf = {
       enable = true;

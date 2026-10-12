@@ -1,8 +1,15 @@
-{ homeDir, ... }:
+{ pkgs, homeDir, ... }:
 
 {
   programs = {
     vscodium.enable = true;
+
+    git = {
+      enable = true;
+      settings = {
+        rerere.enabled = true;
+      };
+    };
 
     direnv = {
       enable = true;
@@ -10,11 +17,22 @@
       nix-direnv.enable = true;
     };
 
+    obs-studio = {
+      enable = true;
+
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+        obs-gstreamer
+        obs-vkcapture
+      ];
+    };
+
     zsh = {
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
       history.size = 10000;
       history.ignoreAllDups = true;
 

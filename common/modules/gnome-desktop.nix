@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}:
 
 {
   programs = {
@@ -106,4 +111,8 @@
       }
     ];
   };
+
+  home-manager.users.${username}.imports = [
+    ../../home/common/modules/gnome.nix
+  ];
 }

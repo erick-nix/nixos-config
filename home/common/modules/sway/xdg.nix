@@ -6,12 +6,6 @@
       enable = true;
 
       defaultApplications = {
-        "application/pdf" = [ "librewolf.desktop" ];
-        "text/html" = [ "librewolf.desktop" ];
-        "application/xhtml+xml" = [ "librewolf.desktop" ];
-        "x-scheme-handler/http" = [ "librewolf.desktop" ];
-        "x-scheme-handler/https" = [ "librewolf.desktop" ];
-
         "image/png" = [ "imv.desktop" ];
         "image/jpeg" = [ "imv.desktop" ];
         "image/webp" = [ "imv.desktop" ];

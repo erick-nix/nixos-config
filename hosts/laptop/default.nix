@@ -15,8 +15,8 @@ in
       ../../common
       ../../common/modules/sway-desktop.nix
       ../../common/modules/calendar.nix
-      ../../common/modules/obs.nix
       ../../common/modules/work.nix
+      ../../common/modules/themes.nix
       ./configuration.nix
       ../../common/modules/server-sftp-mount.nix
     ];

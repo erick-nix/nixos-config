@@ -24,7 +24,7 @@ lib.mkIf (hostname == "desktop") {
   };
 
   wayland.windowManager.sway = {
-    # For Nvidia
+    # Nvidia
     extraOptions = [ "--unsupported-gpu" ];
 
     config = {

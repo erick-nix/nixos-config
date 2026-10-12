@@ -31,5 +31,4 @@ vim.keymap.set("n", "<A-Down>", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hu
 vim.keymap.set("n", "<A-Up>", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Preview hunk" })
 vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
 vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Show blame line" })
-vim.keymap.set({ "n", "i", "t" }, "<A-j>", "<cmd>1ToggleTerm direction=float dir=%:p:h<CR>",
-  { desc = "Toggle float terminal" })
+vim.keymap.set({ "n", "i", "t" }, "<A-j>", "<cmd>1ToggleTerm direction=float<CR>", { desc = "Toggle float terminal" })
