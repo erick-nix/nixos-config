@@ -22,6 +22,7 @@
       "networkmanager"
       "docker"
       "fuse"
+      "video"
     ];
   };
 

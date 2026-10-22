@@ -17,8 +17,8 @@ in
       ../../common/modules/calendar.nix
       ../../common/modules/work.nix
       ../../common/modules/themes.nix
+      ../../common/modules/discord.nix
       ./configuration.nix
-      ../../common/modules/server-sftp-mount.nix
     ];
   };
 }

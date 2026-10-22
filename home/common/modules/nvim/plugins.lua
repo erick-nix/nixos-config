@@ -6,6 +6,8 @@ require('Comment').setup()
 
 require("gitsigns").setup()
 
+require("git-conflict").setup()
+
 require("oil").setup({
   keymaps = {
     ["<C-s>"] = {},

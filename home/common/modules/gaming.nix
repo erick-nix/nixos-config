@@ -11,6 +11,7 @@ lib.mkIf (hostname == "laptop" || hostname == "desktop") {
     pkgsUnstable.sgdboop
     mangohud
     vkbasalt
+    lgogdownloader
     # Simple tool for input event debugging
     evtest
 

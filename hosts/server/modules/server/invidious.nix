@@ -19,6 +19,9 @@
       port = 8031;
       domain = "invidious.${domain}";
       settings = {
+        https_only = true;
+        external_port = 443;
+
         popular_enabled = false;
         registration_enabled = false;
 

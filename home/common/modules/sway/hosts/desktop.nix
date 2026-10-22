@@ -5,15 +5,7 @@
   ...
 }:
 
-let
-  scripts = import ../scripts.nix { inherit pkgs; };
-in
-
 lib.mkIf (hostname == "desktop") {
-  home.packages = [
-    scripts.ddcBrightness
-  ];
-
   # Notifications on the second monitor
   services = {
     mako = {
@@ -61,16 +53,15 @@ lib.mkIf (hostname == "desktop") {
         {
           command = "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
         }
-        # Force HDMI-A-1 as primary monitor.
+        # Load backlight - sleep to wait for second monitor
         {
-          command = "${pkgs.xrandr}/bin/xrandr --output HDMI-A-1 --primary";
-          always = true;
+          command = "sleep 5 && sudo ${pkgs.systemd}/bin/udevadm trigger --subsystem-match=i2c --action=add";
         }
       ];
 
       keybindings = lib.mkOptionDefault {
-        "Mod1+x" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness up 8";
-        "Mod1+z" = "exec exec ${scripts.ddcBrightness}/bin/ddc-brightness down 8";
+        "Mod1+x" = "exec ${pkgs.brillo}/bin/brillo -e -A 5";
+        "Mod1+z" = "exec ${pkgs.brillo}/bin/brillo -e -U 5";
       };
     };
   };
@@ -79,7 +70,7 @@ lib.mkIf (hostname == "desktop") {
     modules-right = [
       "custom/network"
       "disk#root"
-      "custom/brightness"
+      "backlight"
       "pulseaudio"
       "memory"
       "cpu"
@@ -87,12 +78,5 @@ lib.mkIf (hostname == "desktop") {
       "clock"
       "tray"
     ];
-
-    "custom/brightness" = {
-      interval = 1;
-      format = "BRI {}%";
-      justify = "center";
-      exec = ''${pkgs.bash}/bin/bash -lc "cat ''${XDG_CACHE_HOME:-$HOME/.cache}/ddc-brightness/target 2>/dev/null || echo 50"'';
-    };
   };
 }

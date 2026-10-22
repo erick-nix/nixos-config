@@ -41,6 +41,7 @@
       nvim-autopairs
       friendly-snippets
       conform-nvim
+      git-conflict-nvim
 
       (nvim-treesitter.withPlugins (p: [
         p.html

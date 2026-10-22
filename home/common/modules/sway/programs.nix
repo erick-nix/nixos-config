@@ -18,6 +18,9 @@ in
           close = "█";
         };
       };
+      plugins = {
+        inherit (pkgs.yaziPlugins) mount;
+      };
       keymap = {
         mgr.prepend_keymap = [
           {
@@ -25,6 +28,10 @@ in
             for = "unix";
             run = ''shell "$SHELL" --block'';
             desc = "Open $SHELL here";
+          }
+          {
+            on = "M";
+            run = "plugin mount";
           }
         ];
       };

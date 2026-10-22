@@ -9,7 +9,6 @@
     inkscape
     tor-browser
     proton-vpn
-    discord
     chromium
     qbittorrent
     pear-desktop

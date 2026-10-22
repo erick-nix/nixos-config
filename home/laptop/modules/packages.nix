@@ -10,7 +10,6 @@
 
     gimp
     inkscape
-    discord
     pear-desktop
     qbittorrent
   ];

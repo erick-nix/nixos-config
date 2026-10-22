@@ -9,6 +9,7 @@
     # Terminal
     trash-cli
     wl-clipboard
+    cliphist
     wooz # zoom
 
     # Screenshots
