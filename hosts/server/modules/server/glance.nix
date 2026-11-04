@@ -169,6 +169,11 @@ in
                         icon = "si:traccar";
                       }
                       {
+                        title = "Navidrome";
+                        url = "https://navidrome.${domain}";
+                        icon = "sh:navidrome-light";
+                      }
+                      {
                         title = "Immich";
                         url = "https://immich.${domain}";
                         icon = "si:immich";

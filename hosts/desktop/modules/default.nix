@@ -8,6 +8,6 @@
     ./services.nix
     ./system.nix
     ./backlight.nix
-    #./vfio.nix
+    ./vfio.nix
   ];
 }

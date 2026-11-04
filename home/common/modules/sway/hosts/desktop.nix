@@ -5,6 +5,21 @@
   ...
 }:
 
+let
+  brightctl = pkgs.writeShellApplication {
+    name = "brightctl";
+    runtimeInputs = with pkgs; [
+      ddcutil
+      gawk
+      findutils
+      gnugrep
+      util-linux
+      coreutils
+    ];
+    text = builtins.readFile ../../../../../scripts/brightctl.sh;
+  };
+in
+
 lib.mkIf (hostname == "desktop") {
   # Notifications on the second monitor
   services = {
@@ -20,8 +35,6 @@ lib.mkIf (hostname == "desktop") {
     extraOptions = [ "--unsupported-gpu" ];
 
     config = {
-      output."*".background = "${../../../../desktop/assets/wallpaper.webp} fill";
-
       workspaceOutputAssign = [
         {
           workspace = "1";
@@ -34,6 +47,11 @@ lib.mkIf (hostname == "desktop") {
       ];
 
       output = {
+        "*" = {
+          adaptive_sync = "on";
+          background = "${../../../../desktop/assets/wallpaper.webp} fill";
+        };
+
         "HDMI-A-1" = {
           mode = "1920x1080@74.973Hz";
           position = "1080 840";
@@ -53,24 +71,19 @@ lib.mkIf (hostname == "desktop") {
         {
           command = "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator";
         }
-        # Load backlight - sleep to wait for second monitor
-        {
-          command = "sleep 5 && sudo ${pkgs.systemd}/bin/udevadm trigger --subsystem-match=i2c --action=add";
-        }
       ];
 
       keybindings = lib.mkOptionDefault {
-        "Mod1+x" = "exec ${pkgs.brillo}/bin/brillo -e -A 5";
-        "Mod1+z" = "exec ${pkgs.brillo}/bin/brillo -e -U 5";
+        "Mod1+x" = "exec ${brightctl}/bin/brightctl up 10";
+        "Mod1+z" = "exec ${brightctl}/bin/brightctl down 10";
       };
     };
   };
 
   programs.waybar.settings.mainBar = {
     modules-right = [
-      "custom/network"
+      "network"
       "disk#root"
-      "backlight"
       "pulseaudio"
       "memory"
       "cpu"

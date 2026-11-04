@@ -38,6 +38,10 @@
           reverse_proxy 127.0.0.1:8007
         '';
 
+        "navidrome.${domain}".extraConfig = ''
+          reverse_proxy 127.0.0.1:8008
+        '';
+
         "syncthing.${domain}".extraConfig = ''
           reverse_proxy 127.0.0.1:8384
         '';
@@ -140,6 +144,16 @@
 
         # Only android (5055)
         protocols.enable = "osmand";
+      };
+    };
+
+    navidrome = {
+      enable = true;
+      openFirewall = true;
+      settings = {
+        Address = "0.0.0.0";
+        Port = 8008;
+        MusicFolder = "/srv/media/Musics";
       };
     };
 

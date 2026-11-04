@@ -3,10 +3,6 @@
   ...
 }:
 
-let
-  scripts = import ./scripts.nix { inherit pkgs; };
-in
-
 {
   programs = {
     yazi = {
@@ -126,12 +122,9 @@ in
             exec = "${pkgs.bash}/bin/bash -lc 'echo '";
           };
 
-          "custom/network" = {
-            interval = 5;
-            "return-type" = "json";
+          "network" = {
+            format = "IP {ipaddr}";
             justify = "center";
-            tooltip = false;
-            exec = "${scripts.networkStatus}/bin/waybar-network-status";
           };
 
           "sway/workspaces" = {
@@ -260,7 +253,7 @@ in
         }
 
         #custom-brightness,
-        #custom-network,
+        #network,
         #backlight,
         #pulseaudio,
         #battery,
@@ -281,7 +274,7 @@ in
           padding: 0px 3px;
         }
 
-        #custom-nixos, #custom-network.vpn-off, #custom-network.vpn-on {
+        #custom-nixos, #network {
           color: #91acd1;
         }
 
@@ -295,10 +288,6 @@ in
 
         #battery.critical{
           color: #e27878;
-        }
-
-        #custom-network.offline {
-          color: #80828b;
         }
       '';
     };

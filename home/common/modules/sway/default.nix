@@ -55,14 +55,10 @@
 
       window.commands = [
         {
-          command = "floating enable, fullscreen enable";
+          command = "floating enable";
           criteria = {
-            class = "^steam_app_.*";
+            title = "^Extension:*";
           };
-        }
-        {
-          command = "floating enable, fullscreen enable";
-          criteria.app_id = "^steam_app_.*";
         }
       ];
     };

@@ -47,7 +47,7 @@ lib.mkIf (hostname == "laptop") {
 
   programs.waybar.settings.mainBar = {
     modules-right = [
-      "custom/network"
+      "network"
       "disk#root"
       "backlight"
       "pulseaudio"
