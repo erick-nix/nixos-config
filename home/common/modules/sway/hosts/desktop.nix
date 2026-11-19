@@ -74,8 +74,8 @@ lib.mkIf (hostname == "desktop") {
       ];
 
       keybindings = lib.mkOptionDefault {
-        "Mod1+x" = "exec ${brightctl}/bin/brightctl up 10";
-        "Mod1+z" = "exec ${brightctl}/bin/brightctl down 10";
+        "Mod1+x" = "exec ${brightctl}/bin/brightctl up 12";
+        "Mod1+z" = "exec ${brightctl}/bin/brightctl down 12";
       };
     };
   };

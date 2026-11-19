@@ -30,7 +30,6 @@
           "privacy.fingerprintingProtection.pbmode" = true;
           "privacy.fingerprintingProtection.overrides" =
             "+AllTargets,-WindowDevicePixelRatio,-CSSPrefersColorScheme";
-          "print.prefer_system_dialog" = true;
           "ui.key.menuAccessKeyFocuses" = false;
         };
 

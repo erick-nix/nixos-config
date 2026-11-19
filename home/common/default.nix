@@ -8,6 +8,7 @@
     ./programs.nix
     ./desktopEntries.nix
     ./modules/librewolf.nix
+    ./modules/watson.nix
     ./modules/nvim
   ];
 

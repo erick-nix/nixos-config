@@ -31,6 +31,7 @@
           "force user" = "erick-nix";
           "create mask" = "0664";
           "directory mask" = "0775";
+          "acl allow execute always" = "yes";
         };
       };
     };

@@ -33,7 +33,6 @@
     btop
     bluetui
     nmap
-    wget
     imv
     openssl
     ouch-rar
@@ -42,5 +41,10 @@
     smartmontools
     e2fsprogs
     strace
+
+    ## Downloaders
+    yt-dlp
+    aria2
+    wget
   ];
 }

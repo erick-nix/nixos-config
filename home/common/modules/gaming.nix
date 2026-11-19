@@ -7,9 +7,12 @@
 }:
 
 lib.mkIf (hostname == "laptop" || hostname == "desktop") {
+  programs.mangohud = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     pkgsUnstable.sgdboop
-    mangohud
     vkbasalt
     lgogdownloader
     # Simple tool for input event debugging
@@ -23,7 +26,7 @@ lib.mkIf (hostname == "laptop" || hostname == "desktop") {
       ];
     })
 
-    (heroic.override {
+    (pkgsUnstable.heroic.override {
       extraPkgs =
         pkgs': with pkgs'; [
           gamescope
